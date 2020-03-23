@@ -24,7 +24,7 @@ export default class About extends Component {
                     </div>
                     <div className="contact">
                         <ul className="contact-ul">
-                            <li><a className="contact-links" email="artur.sadikov1@gmail.com" href={`mailto:${this.props.email}`}><FaRegEnvelope /></a></li>
+                            <li><a className="contact-links" href="mailto:artur.sadikov1@gmail.com"><FaRegEnvelope /></a></li>
                             <li><a className="contact-links" href="https://www.linkedin.com/in/artur-sadikov-88063717b/"><FaLinkedin /></a></li>
                             <li><a className="contact-links" href="https://www.facebook.com/Artur.sadikov2"><FaFacebook /></a></li>
                             <li><a className="contact-links" href="https://www.instagram.com/sadikov_artur/"><FaInstagram /></a></li>
