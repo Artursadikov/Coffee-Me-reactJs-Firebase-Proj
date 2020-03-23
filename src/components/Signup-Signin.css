@@ -1,0 +1,68 @@
+form {
+    margin-top: 25px;
+    
+}
+.divcontent{
+    color: aliceblue;
+    
+}
+
+.form-control, label {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    
+}
+
+.createheader {
+    text-align: center;
+}
+
+.buttonssingup {
+    width: 60%;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 55px;
+    display: flex;
+    justify-content: center;
+    line-height: 80%;
+    
+}
+
+.signupbtn {
+    width: 150px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: none;
+    outline: none !important;
+    font-size: 75%;
+    font-weight: bold;
+    
+}
+.google {
+    margin-left: 5px;
+    background-color:#4285F4;
+    color: ivory;
+    
+}
+
+.google:hover{
+    background-color: rgb(10, 98, 240);
+    transition: background-color 0.5s, border 0.5s;
+    border: 2px white solid;
+}
+
+.sub{
+    background-color: white;
+}
+.sub:hover {
+    background-color: #4285F4;
+    color: ivory;
+    border: 2px white solid;
+    transition: background-color 0.5s, border 0.5s;
+}

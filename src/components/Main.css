@@ -1,0 +1,220 @@
+section {
+    width: auto;
+    height: 100vh;
+}
+
+.container.main {
+    border: 1px white solid;
+    height: 950px;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.btncart {
+    height: 10%;
+    width: auto;
+}
+
+.cartbtn {
+    height: 65px;
+    width: 65px;
+    margin-left: 150px;
+    margin-top: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: tomato;
+    color: white;
+}
+
+.cartbtn:hover {
+    background-color: rgb(236, 60, 29);
+    font-weight: bolder;
+    transition: background-color 0.5s, font-weigth 0.5s;
+}
+
+.imgbox {
+    width: 225px;
+    height: 250px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px wheat solid;
+}
+
+.amount {
+    align-self: flex-end;
+    color: ivory;
+    margin-left: 15px;
+}
+
+.price {
+    text-align: center;
+    color: ivory;
+    margin-bottom: 55px;
+    
+}
+
+.coffeestrength {
+    width: auto;
+    height: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.graph {
+    width: 600px;
+    height: 30%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.progress {
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+.coffeeamountbox {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add, .remove {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.add {
+    float: right;
+}
+
+.remove {
+    float: left;
+}
+
+.add:hover, .remove:hover {
+    background-color: tomato;
+    transition: background-color 0.3s;
+}
+
+.add:active, .remove:active {
+    background-color: tomato;
+    box-shadow: 0 5px rgb(219, 241, 16);
+    transform: translateY(4px);
+}
+
+.addbtnbox {
+    margin-top: 10px;
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    padding-top: 40px;
+}
+
+.orderbtns {
+    width: 400px;
+    height: 145px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.orderbtn, .backbtn, .resetbtn {
+    margin-top: 35px;
+    height: 50px;
+    width: 115px;
+    border-radius: 15px;
+    border: none;
+    color: ivory;
+    font-weight: bolder;
+}
+
+.orderbtn {
+    background-color: rgb(0, 128, 0);
+}
+.backbtn{
+    background-color: goldenrod;
+}
+
+.resetbtn{
+    background-color: maroon;
+   
+    
+}
+
+.orderbtn:hover {
+    background-color: rgb(0, 97, 0);
+    transition: background-color 0.3s ;
+}
+.backbtn:hover{
+    background-color: rgb(182, 137, 22);
+    transition: background-color 0.3s;
+}
+
+.resetbtn:hover{
+    background-color: rgb(110, 2, 2);
+    transition: background-color 0.3s;
+}
+
+.orderbtn:active {
+    background-color: rgb(0, 97, 0);
+    box-shadow: 0 5px rgb(219, 241, 16);
+    transform: translateY(4px);
+}
+.backbtn:active{
+    background-color: rgb(182, 137, 22);
+    box-shadow: 0 5px rgb(219, 241, 16);
+    transform: translateY(4px);
+}
+
+.resetbtn:active{
+    background-color: rgb(110, 2, 2);
+    box-shadow: 0 5px rgb(219, 241, 16);
+    transform: translateY(4px);
+}
+
+
+.slider:hover {
+    opacity: 1; 
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; 
+    background-color: maroon;
+    border: 1px white solid; 
+    cursor: pointer; 
+  }  
+
+  .slider::-moz-range-thumb {
+    width: 25px; 
+    height: 25px; 
+    background: rgb(251, 12, 12);
+    cursor: pointer; 
+  }
+
+  /* The slider itself */
+.slider {
+    -webkit-appearance: none;  
+    appearance: none;
+    width: 100%; 
+    height: 25px; 
+    background: #d3d3d3;
+    outline: none; 
+    opacity: 0.7; 
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  /*img placeholder*/
+  .imgholder{
+      color: white;
+  }

@@ -1,0 +1,20 @@
+.aboutbtn{
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: coral;
+    color: white;
+    outline: none !important;
+    font-weight: bold;
+}
+.aboutbtn:hover{
+    background-color: rgb(245, 97, 43);
+    border: 4px #e9ecef solid;
+    transition: border 0.5s ,background-color 0.5s ;
+}
+.aboutbtn.shop{
+    background-color: green;
+}
