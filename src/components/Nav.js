@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import './Nav.css';
 import { Link, NavLink } from "react-router-dom";
 
+
 class Nav extends Component {
 
     render() {
         
         return (
+
             <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
                 <Link to='/' className="navbar-brand">Coffee Me</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +31,7 @@ class Nav extends Component {
                     </ul>
                 </div>
             </nav>
+
         )
     }
 };

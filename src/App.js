@@ -7,6 +7,7 @@ import './App.css';
 import Main from './components/Main';
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import About from './components/About';
 
 const history = createBrowserHistory();
 
@@ -17,6 +18,7 @@ function App() {
                 <Nav />
                 <Switch>
                     <Route exact path='/' component={Home} />>
+                    <Route path='/about' component={About} />
                     <Route path='/main' component={Main} />
                     <Route path='/signin' component={Signin} />
                     <Route path='/signup' component={Signup} />

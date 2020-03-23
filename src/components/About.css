@@ -1,0 +1,81 @@
+.aboutbox {
+    width: auto;
+    height: 550px;
+    border: 3px white solid;
+    border-radius: 10px;
+    color: ivory;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(128, 128, 128, 0.144);
+}
+
+.about-header {
+    text-align: center;
+    margin-top: 10px;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.img-box {
+    width: 212px;
+    height: 161px;
+    border: 3px rgb(245, 146, 32) solid;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    display: block;
+}
+
+.creator {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.app-description {
+    text-align: center;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.contact {
+    width: 350px;
+    height: 50px;
+    margin-top: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.contact-ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.contact-links {
+    font-size: 50px;
+    text-align: center;
+}
+.phone{
+    margin-top: auto;
+    margin-right: auto;
+    display: flex;
+    margin-top: 50px;
+    width: 350px;
+    height: 30px;
+    justify-content: center;
+}
+
+.icon{
+    font-size: 50px;
+    color: rgb(2, 184, 2);
+}
+
+.aboutbox span {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 120%;
+    
+}
