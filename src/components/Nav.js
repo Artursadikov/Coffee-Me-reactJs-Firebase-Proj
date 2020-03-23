@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './Nav.css';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Nav extends Component {
+
     render() {
+        
         return (
             <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
                 <Link to='/' className="navbar-brand">Coffee Me</Link>
@@ -13,13 +15,16 @@ class Nav extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <Link to='./signin' className="nav-link">Sign-In</Link>
+                            <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='./signin' className="nav-link">Sign-In</NavLink>
                         </li>
                         <li className="nav-item active">
-                            <Link to='/signup' className="nav-link" >Sign-Up</ Link>
+                            <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
+                        </li>
+                        <li className="nav-item active">
+                            <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled "  aria-disabled="true">Logout</a>
+                            <Link className="nav-link disabled " aria-disabled="true">Logout</Link>
                         </li>
                     </ul>
                 </div>
