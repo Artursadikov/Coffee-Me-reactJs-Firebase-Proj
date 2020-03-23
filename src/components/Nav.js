@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import './Nav.css';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Nav extends Component {
     render() {
@@ -24,7 +19,7 @@ class Nav extends Component {
                             <Link to='/signup' className="nav-link" >Sign-Up</ Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled"  aria-disabled="true">Logout</a>
+                            <a className="nav-link disabled "  aria-disabled="true">Logout</a>
                         </li>
                     </ul>
                 </div>
