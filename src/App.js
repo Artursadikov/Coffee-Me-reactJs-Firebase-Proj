@@ -9,9 +9,10 @@ import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import About from './components/About';
 
-const history = createBrowserHistory();
+
 
 function App() {
+    const history = createBrowserHistory();
     return (
         <Router history={history}>
             <div className="App">

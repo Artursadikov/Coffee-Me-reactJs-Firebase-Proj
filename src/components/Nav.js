@@ -25,9 +25,10 @@ class Nav extends Component {
                         <li className="nav-item active">
                             <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
-                        <li className="nav-item">
+                     {/*   <li className="nav-item">
                             <Link className="nav-link disabled " aria-disabled="true">Logout</Link>
                         </li>
+                   */}
                     </ul>
                 </div>
             </nav>
