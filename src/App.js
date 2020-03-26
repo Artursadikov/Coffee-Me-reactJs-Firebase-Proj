@@ -4,7 +4,7 @@ import Signup from './components/Signup';
 import Signin from './components/Sigin';
 import Home from './components/Home';
 import './App.css';
-import Main from './components/Main';
+import Main from './components/Main/Main';
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import About from './components/About';
