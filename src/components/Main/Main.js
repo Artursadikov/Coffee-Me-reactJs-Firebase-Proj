@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ProgressBar from '../Main/ProgressBar';
 import OrderBtns from '../Main/orderButtons';
 import AddBtns from '../Main/AddBtns';
 
@@ -75,7 +74,9 @@ class Main extends Component {
 
 
             default:
-                console.log('111111');
+                return <div className="coffee-str-header-div">
+                    <h2 className="coffee-str-header">Choose your preferred coffee strength <br></br>---> <span className="blink">Slide Right</span></h2>
+                </div>
         }
 
     }

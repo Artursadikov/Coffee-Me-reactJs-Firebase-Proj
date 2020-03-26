@@ -218,4 +218,34 @@ section {
   /*img placeholder*/
   .imgholder{
       color: white;
+
   }
+
+  .coffee-str-header,.slide-right {
+      color: ivory;
+      padding: 0;
+      margin: 0;
+      font-size: 15px;
+      width: auto;
+      height: 10px;
+  }
+  .slide-right{
+    
+  }
+  .coffee-str-header-div{
+      width: auto;
+      height: 10px;
+      padding-bottom: 16px;
+      margin-bottom: 10px;
+  }
+
+  .blink{
+    animation: blinkingText 1.2s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: goldenrod;    }
+    49%{    color:  goldenrod; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color:  goldenrod;    }
+}
