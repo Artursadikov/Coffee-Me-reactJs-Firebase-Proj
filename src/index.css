@@ -5,7 +5,10 @@ body {
     background-color: #282c34;
     
 }
-
+*{
+    margin: 0;
+    padding: 0;
+}
 .container {
     margin-top: 35px;
 }

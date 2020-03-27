@@ -8,8 +8,8 @@ class AddBtns extends Component {
     render() {
         return (
             <div className="addbtnbox">
-                <button className="remove" type='button'><FontAwesomeIcon icon={faMinus} /></button>
-                <button className="add" type='button'><FontAwesomeIcon icon={faPlus} /></button>
+                <button onClick={this.props.removeItem} className="remove" type='button'><FontAwesomeIcon icon={faMinus} /></button>
+                <button onClick={this.props.addItem} className="add" type='button'><FontAwesomeIcon icon={faPlus} /></button>
             </div>
         )
     }
