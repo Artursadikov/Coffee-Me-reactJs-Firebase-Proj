@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import OrderBtns from '../Main/orderButtons';
 import AddBtns from '../Main/AddBtns';
-import ProgressBar from './ProgressBar'
+import ProgressBar from './ProgressBar';
 
 import '../Main/Main.css';
+import capsule1 from '../../pic/capsule1.png';
+import capsule2 from '../../pic/capsule2.png';
+import capsule3 from '../../pic/capsule3.png';
+import capsule4 from '../../pic/capsule4.png';
+import capsule5 from '../../pic/capsule5.png';
+import capsules from '../../pic/coffee.jpg';
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -35,7 +42,8 @@ class Main extends Component {
         price: 0,
         totalPriceProduct: 0,
         capsuleAmount: 1,
-        show: true
+        show: true,
+        capsula: capsules
     }
 
 
@@ -43,7 +51,8 @@ class Main extends Component {
     removeItem = () => {
         if (this.state.capsuleAmount > 1) {
             this.setState((prevState) => ({
-                capsuleAmount: prevState.capsuleAmount - 1
+                capsuleAmount: prevState.capsuleAmount - 1,
+                totalPriceProduct: prevState.totalPriceProduct - this.state.price
             }))
         }
     }
@@ -67,42 +76,46 @@ class Main extends Component {
             this.setState({
                 price: 15,
                 totalPriceProduct: 0,
-                capsuleAmount: 1
+                capsuleAmount: 1,
+                capsula : capsule1
             })
         } else if (event.target.value === "20") {
             this.setState({
                 price: 22,
                 totalPriceProduct: 0,
-                capsuleAmount: 1
+                capsuleAmount: 1,
+                capsula : capsule2
             })
         } else if (event.target.value === "30") {
             this.setState({
                 price: 20,
                 totalPriceProduct: 0,
-                capsuleAmount: 1
+                capsuleAmount: 1,
+                capsula : capsule3
             })
         } else if (event.target.value === "40") {
             this.setState({
                 price: 15, totalPriceProduct: 0,
-                capsuleAmount: 1
+                capsuleAmount: 1,
+                capsula : capsule4
 
             })
         } else if (event.target.value === "50") {
             this.setState({
                 price: 25,
                 totalPriceProduct: 0,
-                capsuleAmount: 1
+                capsuleAmount: 1,
+                capsula : capsule5
             })
         } else {
             this.setState({
                 price: 0,
                 totalPriceProduct: 0,
                 capsuleAmount: 1,
-                show: false
+                show: false,
+                capsula: capsules
             })
         }
-
-        console.log(this.state.value)
     }
 
 
@@ -150,13 +163,14 @@ class Main extends Component {
                         <button className="cartbtn" type="button"><FontAwesomeIcon icon={faCoffee} /></button>
                     </div>
                     <div className="imgbox row">
-                        <h1 className="imgholder">IMG Placeholder</h1>
+                        
                         <div className="price-content">
-                            <h3 className="price-per-product"> {this.state.price}$ </h3>
-                            {this.state.show && this.state.value >= 10 ? <h3 className="amount">x {this.state.capsuleAmount - 1}</h3> : null}
+                            <h3 className="price-per-product"> <span className="num-span">{this.state.price}</span><em>$</em></h3>
+                            {this.state.show && this.state.value >= 10 ? <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3> : null}
                         </div>
+                        <img className="capsule-img" alt="capsule" src={this.state.capsula} />
                     </div>
-                    <h3 className="price"><span>Total items Price:</span> {this.state.totalPriceProduct}$ </h3>
+                    <h3 className="price"><span className="tot-price-span">Total items Price:</span> <span className="num-span">{this.state.totalPriceProduct}</span><em>$</em></h3>
                     <div className="coffeestrength row">
                         <input onChange={this.handleChangeRange} value={this.state.value} type="range" className="slider" min="0" max="50" step="10" />
                     </div>

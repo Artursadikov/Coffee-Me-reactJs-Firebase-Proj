@@ -34,28 +34,26 @@ section {
     transition: background-color 0.5s, font-weigth 0.5s;
 }
 
-.imgbox {
-    width: 225px;
-    height: 250px;
-    margin-top: 40px;
-    margin-bottom: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px wheat solid;
-    display: flex;
-    justify-content: space-between;
-}
-
 .amount {
     height: 35px;
     color: ivory;
     margin-bottom: 0;
 }
 
+.num-span {
+    color: rgb(245, 17, 17);
+    font-size: bolder;
+}
+
+.tot-price-span {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .price {
     text-align: center;
     color: ivory;
     margin-bottom: 55px;
+    
 }
 
 .price-per-product {
@@ -69,6 +67,7 @@ section {
     justify-content: space-between;
     align-items: flex-end;
     width: 230px;
+    
 }
 
 .coffeestrength {
@@ -239,16 +238,34 @@ section {
     color: white;
 }
 
+.capsule-img {
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.imgbox {
+    width: 200px;
+    height: 200px;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
 .coffee-str-header, .slide-right {
     color: ivory;
     padding: 0;
     margin: 0;
-    font-size: 15px;
+    font-size: 14.5px;
     width: auto;
     height: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
-.slide-right {}
 
 .coffee-str-header-div {
     width: auto;
