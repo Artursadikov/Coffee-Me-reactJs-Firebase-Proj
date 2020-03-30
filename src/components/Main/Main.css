@@ -1,15 +1,16 @@
 section {
     width: auto;
-    height: 100vh;
+    height: 705px;
+    border-right: 2px solid #ff6347;
+    border-left: 2px solid #ff6347;
 }
 
 .container.main {
     overflow: hidden;
-    height: 950px;
+    height: 680px;
     display: block;
-    margin-bottom: 25px;
-    border-right: 2px solid #ff6347;
-    border-left: 2px solid #ff6347;
+
+
 }
 
 .btncart {
@@ -133,7 +134,7 @@ section {
 
 .orderbtns {
     width: 400px;
-    height: 145px;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -240,14 +241,14 @@ section {
 
 .capsule-img {
     width: 200px;
-    height: 200px;
+    height: 170px;
     padding: 0;
-    border-radius: 50%;
+    border-radius: 20px;
 }
 
 .imgbox {
     width: 200px;
-    height: 200px;
+    height: 170px;
     margin-top: 40px;
     margin-bottom: 35px;
     margin-left: auto;

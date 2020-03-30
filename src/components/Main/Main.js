@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OrderBtns from '../Main/orderButtons';
 import AddBtns from '../Main/AddBtns';
-import ProgressBar from './ProgressBar';
+
 
 import '../Main/Main.css';
 import capsule1 from '../../pic/capsule1.png';
@@ -9,7 +9,7 @@ import capsule2 from '../../pic/capsule2.png';
 import capsule3 from '../../pic/capsule3.png';
 import capsule4 from '../../pic/capsule4.png';
 import capsule5 from '../../pic/capsule5.png';
-import capsules from '../../pic/coffee.jpg';
+import capsules from '../../pic/coffee3.jpg';
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,29 +24,25 @@ class Main extends Component {
         this.props.history.push('/');
     }
 
+    state = {
+        value: 0,
+        price: 0,
+        totalPriceProduct: 0,
+        capsuleAmount: 1,
+        show: true,
+        showSlider: true,
+        capsula: capsules,
+        progBarcolor: { width: '0%' },
+        progBarClass: ""
+    }
+
+
+
     componentDidMount() {
         this.setState({
             show: false
         })
     }
-
-    state = {
-        value: 0,
-        progBarStyle: {
-            color1: { width: '10%' },
-            color2: { width: '25%' },
-            color3: { width: '50%' },
-            color4: { width: '75%' },
-            color5: { width: '100%' }
-        },
-        price: 0,
-        totalPriceProduct: 0,
-        capsuleAmount: 1,
-        show: true,
-        capsula: capsules
-    }
-
-
 
     removeItem = () => {
         if (this.state.capsuleAmount > 1) {
@@ -72,84 +68,79 @@ class Main extends Component {
             value: event.target.value
         });
 
-        if (event.target.value === "10") {
-            this.setState({
-                price: 15,
-                totalPriceProduct: 0,
-                capsuleAmount: 1,
-                capsula : capsule1
-            })
-        } else if (event.target.value === "20") {
-            this.setState({
-                price: 22,
-                totalPriceProduct: 0,
-                capsuleAmount: 1,
-                capsula : capsule2
-            })
-        } else if (event.target.value === "30") {
-            this.setState({
-                price: 20,
-                totalPriceProduct: 0,
-                capsuleAmount: 1,
-                capsula : capsule3
-            })
-        } else if (event.target.value === "40") {
-            this.setState({
-                price: 15, totalPriceProduct: 0,
-                capsuleAmount: 1,
-                capsula : capsule4
+        switch (event.target.value) {
+            case "10":
+                this.setState({
+                    price: 15,
+                    totalPriceProduct: 0,
+                    capsuleAmount: 1,
+                    capsula: capsule1,
+                    progBarcolor: { width: '12%' },
+                    progBarClass: "progress-bar progress-bar-striped bg-warning progress-bar-animated",
+                    showSlider: false
+                })
+                break;
+            case "20":
+                this.setState({
+                    price: 22,
+                    totalPriceProduct: 0,
+                    capsuleAmount: 1,
+                    capsula: capsule2,
+                    progBarcolor: { width: '25%' },
+                    progBarClass: "progress-bar progress-bar-striped bg-success progress-bar-animated",
+                    showSlider: false
+                })
+                break;
+            case "30":
+                this.setState({
+                    price: 20,
+                    totalPriceProduct: 0,
+                    capsuleAmount: 1,
+                    capsula: capsule3,
+                    progBarcolor: { width: '50%' },
+                    progBarClass: "progress-bar progress-bar-striped bg-info progress-bar-animated",
+                    showSlider: false
+                })
+                break;
+            case "40":
+                this.setState({
+                    price: 15, totalPriceProduct: 0,
+                    capsuleAmount: 1,
+                    capsula: capsule4,
+                    progBarcolor: { width: '75%' },
+                    progBarClass: "progress-bar progress-bar-striped  progress-bar-animated",
+                    showSlider: false
 
-            })
-        } else if (event.target.value === "50") {
-            this.setState({
-                price: 25,
-                totalPriceProduct: 0,
-                capsuleAmount: 1,
-                capsula : capsule5
-            })
-        } else {
-            this.setState({
-                price: 0,
-                totalPriceProduct: 0,
-                capsuleAmount: 1,
-                show: false,
-                capsula: capsules
-            })
-        }
-    }
-
-
-
-    progressBarHandler = () => {
-
-        switch (this.state.value) {
-            case '10':
-                return <ProgressBar classnm="progress-bar progress-bar-striped bg-warning progress-bar-animated"
-                    color={this.state.progBarStyle.color1} />
-            case '20':
-                return <ProgressBar classnm="progress-bar progress-bar-striped bg-success progress-bar-animated"
-                    color={this.state.progBarStyle.color2} />
-
-            case '30':
-                return <ProgressBar classnm="progress-bar progress-bar-striped bg-info progress-bar-animated"
-                    color={this.state.progBarStyle.color3} />
-
-            case '40':
-                return <ProgressBar classnm="progress-bar progress-bar-striped  progress-bar-animated"
-                    color={this.state.progBarStyle.color4} />
-
-            case '50':
-                return <ProgressBar classnm="progress-bar progress-bar-striped bg-danger progress-bar-animated"
-                    color={this.state.progBarStyle.color5} />
+                })
+                break;
+            case "50":
+                this.setState({
+                    price: 25,
+                    totalPriceProduct: 0,
+                    capsuleAmount: 1,
+                    capsula: capsule5,
+                    progBarcolor: { width: '100%' },
+                    progBarClass: "progress-bar progress-bar-striped bg-danger progress-bar-animated",
+                    showSlider: false
+                })
+                break;
 
             default:
-                return <div className="coffee-str-header-div">
-                    <h2 className="coffee-str-header">Choose your preferred coffee strength <br></br>---> <span className="blink">Slide Right</span></h2>
-                </div>
+                this.setState({
+                    price: 0,
+                    totalPriceProduct: 0,
+                    capsuleAmount: 1,
+                    show: false,
+                    capsula: capsules,
+                    showSlider: true,
+                    progBarcolor: { width: '0%' },
+                    progBarClass: ""
+                })
 
         }
 
     }
+
 
 
 
@@ -163,9 +154,9 @@ class Main extends Component {
                         <button className="cartbtn" type="button"><FontAwesomeIcon icon={faCoffee} /></button>
                     </div>
                     <div className="imgbox row">
-                        
+
                         <div className="price-content">
-                            <h3 className="price-per-product"> <span className="num-span">{this.state.price}</span><em>$</em></h3>
+                            <h3 className="price-per-product"> <span className="num-span">{this.state.price}</span><em>$<small>Sleeve</small></em></h3>
                             {this.state.show && this.state.value >= 10 ? <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3> : null}
                         </div>
                         <img className="capsule-img" alt="capsule" src={this.state.capsula} />
@@ -176,7 +167,16 @@ class Main extends Component {
                     </div>
                     <div className="coffeeamountbox row">
                         <div className="graph col-10">
-                            {this.progressBarHandler()}
+                            {this.state.showSlider ?
+                                <div className="coffee-str-header-div">
+                                    <h2 className="coffee-str-header">Choose your preferred coffee strength <br></br>---> <span className="blink">Slide Right</span></h2>
+                                </div> :
+                                <div className="progress">
+                                    <div className={this.state.progBarClass} role="progressbar"
+                                        style={this.state.progBarcolor} ></div>
+                                </div>
+                            }
+
                         </div>
                     </div>
                     <AddBtns addItem={this.addItem} removeItem={this.removeItem} />
