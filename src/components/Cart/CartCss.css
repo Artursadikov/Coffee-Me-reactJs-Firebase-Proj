@@ -4,5 +4,17 @@
     border-right: 2px solid #ff6347;
     border-left: 2px solid #ff6347;
     margin: 0;
+    padding: 0;
     color: ivory;
+}
+
+.container.order {
+    height: 705px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    padding: 0;
 }

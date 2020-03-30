@@ -1,0 +1,51 @@
+.row.order-btn {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.res-btn, .next-btn {
+    height: 50px;
+    width: 150px;
+    text-align: center;
+    border-radius: 15px;
+    border: none;
+    color: ivory;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.res-btn {
+    background-color: maroon;
+}
+
+.next-btn {
+    background-color: rgb(0, 128, 0);
+}
+
+
+.next-btn:hover {
+    background-color: rgb(0, 97, 0);
+    transition: background-color 0.3s;
+}
+
+.res-btn:hover {
+    background-color: rgb(110, 2, 2);
+    transition: background-color 0.3s;
+}
+
+.next-btn:active {
+    background-color: rgb(0, 97, 0);
+    box-shadow: 0 5px rgb(219, 241, 16);
+    transform: translateY(4px);
+}
+
+.res-btn:active {
+    background-color: rgb(110, 2, 2);
+    box-shadow: 0 5px rgb(219, 241, 16);
+    transform: translateY(4px);
+}

@@ -11,8 +11,9 @@
     align-items: center;
     width: auto;
     height: 70px;
+    text-decoration: none;
+    margin: 0;
 }
-
 
 .cart-li {
     width: 150px;
@@ -24,6 +25,9 @@
     border-radius: 10px;
     text-align: center;
     padding-top: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #ff6347;
 }
 
 .cart-li:hover {
@@ -38,7 +42,9 @@
     padding-top: 10px;
     background-color: #ff6347;
     color: black;
-    transition: color 0.5s,background-color 0.5s, border 0.5s ;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
 .your-cart {
@@ -51,6 +57,8 @@
     text-align: center;
     padding-top: 10px;
     margin-right: 10px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .your-cart:hover {
@@ -62,22 +70,21 @@
     font-size: 15px;
     text-align: center;
     padding-top: 10px;
-    background-color:rgb(110, 2, 2);
-    transition: border 0.5s,background-color 0.5s ;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgb(110, 2, 2);
+    transition: border 0.5s, background-color 0.5s;
 }
 
 @media screen and (max-width: 500px) {
-    .cart-li,.your-cart {
+    .cart-li, .your-cart {
         font-size: 10px;
         font-weight: bolder;
         padding-top: 15px;
     }
-
-    .cart-li:hover,.your-cart:hover {
+    .cart-li:hover, .your-cart:hover {
         font-size: 10px;
         font-weight: bolder;
         padding-top: 15px;
     }
-
-
 }

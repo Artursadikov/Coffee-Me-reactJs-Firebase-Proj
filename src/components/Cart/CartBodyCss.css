@@ -1,0 +1,37 @@
+.row.order {
+    height: 600px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    
+}
+
+.choosen-items {
+    padding: 0;
+    background-color: rgba(230, 230, 250, 0.048);
+    width: 1000px;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: white solid 2px;
+    border-top: white solid 2px;
+    border-left: 2px solid #ff6347;
+    border-right: 2px solid #ff6347;
+    border-radius: 10px;
+}
+
+.order-description {
+    background-color: rgba(245, 245, 245, 0.068);
+    width: 1000px;
+    height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: white solid 2px;
+    border-top: white solid 2px;
+    border-left: 2px solid #ff6347;
+    border-right: 2px solid #ff6347;
+    border-radius: 10px;
+}
