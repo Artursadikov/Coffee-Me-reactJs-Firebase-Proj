@@ -3,6 +3,7 @@ section {
     height: 705px;
     border-right: 2px solid #ff6347;
     border-left: 2px solid #ff6347;
+    margin: 0;
 }
 
 .container.main {
@@ -21,7 +22,7 @@ section {
 .cartbtn {
     height: 65px;
     width: 65px;
-    margin-left: 150px;
+    margin-left: 180px;
     margin-top: 15px;
     border-radius: 50%;
     border: none;

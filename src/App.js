@@ -8,6 +8,7 @@ import Main from './components/Main/Main';
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import About from './components/About';
+import Cart from './components/Cart/Cart';
 
 
 
@@ -23,6 +24,7 @@ function App() {
                     <Route path='/main' component={Main} />
                     <Route path='/signin' component={Signin} />
                     <Route path='/signup' component={Signup} />
+                    <Route path= '/cart' component={Cart}/>
                 </Switch>
             </div >
         </Router>

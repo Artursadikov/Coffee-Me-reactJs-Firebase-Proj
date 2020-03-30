@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OrderBtns from '../Main/orderButtons';
 import AddBtns from '../Main/AddBtns';
-
+import CartBtn from '../Cart/CartBtn';
 
 import '../Main/Main.css';
 import capsule1 from '../../pic/capsule1.png';
@@ -11,9 +11,6 @@ import capsule4 from '../../pic/capsule4.png';
 import capsule5 from '../../pic/capsule5.png';
 import capsules from '../../pic/coffee3.jpg';
 
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 
 
@@ -22,6 +19,11 @@ class Main extends Component {
 
     backToMain = () => {
         this.props.history.push('/');
+        
+    }
+
+    goToCartComponent = () => {
+        this.props.history.push('/cart');
     }
 
     state = {
@@ -150,9 +152,7 @@ class Main extends Component {
         return (
             <section>
                 <div className="container main">
-                    <div className="btncart row">
-                        <button className="cartbtn" type="button"><FontAwesomeIcon icon={faCoffee} /></button>
-                    </div>
+                    <CartBtn toCart={this.goToCartComponent} />
                     <div className="imgbox row">
 
                         <div className="price-content">
@@ -167,16 +167,16 @@ class Main extends Component {
                     </div>
                     <div className="coffeeamountbox row">
                         <div className="graph col-10">
-                            {this.state.showSlider ?
-                                <div className="coffee-str-header-div">
-                                    <h2 className="coffee-str-header">Choose your preferred coffee strength <br></br>---> <span className="blink">Slide Right</span></h2>
-                                </div> :
-                                <div className="progress">
-                                    <div className={this.state.progBarClass} role="progressbar"
-                                        style={this.state.progBarcolor} ></div>
-                                </div>
+                            {
+                                this.state.showSlider ?
+                                    <div className="coffee-str-header-div">
+                                        <h2 className="coffee-str-header">Choose your preferred coffee strength <br></br>---> <span className="blink">Slide Right</span></h2>
+                                    </div> :
+                                    <div className="progress">
+                                        <div className={this.state.progBarClass} role="progressbar"
+                                            style={this.state.progBarcolor} ></div>
+                                    </div>
                             }
-
                         </div>
                     </div>
                     <AddBtns addItem={this.addItem} removeItem={this.removeItem} />

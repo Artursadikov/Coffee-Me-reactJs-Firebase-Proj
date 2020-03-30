@@ -20,7 +20,7 @@ class Nav extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='./signin' className="nav-link">Sign-In</NavLink>
+                            <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Sign-In</NavLink>
                         </li>
                         <li className="nav-item active">
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
