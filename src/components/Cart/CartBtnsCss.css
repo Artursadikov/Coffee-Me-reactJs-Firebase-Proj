@@ -37,15 +37,3 @@
     background-color: rgb(110, 2, 2);
     transition: background-color 0.3s;
 }
-
-.next-btn:active {
-    background-color: rgb(0, 97, 0);
-    box-shadow: 0 5px rgb(219, 241, 16);
-    transform: translateY(4px);
-}
-
-.res-btn:active {
-    background-color: rgb(110, 2, 2);
-    box-shadow: 0 5px rgb(219, 241, 16);
-    transform: translateY(4px);
-}

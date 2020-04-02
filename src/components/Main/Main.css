@@ -13,7 +13,7 @@ section {
 }
 
 .btncart {
-    height: 10%;
+    height: 3%;
     width: auto;
     display: flex;
     position: absolute;
@@ -131,11 +131,7 @@ section {
     transition: background-color 0.3s;
 }
 
-.add:active, .remove:active {
-    background-color: tomato;
-    box-shadow: 0 5px rgb(219, 241, 16);
-    transform: translateY(4px);
-}
+
 
 .addbtnbox {
     margin-top: 10px;
@@ -192,23 +188,6 @@ section {
     transition: background-color 0.3s;
 }
 
-.orderbtn:active {
-    background-color: rgb(0, 97, 0);
-    box-shadow: 0 5px rgb(219, 241, 16);
-    transform: translateY(4px);
-}
-
-.backbtn:active {
-    background-color: rgb(182, 137, 22);
-    box-shadow: 0 5px rgb(219, 241, 16);
-    transform: translateY(4px);
-}
-
-.resetbtn:active {
-    background-color: rgb(110, 2, 2);
-    box-shadow: 0 5px rgb(219, 241, 16);
-    transform: translateY(4px);
-}
 
 .slider:hover {
     opacity: 1;
