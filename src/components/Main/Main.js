@@ -4,6 +4,7 @@ import AddBtns from '../Main/AddBtns';
 import CartBtn from '../Cart/CartBtn';
 
 import '../Main/Main.css';
+
 import capsule1 from '../../pic/capsule1.png';
 import capsule2 from '../../pic/capsule2.png';
 import capsule3 from '../../pic/capsule3.png';
@@ -100,10 +101,6 @@ class Main extends Component {
     }
 
 
-
-
-
-
     // display changes
     handleChangeRange = (event) => {
         this.setState({
@@ -196,21 +193,22 @@ class Main extends Component {
                 <div className="container main">
                     <CartBtn itemsInTheCart={this.state.cartArr.length} toCart={this.goToCartComponent} />
                     <div className="imgbox row">
-        
-                            {
-                                this.state.show && this.state.value >= 10 ?
+
+                        {
+                            this.state.show && this.state.capsuleAmount > 1 ?
                                 <div className="price-content">
-                                <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct.toFixed(2)}</span><em>$<small>Total</small></em></h3>
-                                <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3>
-                                </div>: null
-                            }
-                        
+                                    <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct.toFixed(2)}</span><em>$<small>Total</small></em></h3>
+                                    <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3>
+                                </div> : null
+                        }
+
                         <img className="capsule-img" alt="capsule" src={this.state.capsula} />
                     </div>
-                    {this.state.price > 0 ?
-                        <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
-                        : <h3 className="price">Swipe Right To Start...</h3>
-                    }              
+                    {
+                        this.state.price > 0 ?
+                            <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
+                            : <h3 className="price">Swipe Right To Start...</h3>
+                    }
                     <div className="coffeestrength row">
                         <input onChange={this.handleChangeRange} value={this.state.value} type="range" className="slider" min="0" max="50" step="10" />
                     </div>
@@ -228,7 +226,11 @@ class Main extends Component {
                             }
                         </div>
                     </div>
-                    <AddBtns addItem={this.addItem} removeItem={this.removeItem} />
+                    { this.state.value >= 10 ?
+                       <AddBtns addItem={this.addItem} removeItem={this.removeItem} /> :
+                       <AddBtns /> 
+                    }
+                    
                     <OrderBtns resetCart={this.resetCart} addToCart={this.addToCart} goToMain={this.backToMain} />
                 </div>
             </section>
