@@ -35,7 +35,8 @@ class Main extends Component {
         showSlider: true,
         capsula: capsules,
         progBarcolor: { width: '0%' },
-        progBarClass: ""
+        progBarClass: "",
+        capsulaName:""
     }
 
 
@@ -73,57 +74,62 @@ class Main extends Component {
         switch (event.target.value) {
             case "10":
                 this.setState({
-                    price: 15,
+                    price: 4.5,
                     totalPriceProduct: 0,
                     capsuleAmount: 1,
                     capsula: capsule1,
                     progBarcolor: { width: '12%' },
                     progBarClass: "progress-bar progress-bar-striped bg-warning progress-bar-animated",
-                    showSlider: false
+                    showSlider: false,
+                    capsulaName: "VANILLA"
                 })
                 break;
             case "20":
                 this.setState({
-                    price: 22,
+                    price: 4.5,
                     totalPriceProduct: 0,
                     capsuleAmount: 1,
                     capsula: capsule2,
                     progBarcolor: { width: '25%' },
                     progBarClass: "progress-bar progress-bar-striped bg-success progress-bar-animated",
-                    showSlider: false
+                    showSlider: false,
+                    capsulaName: "CARAMEL"
                 })
                 break;
             case "30":
                 this.setState({
-                    price: 20,
+                    price: 3.5,
                     totalPriceProduct: 0,
                     capsuleAmount: 1,
                     capsula: capsule3,
                     progBarcolor: { width: '50%' },
                     progBarClass: "progress-bar progress-bar-striped bg-info progress-bar-animated",
-                    showSlider: false
+                    showSlider: false,
+                    capsulaName: "ITALY"
                 })
                 break;
             case "40":
                 this.setState({
-                    price: 15, totalPriceProduct: 0,
+                    price: 3.7, totalPriceProduct: 0,
                     capsuleAmount: 1,
                     capsula: capsule4,
                     progBarcolor: { width: '75%' },
                     progBarClass: "progress-bar progress-bar-striped  progress-bar-animated",
-                    showSlider: false
+                    showSlider: false,
+                    capsulaName: "CUBA"
 
                 })
                 break;
             case "50":
                 this.setState({
-                    price: 25,
+                    price: 3.5,
                     totalPriceProduct: 0,
                     capsuleAmount: 1,
                     capsula: capsule5,
                     progBarcolor: { width: '100%' },
                     progBarClass: "progress-bar progress-bar-striped bg-danger progress-bar-animated",
-                    showSlider: false
+                    showSlider: false,
+                    capsulaName: "AFRICA"
                 })
                 break;
 
@@ -136,7 +142,8 @@ class Main extends Component {
                     capsula: capsules,
                     showSlider: true,
                     progBarcolor: { width: '0%' },
-                    progBarClass: ""
+                    progBarClass: "", 
+                    capsulaName: ""
                 })
 
         }
@@ -156,12 +163,12 @@ class Main extends Component {
                     <div className="imgbox row">
 
                         <div className="price-content">
-                            <h3 className="price-per-product"> <span className="num-span">{this.state.price}</span><em>$<small>Sleeve</small></em></h3>
+                            <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct}</span><em>$<small>Total</small></em></h3>
                             {this.state.show && this.state.value >= 10 ? <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3> : null}
                         </div>
                         <img className="capsule-img" alt="capsule" src={this.state.capsula} />
                     </div>
-                    <h3 className="price"><span className="tot-price-span">Total items Price:</span> <span className="num-span">{this.state.totalPriceProduct}</span><em>$</em></h3>
+        <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
                     <div className="coffeestrength row">
                         <input onChange={this.handleChangeRange} value={this.state.value} type="range" className="slider" min="0" max="50" step="10" />
                     </div>
@@ -170,7 +177,7 @@ class Main extends Component {
                             {
                                 this.state.showSlider ?
                                     <div className="coffee-str-header-div">
-                                        <h2 className="coffee-str-header">Choose your preferred coffee strength <br></br>---> <span className="blink">Slide Right</span></h2>
+                                        <h2 className="coffee-str-header">Choose your preferred coffee flavor <br></br>---> <span className="blink">Slide Right</span></h2>
                                     </div> :
                                     <div className="progress">
                                         <div className={this.state.progBarClass} role="progressbar"
