@@ -19,6 +19,8 @@
     border-left: 2px solid #ff6347;
     border-right: 2px solid #ff6347;
     border-radius: 10px;
+    padding-left: 35px;
+    padding-top: 20px ;
 }
 
 .order-description {
@@ -34,4 +36,6 @@
     border-left: 2px solid #ff6347;
     border-right: 2px solid #ff6347;
     border-radius: 10px;
+    padding-left: 35px;
+    padding-top: 20px ;
 }

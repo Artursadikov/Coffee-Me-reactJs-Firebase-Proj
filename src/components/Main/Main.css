@@ -1,8 +1,6 @@
 section {
     width: auto;
     height: 705px;
-    border-right: 2px solid #ff6347;
-    border-left: 2px solid #ff6347;
     margin: 0;
 }
 
@@ -13,7 +11,7 @@ section {
 }
 
 .btncart {
-    height: 3%;
+    height: 10%;
     width: auto;
     display: flex;
     position: absolute;
@@ -26,7 +24,7 @@ section {
     border-radius: 50%;
     text-align: center;
     position: relative;
-    top: 22px;
+    top: 10px;
     left: 20px;
     font-weight: bolder;
     font-size: 20px;
@@ -37,7 +35,6 @@ section {
 .cartbtn {
     height: 65px;
     width: 65px;
-    margin-top: 15px;
     border-radius: 50%;
     border: none;
     background-color: tomato;
