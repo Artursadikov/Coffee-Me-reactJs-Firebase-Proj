@@ -196,14 +196,21 @@ class Main extends Component {
                 <div className="container main">
                     <CartBtn itemsInTheCart={this.state.cartArr.length} toCart={this.goToCartComponent} />
                     <div className="imgbox row">
-
-                        <div className="price-content">
-                            <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct.toFixed(2)}</span><em>$<small>Total</small></em></h3>
-                            {this.state.show && this.state.value >= 10 ? <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3> : null}
-                        </div>
+        
+                            {
+                                this.state.show && this.state.value >= 10 ?
+                                <div className="price-content">
+                                <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct.toFixed(2)}</span><em>$<small>Total</small></em></h3>
+                                <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3>
+                                </div>: null
+                            }
+                        
                         <img className="capsule-img" alt="capsule" src={this.state.capsula} />
                     </div>
-                    <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
+                    {this.state.price > 0 ?
+                        <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
+                        : <h3 className="price">Swipe Right To Start...</h3>
+                    }              
                     <div className="coffeestrength row">
                         <input onChange={this.handleChangeRange} value={this.state.value} type="range" className="slider" min="0" max="50" step="10" />
                     </div>
