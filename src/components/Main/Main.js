@@ -16,12 +16,14 @@ import { withRouter } from "react-router-dom";
 
 
 
+
 class Main extends Component {
-    // router
+    
     backToMain = () => {
         this.props.history.push('/');
     }
 
+    // router
     goToCartComponent = () => {
         this.props.history.push('/cart');
     }
@@ -230,7 +232,6 @@ class Main extends Component {
                        <AddBtns addItem={this.addItem} removeItem={this.removeItem} /> :
                        <AddBtns /> 
                     }
-                    
                     <OrderBtns resetCart={this.resetCart} addToCart={this.addToCart} goToMain={this.backToMain} />
                 </div>
             </section>
