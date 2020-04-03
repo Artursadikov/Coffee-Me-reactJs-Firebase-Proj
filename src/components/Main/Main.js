@@ -16,16 +16,16 @@ import { withRouter } from "react-router-dom";
 
 
 class Main extends Component {
-
+    // router
     backToMain = () => {
         this.props.history.push('/');
-        
     }
 
     goToCartComponent = () => {
         this.props.history.push('/cart');
     }
 
+    // state
     state = {
         value: 0,
         price: 0,
@@ -36,17 +36,21 @@ class Main extends Component {
         capsula: capsules,
         progBarcolor: { width: '0%' },
         progBarClass: "",
-        capsulaName:""
+        capsulaName: "",
+        cartArr: [],
+        cartArrLength: 0
     }
 
 
-
+    // hooks
     componentDidMount() {
         this.setState({
             show: false
         })
     }
 
+
+    // item minus
     removeItem = () => {
         if (this.state.capsuleAmount > 1) {
             this.setState((prevState) => ({
@@ -55,7 +59,7 @@ class Main extends Component {
             }))
         }
     }
-
+    // item plus
     addItem = () => {
         this.setState((prevState) => ({
             capsuleAmount: prevState.capsuleAmount + 1,
@@ -66,6 +70,41 @@ class Main extends Component {
 
 
 
+    // add to cart
+
+    addToCart = () => {
+        if (this.state.capsuleAmount > 1) {
+            const cartArrItem = {
+                price: this.state.price,
+                totalPr: this.state.totalPriceProduct,
+                amount: this.state.capsuleAmount - 1,
+                name: this.state.capsulaName
+            }
+
+            let newCartArr = this.state.cartArr.concat(cartArrItem);
+            this.setState({
+                cartArr: newCartArr
+            })
+
+            console.log(newCartArr);
+        }
+
+    }
+
+
+    // reset the cart
+    resetCart = () => {
+        this.setState({
+            cartArr: []
+        })
+    }
+
+
+
+
+
+
+    // display changes
     handleChangeRange = (event) => {
         this.setState({
             value: event.target.value
@@ -105,7 +144,7 @@ class Main extends Component {
                     progBarcolor: { width: '50%' },
                     progBarClass: "progress-bar progress-bar-striped bg-info progress-bar-animated",
                     showSlider: false,
-                    capsulaName: "ITALY"
+                    capsulaName: "CUBA"
                 })
                 break;
             case "40":
@@ -116,7 +155,7 @@ class Main extends Component {
                     progBarcolor: { width: '75%' },
                     progBarClass: "progress-bar progress-bar-striped  progress-bar-animated",
                     showSlider: false,
-                    capsulaName: "CUBA"
+                    capsulaName: "ITALY"
 
                 })
                 break;
@@ -142,33 +181,29 @@ class Main extends Component {
                     capsula: capsules,
                     showSlider: true,
                     progBarcolor: { width: '0%' },
-                    progBarClass: "", 
+                    progBarClass: "",
                     capsulaName: ""
                 })
-
         }
-
     }
 
 
 
 
     render() {
-
-
         return (
             <section>
                 <div className="container main">
-                    <CartBtn toCart={this.goToCartComponent} />
+                    <CartBtn itemsInTheCart={this.state.cartArr.length} toCart={this.goToCartComponent} />
                     <div className="imgbox row">
 
                         <div className="price-content">
-                            <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct}</span><em>$<small>Total</small></em></h3>
+                            <h3 className="price-per-product"> <span className="num-span">{this.state.totalPriceProduct.toFixed(2)}</span><em>$<small>Total</small></em></h3>
                             {this.state.show && this.state.value >= 10 ? <h3 className="amount"><em>x</em><span className="num-span">{this.state.capsuleAmount - 1}</span></h3> : null}
                         </div>
                         <img className="capsule-img" alt="capsule" src={this.state.capsula} />
                     </div>
-        <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
+                    <h3 className="price"><span className="tot-price-span">{this.state.capsulaName}</span> <span className="num-span">{this.state.price}</span><em>$</em></h3>
                     <div className="coffeestrength row">
                         <input onChange={this.handleChangeRange} value={this.state.value} type="range" className="slider" min="0" max="50" step="10" />
                     </div>
@@ -187,7 +222,7 @@ class Main extends Component {
                         </div>
                     </div>
                     <AddBtns addItem={this.addItem} removeItem={this.removeItem} />
-                    <OrderBtns goToMain={this.backToMain} />
+                    <OrderBtns resetCart={this.resetCart} addToCart={this.addToCart} goToMain={this.backToMain} />
                 </div>
             </section>
         )
