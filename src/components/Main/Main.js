@@ -18,7 +18,7 @@ import { withRouter } from "react-router-dom";
 
 
 class Main extends Component {
-    
+
     backToMain = () => {
         this.props.history.push('/');
     }
@@ -90,6 +90,7 @@ class Main extends Component {
             })
 
             localStorage.setItem("newCartArr", JSON.stringify(newCartArr));
+
         }
 
     }
@@ -230,9 +231,9 @@ class Main extends Component {
                             }
                         </div>
                     </div>
-                    { this.state.value >= 10 ?
-                       <AddBtns addItem={this.addItem} removeItem={this.removeItem} /> :
-                       <AddBtns /> 
+                    {this.state.value >= 10 ?
+                        <AddBtns addItem={this.addItem} removeItem={this.removeItem} /> :
+                        <AddBtns />
                     }
                     <OrderBtns resetCart={this.resetCart} addToCart={this.addToCart} goToMain={this.backToMain} />
                 </div>

@@ -17,18 +17,16 @@ export class Cart extends Component {
     }
 
 
-
-
     render() {
         return (
             <div>
-              <section className='cart-section'>
-                 <CartNav cartClear={this.cartClear} />
-                 <div className="container order">
-                    <CartBody/>
-                     <CartBtns/>
-                 </div>
-              </section>
+                <section className='cart-section'>
+                    <CartNav  cartClear={this.cartClear} />
+                    <div className="container order">
+                        <CartBody />
+                        <CartBtns />
+                    </div>
+                </section>
             </div>
         )
     }
