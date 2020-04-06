@@ -89,7 +89,7 @@ class Main extends Component {
                 cartArr: newCartArr
             })
 
-            console.log(newCartArr);
+            localStorage.setItem("newCartArr", JSON.stringify(newCartArr));
         }
 
     }
@@ -98,8 +98,10 @@ class Main extends Component {
     // reset the cart
     resetCart = () => {
         this.setState({
-            cartArr: []
+            cartArr: [],
+            capsuleAmount: 1
         })
+        localStorage.clear();
     }
 
 

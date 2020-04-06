@@ -10,11 +10,20 @@ import '../Cart/CartCss.css';
 
 
 export class Cart extends Component {
+
+    cartClear = () => {
+        localStorage.clear();
+        window.location.reload(false);
+    }
+
+
+
+
     render() {
         return (
             <div>
               <section className='cart-section'>
-                 <CartNav/>
+                 <CartNav cartClear={this.cartClear} />
                  <div className="container order">
                     <CartBody/>
                      <CartBtns/>

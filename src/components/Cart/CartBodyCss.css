@@ -21,6 +21,7 @@
     border-radius: 10px;
     padding-left: 35px;
     padding-top: 20px ;
+    overflow: scroll;
 }
 
 .order-description {
