@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import CartList from './CartList';
+import TotalCartPrice from './TotalCartPrice';
 
 import '../Cart/CartBodyCss.css';
+import axios from '../../Configuration/axios-data';
+
+
 
 
 export default class CartBody extends Component {
@@ -9,42 +13,58 @@ export default class CartBody extends Component {
 
 
     state = {
-        data: localStorage.getItem("newCartArr") !== "" || localStorage.getItem("newCartArr") === [] ? localStorage.getItem("newCartArr") : null
-
+        cart: null,
+        priceTotCart: 0
     }
 
+    //remove items from cart
     remItemFromCar = (index) => {
 
-        let _data = JSON.parse(this.state.data);
+        let _data = Object.values(this.state.cart);
         _data.splice(index, 1);
 
         this.setState({
-            data: JSON.stringify(_data)
+            cart: _data
         })
+
+        
     }
 
-    componentDidUpdate() {
-        localStorage.setItem("newCartArr", this.state.data)
+
+
+
+
+    // update local storage after remove items
+    componentWillMount() {
+        axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+            this.setState({
+                cart: res.data
+            })
+        }).catch(err => { console.log(err) })
+
 
     }
+
+
 
     render() {
 
         return (
             <div className="row order">
-                
+
                 <div className="order-description">
-                    <h2>hello</h2>
+                    <TotalCartPrice TotalCartItemsPrice={this.state.priceTotCart} />
                 </div>
                 <div className="choosen-items">
-                    {this.state.data === null ? <h1 className="empty-cart-h1">The cart is empty</h1> :
-                        JSON.parse(this.state.data).map((item, index) => {
+
+                    {this.state.cart === null ? <h1 className="empty-cart-h1">The cart is empty</h1> :
+                        Object.values(this.state.cart).map((item, index) => {
                             return (
                                 <CartList key={index}
-                                    price={item.price.toFixed(2)}
+                                    price={item.price}
                                     amount={item.amount}
                                     name={item.name}
-                                    totalPr={item.totalPr.toFixed(2)}
+                                    totalPr={item.totalPr}
                                     click={() => this.remItemFromCar(index)}
                                 />
                             )

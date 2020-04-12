@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import OrderBtns from '../Main/orderButtons';
 import AddBtns from '../Main/AddBtns';
 import CartBtn from '../Cart/CartBtn';
+import axios from '../../Configuration/axios-data';
 
 import '../Main/Main.css';
 
@@ -78,18 +79,19 @@ class Main extends Component {
     addToCart = () => {
         if (this.state.capsuleAmount > 1) {
             const cartArrItem = {
-                price: this.state.price,
-                totalPr: this.state.totalPriceProduct,
+                price: this.state.price.toFixed(2),
+                totalPr: this.state.totalPriceProduct.toFixed(2),
                 amount: this.state.capsuleAmount - 1,
                 name: this.state.capsulaName
             }
 
-            let newCartArr = this.state.cartArr.concat(cartArrItem);
-            this.setState({
-                cartArr: newCartArr
-            })
 
-            localStorage.setItem("newCartArr", JSON.stringify(newCartArr));
+            axios.post('/cart.json', cartArrItem)
+            .then(res => {
+               
+            }).catch(err => {
+               
+            });
 
         }
 
@@ -98,11 +100,9 @@ class Main extends Component {
 
     // reset the cart
     resetCart = () => {
-        this.setState({
-            cartArr: [],
-            capsuleAmount: 1
-        })
-        localStorage.clear();
+        axios.delete('/cart.json').then(()=>{
+            window.location.reload(false);
+       });
     }
 
 

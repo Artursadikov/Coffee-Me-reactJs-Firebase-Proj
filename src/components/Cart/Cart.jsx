@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CartNav from './CartNav';
 import CartBody from './CartBody';
 import CartBtns from './CartBtns';
-
+import axios from '../../Configuration/axios-data';
 import '../Cart/CartCss.css';
 
 
@@ -12,8 +12,10 @@ import '../Cart/CartCss.css';
 export class Cart extends Component {
 
     cartClear = () => {
-        localStorage.clear();
-        window.location.reload(false);
+        axios.delete('/cart.json').then(()=>{
+             window.location.reload(false);
+        });
+       
     }
 
 
