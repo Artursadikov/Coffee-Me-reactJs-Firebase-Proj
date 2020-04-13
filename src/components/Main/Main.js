@@ -41,17 +41,28 @@ class Main extends Component {
         progBarcolor: { width: '0%' },
         progBarClass: "",
         capsulaName: "",
-        cartArr: [],
-        cartArrLength: 0
+        itemsInTheCart: 0
     }
 
 
     // hooks
     componentDidMount() {
+
+        axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+            if (res.data !== null) {
+                console.log(Object.values(res.data).length)
+                this.setState({
+                    itemsInTheCart: Object.values(res.data).length
+                })
+            }
+
+        })
+
         this.setState({
-            show: false
+            show: false,
         })
     }
+
 
 
     // item minus
@@ -85,13 +96,17 @@ class Main extends Component {
                 name: this.state.capsulaName
             }
 
+            axios.post('/cart.json', cartArrItem).then(res => {
+                axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+                    if (res.data !== null) {
+                        console.log(Object.values(res.data).length)
+                        this.setState({
+                            itemsInTheCart: Object.values(res.data).length
+                        })
+                    }
 
-            axios.post('/cart.json', cartArrItem)
-            .then(res => {
-               
-            }).catch(err => {
-               
-            });
+                })
+            })
 
         }
 
@@ -100,9 +115,9 @@ class Main extends Component {
 
     // reset the cart
     resetCart = () => {
-        axios.delete('/cart.json').then(()=>{
+        axios.delete('/cart.json').then(() => {
             window.location.reload(false);
-       });
+        });
     }
 
 
@@ -111,6 +126,9 @@ class Main extends Component {
         this.setState({
             value: event.target.value
         });
+
+
+
 
         switch (event.target.value) {
             case "10":
@@ -196,7 +214,7 @@ class Main extends Component {
         return (
             <section>
                 <div className="container main">
-                    <CartBtn itemsInTheCart={this.state.cartArr.length} toCart={this.goToCartComponent} />
+                    <CartBtn itemsInTheCart={this.state.itemsInTheCart} toCart={this.goToCartComponent} />
                     <div className="imgbox row">
 
                         {

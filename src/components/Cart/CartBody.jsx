@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CartList from './CartList';
 import TotalCartPrice from './TotalCartPrice';
+import Spinner from '../Spinner';
 
 import '../Cart/CartBodyCss.css';
 import axios from '../../Configuration/axios-data';
@@ -14,20 +15,23 @@ export default class CartBody extends Component {
 
     state = {
         cart: null,
-        priceTotCart: 0
+        loading: true
     }
 
     //remove items from cart
     remItemFromCar = (index) => {
 
-        let _data = Object.values(this.state.cart);
-        _data.splice(index, 1);
+
+        let data = Object.values(this.state.cart);
+
+        data.splice(index, 1);
 
         this.setState({
-            cart: _data
+            cart: data
         })
 
-        
+        axios.delete(`/cart/${index}.json`);
+
     }
 
 
@@ -38,9 +42,14 @@ export default class CartBody extends Component {
     componentWillMount() {
         axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
             this.setState({
-                cart: res.data
+                cart: res.data,
+                loading: false
             })
-        }).catch(err => { console.log(err) })
+        }).catch(err => { 
+            this.setState({              
+                loading: false
+            })
+         })
 
 
     }
@@ -57,7 +66,7 @@ export default class CartBody extends Component {
                 </div>
                 <div className="choosen-items">
 
-                    {this.state.cart === null ? <h1 className="empty-cart-h1">The cart is empty</h1> :
+                    {this.state.cart === null || this.state.loading ? <Spinner/> :
                         Object.values(this.state.cart).map((item, index) => {
                             return (
                                 <CartList key={index}
