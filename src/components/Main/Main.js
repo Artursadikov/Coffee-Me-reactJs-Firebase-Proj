@@ -50,7 +50,6 @@ class Main extends Component {
 
         axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
             if (res.data !== null) {
-                console.log(Object.values(res.data).length)
                 this.setState({
                     itemsInTheCart: Object.values(res.data).length
                 })
@@ -99,7 +98,6 @@ class Main extends Component {
             axios.post('/cart.json', cartArrItem).then(res => {
                 axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
                     if (res.data !== null) {
-                        console.log(Object.values(res.data).length)
                         this.setState({
                             itemsInTheCart: Object.values(res.data).length
                         })

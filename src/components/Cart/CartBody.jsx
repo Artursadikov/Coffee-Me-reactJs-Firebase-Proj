@@ -15,27 +15,54 @@ export default class CartBody extends Component {
 
     state = {
         cart: null,
-        loading: true
+        loading: true,
+        totalCartPrice: 0
     }
+
+
 
     //remove items from cart
     remItemFromCar = (index) => {
-
-
         let data = Object.values(this.state.cart);
-
         data.splice(index, 1);
 
         this.setState({
-            cart: data
+            cart: data,
+            totalCartPrice: 0
         })
 
-        axios.delete(`/cart/${index}.json`);
 
     }
 
 
+    componentDidMount() {
 
+        axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+            if (this.state.cart !== null) {
+                let totalCartPriceArr = Object.values(res.data).map((item) => {
+                    return Object.values(item)
+                })
+
+                let arr = Object.values(totalCartPriceArr);
+                let newArr = [];
+
+                for (let item of arr) {
+                    let values = item[item.length - 1];
+                    let value = parseFloat(values)
+                    newArr.push(value);
+                    let price = newArr.reduce((res, val) => {
+                        return res + val
+                    })
+
+                    this.setState({
+                        totalCartPrice: price
+                    })
+                    console.log(price)
+                }
+            }
+
+        })
+    }
 
 
     // update local storage after remove items
@@ -45,13 +72,13 @@ export default class CartBody extends Component {
                 cart: res.data,
                 loading: false
             })
-        }).catch(err => { 
-            this.setState({              
+        }).catch(err => {
+            this.setState({
                 loading: false
             })
 
             console.log(err)
-         })
+        })
 
 
     }
@@ -64,11 +91,11 @@ export default class CartBody extends Component {
             <div className="row order">
 
                 <div className="order-description">
-                    <TotalCartPrice TotalCartItemsPrice={this.state.priceTotCart} />
+                    <TotalCartPrice TotalCartItemsPrice={this.state.totalCartPrice} />
                 </div>
                 <div className="choosen-items">
 
-                    {this.state.cart === null || this.state.loading ? <Spinner/> :
+                    {this.state.cart === null || this.state.loading ? <Spinner /> :
                         Object.values(this.state.cart).map((item, index) => {
                             return (
                                 <CartList key={index}
