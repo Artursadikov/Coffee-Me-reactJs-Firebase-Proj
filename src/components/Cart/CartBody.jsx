@@ -49,6 +49,8 @@ export default class CartBody extends Component {
             this.setState({              
                 loading: false
             })
+
+            console.log(err)
          })
 
 
