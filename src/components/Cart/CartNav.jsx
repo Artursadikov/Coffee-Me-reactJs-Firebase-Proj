@@ -9,7 +9,7 @@ export default function CartNav(props) {
             <ul className="cart-ul">
                 <h3 className="userNameDisplay">LOGO</h3>
                 <button onClick={props.cartClear} type="button" className="empty-cart">Reset The Cart</button>
-                <button type="button" className="wishlist">Wish-List</button>
+                <button onClick={props.goToWishList} type="button" className="wishlist">Wish-List</button>
             </ul>
         </nav>
     )

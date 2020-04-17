@@ -1,0 +1,38 @@
+.wish-btns {
+    width: auto;
+    height: 15%;
+    color: ivory;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.backFromWishBtn {
+    width: 125px;
+    height: 50px;
+    margin-top: 20px;
+    color: ivory;
+    border: none;
+    border-radius: 15px;
+    background-color:#daa520;
+}
+
+.backFromWishBtn:hover{
+    background-color:#a77d13;
+    transition: all 0.3s ease-out;
+}
+
+
+.clearWishList {
+    width: 125px;
+    color: ivory;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    margin-top: 20px;
+    background-color: maroon;
+}
+
+.clearWishList:hover{
+    background-color: rgb(98, 3, 3);
+    transition: all 0.3s ease-out;
+}

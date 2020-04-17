@@ -9,6 +9,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import About from './components/About';
 import Cart from './components/Cart/Cart';
+import Wish from './components/WishList/Wish';
 
 
 
@@ -21,9 +22,10 @@ function App() {
             <div className="App">
                 <Nav />
                 <Switch>
-                    <Route exact path='/' component={Home} />>
+                    <Route exact path='/' component={Home} />
                     <Route path='/about' component={About} />
                     <Route path='/main' component={Main} />
+                    <Route path='/wish' component={Wish} />
                     <Route path='/signin' component={Signin} />
                     <Route path='/signup' component={Signup} />
                     <Route path= '/cart' component={Cart}/>

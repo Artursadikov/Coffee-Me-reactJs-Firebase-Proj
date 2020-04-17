@@ -5,11 +5,8 @@ import CartBtns from './CartBtns';
 import axios from '../../Configuration/axios-data';
 import Modal from '../Modal/Modal';
 import ModalWishList from '../Modal/ModalWishList';
-
+import { withRouter } from "react-router-dom";
 import '../Cart/CartCss.css';
-
-
-
 
 
 export class Cart extends Component {
@@ -19,8 +16,13 @@ export class Cart extends Component {
         modalanimation: false
     }
 
+    // to wishList btn
+    goToWishList = () => {
+        this.props.history.push('/wish');
+    }
 
 
+    // clear the cart && database 
     cartClear = () => {
         axios.delete('/cart.json').then(() => {
             window.location.reload(false);
@@ -28,6 +30,7 @@ export class Cart extends Component {
 
     }
 
+    // btn open the wishlist modal
     addWishModal = () => {
         this.setState({
             wishList: true,
@@ -35,9 +38,14 @@ export class Cart extends Component {
         })
     }
 
+    // button add to wishlist and clear the cart list && database
     onAddToWishList = () => {
         axios.get('/cart.json').then(res => {
-            axios.post('/wishlist.json', res.data).then(() => {
+            let wishObj = {
+                data: res.data,
+                wishName: new Date().toLocaleString()
+            }
+            axios.post('/wishlist.json', wishObj).then(() => {
                 axios.delete('/cart.json').then(res => {
                     window.location.reload(false);
                 }).catch(err => {
@@ -45,8 +53,14 @@ export class Cart extends Component {
                 })
             })
         })
+    }
 
-
+    //button close the wishlist modal
+    onBackToCart = () => {
+        this.setState({
+            wishList: false,
+            modalanimation: false
+        })
     }
 
 
@@ -54,10 +68,10 @@ export class Cart extends Component {
         return (
             <div>
                 <section className='cart-section'>
-                    <CartNav cartClear={this.cartClear} />
+                    <CartNav goToWishList={this.goToWishList} cartClear={this.cartClear} />
                     <div className="container order">
                         <Modal show={this.state.modalanimation} >
-                            <ModalWishList addtowishlist={this.onAddToWishList} />
+                            <ModalWishList backToCartCancelWish={this.onBackToCart} addtowishlist={this.onAddToWishList} />
                         </Modal>
                         <CartBody />
                         <CartBtns addToWishList={this.addWishModal} />
@@ -68,4 +82,4 @@ export class Cart extends Component {
     }
 }
 
-export default Cart
+export default withRouter(Cart)

@@ -75,12 +75,12 @@ export default class CartBody extends Component {
                 cart: res.data,
                 loading: false
             })
+            
         }).catch(err => {
             this.setState({
                 loading: false
             })
 
-            console.log(err)
         })
 
 
