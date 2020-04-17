@@ -3,9 +3,9 @@ import CartList from './CartList';
 import TotalCartPrice from './TotalCartPrice';
 import Spinner from '../Spinner';
 
-
 import '../Cart/CartBodyCss.css';
 import axios from '../../Configuration/axios-data';
+
 
 
 
@@ -19,7 +19,6 @@ export default class CartBody extends Component {
         loading: true,
         totalCartPrice: 0,
         cartItems: 0
-       
     }
 
 
@@ -87,7 +86,7 @@ export default class CartBody extends Component {
 
     }
 
-
+    
 
     render() {
 
@@ -98,7 +97,6 @@ export default class CartBody extends Component {
                     <TotalCartPrice items={this.state.cartItems} TotalCartItemsPrice={this.state.totalCartPrice} />
                 </div>
                 <div className="choosen-items">
-
                     {this.state.cart === null || this.state.loading ? <Spinner /> :
                         Object.values(this.state.cart).map((item, index) => {
                             return (
@@ -112,7 +110,7 @@ export default class CartBody extends Component {
                             )
                         })
                     }
-                    
+
                 </div>
             </div>
         )
