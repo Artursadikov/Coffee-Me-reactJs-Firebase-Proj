@@ -3,6 +3,7 @@ import CartList from './CartList';
 import TotalCartPrice from './TotalCartPrice';
 import Spinner from '../Spinner';
 
+
 import '../Cart/CartBodyCss.css';
 import axios from '../../Configuration/axios-data';
 
@@ -16,7 +17,9 @@ export default class CartBody extends Component {
     state = {
         cart: null,
         loading: true,
-        totalCartPrice: 0
+        totalCartPrice: 0,
+        cartItems: 0
+       
     }
 
 
@@ -34,7 +37,7 @@ export default class CartBody extends Component {
 
     }
 
-
+    // total price calc
     componentDidMount() {
 
         axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
@@ -55,9 +58,10 @@ export default class CartBody extends Component {
                     })
 
                     this.setState({
-                        totalCartPrice: price
+                        totalCartPrice: price.toFixed(2),
+                        cartItems: newArr.length
                     })
-                    console.log(price)
+
                 }
             }
 
@@ -91,7 +95,7 @@ export default class CartBody extends Component {
             <div className="row order">
 
                 <div className="order-description">
-                    <TotalCartPrice TotalCartItemsPrice={this.state.totalCartPrice} />
+                    <TotalCartPrice items={this.state.cartItems} TotalCartItemsPrice={this.state.totalCartPrice} />
                 </div>
                 <div className="choosen-items">
 
@@ -108,6 +112,7 @@ export default class CartBody extends Component {
                             )
                         })
                     }
+                    
                 </div>
             </div>
         )

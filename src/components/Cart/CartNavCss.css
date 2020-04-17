@@ -15,7 +15,22 @@
     margin: 0;
 }
 
-.empty-cart{
+.wishlist {
+    height: 45px;
+    width: 150px;
+    border-radius: 15px;
+    border: none;
+    font-weight: bolder;
+    background-color: goldenrod;
+    color: ivory;
+}
+
+.wishlist:hover {
+    background-color: rgb(173, 131, 25);
+    transition:  all 0.3s;
+}
+
+.empty-cart {
     height: 45px;
     width: 150px;
     border-radius: 15px;
@@ -25,7 +40,7 @@
     background-color: red;
 }
 
-.empty-cart:hover{
+.empty-cart:hover {
     background-color: rgb(200, 9, 9);
     transition: background-color 0.5s;
 }

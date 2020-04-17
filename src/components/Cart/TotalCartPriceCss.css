@@ -1,17 +1,28 @@
 .totpriceheader {
+    font-family: 'Libre Baskerville', serif;
     color: ivory;
-    margin-top: 10px;
-    margin-bottom: 5px;
     margin-left: 15px;
+    margin-top: 1px;
+    margin-bottom: 0;
 }
 
 .totpriceitem {
-    width: 60px;
-    height: 40px;
-    border-radius: 10px;
-    color: ivory;
+    font-family: 'Libre Baskerville', serif;
+    color: rgb(255, 23, 23);
     margin-left: 10px;
-    background-color: red;
-    
 }
 
+.totcartitems {
+    margin-left: 5px;
+    color: rgb(255, 23, 23);
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.totnumofcartitems {
+    font-family: 'Libre Baskerville', serif;
+    color: ivory;
+    margin-left: 15px;
+    margin-bottom: 8px;
+}
