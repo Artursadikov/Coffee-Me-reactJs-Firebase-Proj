@@ -18,7 +18,6 @@ export default class WishBody extends Component {
             this.setState({
                 wishData: res.data
             })
-            console.log(res.data)
         })
     }
 

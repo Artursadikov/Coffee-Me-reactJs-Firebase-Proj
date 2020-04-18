@@ -15,8 +15,6 @@
     margin-right: auto;
     border-bottom: white solid 2px;
     border-top: white solid 2px;
-    border-left: 2px solid #ff6347;
-    border-right: 2px solid #ff6347;
     border-radius: 10px;
     overflow: scroll;
 }
@@ -31,10 +29,7 @@
     margin-bottom: 5px;
     border-bottom: white solid 2px;
     border-top: white solid 2px;
-    border-left: 2px solid #ff6347;
-    border-right: 2px solid #ff6347;
     border-radius: 10px;
-
 }
 
 .icon-cart-plus, .icon-cart-minus {
@@ -72,21 +67,19 @@
 .cartLi {
     width: auto;
     height: 150px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
-    border: rgb(49, 49, 48) 1px solid;
-    border-radius: 4%;
-    letter-spacing: 1px;
+    border-radius: 10px;
     font-weight: bold;
     padding-left: 25px;
     padding-top: 10px;
-    box-shadow: 0px 10px 9px -3px  #ff6347;
-    background-color: rgb(211, 209, 209);
-    color: rgb(29, 26, 26);
+    box-shadow: 0px 5px 7px -3px #ff6347;
+    background-color: rgb(206, 203, 39);
+    color:black;
     font-size: 17px;
     font-family: 'Libre Baskerville', serif;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     line-height: 30px;
 }
 
@@ -94,10 +87,9 @@
     color: rgb(22, 21, 21);
 }
 
-
 .nums {
-    color:rgb(24, 141, 8);
-    
+    color: black;
+    background-color: rgba(255, 0, 0, 0.39);
 }
 
 .remmoveFromCartItem {
@@ -106,16 +98,16 @@
     height: 33px;
     margin-right: 10px;
     margin-bottom: 5px;
-    background-color: transparent ;
+    background-color: transparent;
 }
 
 .remmoveFromCartItem:hover {
     color: goldenrod;
-    transition: color 0.3s , background-color 0.3s;
-    background-color: transparent ;
+    transition: color 0.3s, background-color 0.3s;
+    background-color: transparent;
 }
 
-.totpricetag{
+.totpricetag {
     width: 50px;
     height: 50px;
     background-color: tomato;
@@ -126,4 +118,3 @@
     align-items: center;
     margin: 0;
 }
-

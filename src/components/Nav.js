@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './Nav.css';
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 
 
 class Nav extends Component {
 
+    goToWishListBtn = () => {
+        this.props.history.push('/wish');
+    }
 
     render() {
 
@@ -28,10 +31,10 @@ class Nav extends Component {
                         <li className="nav-item active">
                             <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
-                        {/*   <li className="nav-item">
-                            <Link className="nav-link disabled " aria-disabled="true">Logout</Link>
-                        </li>
-                   */}
+                        <button onClick={this.goToWishListBtn} style={{ backgroundColor: 'goldenrod' }} className="nav-link active">
+                            Wish-list
+                        </button>
+
                     </ul>
                 </div>
             </nav>
@@ -40,4 +43,4 @@ class Nav extends Component {
     }
 };
 
-export default Nav;
+export default withRouter(Nav);

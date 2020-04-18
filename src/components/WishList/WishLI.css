@@ -6,6 +6,7 @@
     height: 75px;
     padding-top: 10px;
     background-color: rgb(206, 203, 39);
+    box-shadow: 0px 5px 7px -3px  #ff6347;
     border-radius: 10px;
     border: 1px solid black;
     list-style: none;

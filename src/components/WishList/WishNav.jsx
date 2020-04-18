@@ -6,7 +6,7 @@ export default function WishNav() {
         <div className="wish-nav">
             <h4 style={{
                 textAlign: 'center'
-            }}>My Wish-List, Items in the list : <span>(***)</span></h4>
+            }}>You'r Wish-List</h4>
             
         </div>
     )

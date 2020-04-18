@@ -21,21 +21,6 @@ export default class CartBody extends Component {
         cartItems: 0
     }
 
-
-
-    //remove items from cart
-    remItemFromCar = (index) => {
-        let data = Object.values(this.state.cart);
-        data.splice(index, 1);
-
-        this.setState({
-            cart: data,
-            totalCartPrice: 0
-        })
-
-
-    }
-
     // total price calc
     componentDidMount() {
 
@@ -105,7 +90,6 @@ export default class CartBody extends Component {
                                     amount={item.amount}
                                     name={item.name}
                                     totalPr={item.totalPr}
-                                    click={() => this.remItemFromCar(index)}
                                 />
                             )
                         })
