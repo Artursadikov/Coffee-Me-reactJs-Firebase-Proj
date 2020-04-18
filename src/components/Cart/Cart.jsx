@@ -24,7 +24,7 @@ class Cart extends Component {
     // clear the cart && database 
     cartClear = () => {
         axios.delete('/cart.json').then(() => {
-            window.location.reload(false);
+            this.props.history.push('/main');
         });
 
     }
@@ -43,10 +43,10 @@ class Cart extends Component {
             let items = Object.values(res.data).map((items, index) => {
                 return items
             })
-            
+
             axios.post('/wishlist.json', items).then(() => {
                 axios.delete('/cart.json').then(res => {
-                    window.location.reload(false);
+                    this.props.history.push('/wish');
                 }).catch(err => {
                     console.log(err)
                 })

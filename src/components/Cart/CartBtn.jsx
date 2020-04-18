@@ -15,7 +15,13 @@ export default class CartBtn extends Component {
                         <h6 className="cart-items-num">{this.props.itemsInTheCart}</h6> :
                         <h6 style={{ backgroundColor: 'transparent', color: 'transparent' }} className="cart-items-num">{this.props.itemsInTheCart}</h6>
                 }
-                <button onClick={this.props.toCart} className="cartbtn" type="button"><FontAwesomeIcon style={{ fontSize: '30px', marginRight: '4px', marginTop: '3px' }} icon={faCartPlus} /></button>
+                {
+                     this.props.itemsInTheCart > 0 ? 
+                     <button onClick={this.props.toCart} className="cartbtn" type="button"><FontAwesomeIcon style={{ fontSize: '30px', marginRight: '4px', marginTop: '3px' }} icon={faCartPlus} /></button>
+                     : 
+                     <button onClick={this.props.toCart} disabled className="cartbtn" type="button"><FontAwesomeIcon style={{ fontSize: '30px', marginRight: '4px', marginTop: '3px' }} icon={faCartPlus} /></button>
+                }
+                
             </div>
 
         )
