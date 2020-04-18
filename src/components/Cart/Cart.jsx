@@ -8,8 +8,7 @@ import ModalWishList from '../Modal/ModalWishList';
 import { withRouter } from "react-router-dom";
 import '../Cart/CartCss.css';
 
-
-export class Cart extends Component {
+class Cart extends Component {
 
     state = {
         wishList: false,
@@ -41,11 +40,11 @@ export class Cart extends Component {
     // button add to wishlist and clear the cart list && database
     onAddToWishList = () => {
         axios.get('/cart.json').then(res => {
-            let wishObj = {
-                data: res.data,
-                wishName: new Date().toLocaleString()
-            }
-            axios.post('/wishlist.json', wishObj).then(() => {
+            let items = Object.values(res.data).map((items, index) => {
+                return items
+            })
+            
+            axios.post('/wishlist.json', items).then(() => {
                 axios.delete('/cart.json').then(res => {
                     window.location.reload(false);
                 }).catch(err => {

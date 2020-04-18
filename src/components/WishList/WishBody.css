@@ -1,6 +1,6 @@
-.wish-body{
+.wish-body {
     width: auto;
     height: 70%;
     color: ivory;
-   
+    overflow: scroll;
 }

@@ -1,6 +1,6 @@
 .totpriceheader {
     font-family: 'Libre Baskerville', serif;
-    color: ivory;
+    color: white;
     margin-left: 15px;
     margin-top: 1px;
     margin-bottom: 0;
@@ -8,13 +8,15 @@
 
 .totpriceitem {
     font-family: 'Libre Baskerville', serif;
-    color: rgb(255, 23, 23);
+    color: white;
+    background-color: rgba(255, 0, 0, 0.335);
     margin-left: 10px;
 }
 
 .totcartitems {
     margin-left: 5px;
-    color: rgb(255, 23, 23);
+    color: ivory;
+    background-color: rgba(255, 0, 0, 0.335);
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 8px;

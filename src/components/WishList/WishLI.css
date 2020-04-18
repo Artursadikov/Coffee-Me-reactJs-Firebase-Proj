@@ -1,16 +1,47 @@
 .wishtLi {
     box-sizing: border-box;
-    margin-bottom: 1px;
-    margin-top: 1px;
-    width: auto;
-    height: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 1000px;
+    height: 160px;
     padding-top: 10px;
     background-color: rgb(206, 203, 39);
-    box-shadow: 0px 5px 7px -3px  #ff6347;
+    box-shadow: 0px 5px 7px -3px #ff6347;
     border-radius: 10px;
     border: 1px solid black;
     list-style: none;
     cursor: pointer;
+}
+
+.liWish {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.wishBtnDiv {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    height: 30px;
+}
+
+.continue, .delWish {
+    height: 30px;
+    width: 75px;
+    padding: 2px;
+    border: none;
+    border-radius: 10px;
+    color: ivory;
+}
+
+.continue {
+    background-color: green;
+}
+
+.delWish {
+    background-color: maroon;
 }
 
 .wishItemName {
