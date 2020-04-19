@@ -7,12 +7,15 @@ import Modal from '../Modal/Modal';
 import ModalWishList from '../Modal/ModalWishList';
 import { withRouter } from "react-router-dom";
 import '../Cart/CartCss.css';
+import ModalInput from '../Modal/ModalInput';
+import InputContent from '../Modal/InputContent';
 
 class Cart extends Component {
 
     state = {
         wishList: false,
-        modalanimation: false
+        modalanimation: false,
+        openInput: false
     }
 
     // to wishList btn
@@ -40,7 +43,7 @@ class Cart extends Component {
     // button add to wishlist and clear the cart list && database
     onAddToWishList = () => {
         axios.get('/cart.json').then(res => {
-            let items = Object.values(res.data).map((items, index) => {
+            let items = Object.values(res.data).map((items) => {
                 return items
             })
 
@@ -54,13 +57,24 @@ class Cart extends Component {
         })
     }
 
+    onOpenInputModal = () => {
+       this.setState({
+           openInput: true,
+           modalanimation: false
+    
+       })
+    }
+
     //button close the wishlist modal
     onBackToCart = () => {
         this.setState({
             wishList: false,
-            modalanimation: false
+            modalanimation: false,
+            openInput: false
         })
     }
+
+   
 
 
     render() {
@@ -70,8 +84,11 @@ class Cart extends Component {
                     <CartNav goToWishList={this.goToWishList} cartClear={this.cartClear} />
                     <div className="container order">
                         <Modal show={this.state.modalanimation} >
-                            <ModalWishList backToCartCancelWish={this.onBackToCart} addtowishlist={this.onAddToWishList} />
+                            <ModalWishList backToCartCancelWish={this.onBackToCart} addtowishlist={this.onOpenInputModal} />
                         </Modal>
+                        <ModalInput show={this.state.openInput}>
+                            <InputContent backToCartCancelWish={this.onBackToCart} addtowishlist={this.onAddToWishList}/>
+                        </ModalInput>
                         <CartBody />
                         <CartBtns addToWishList={this.addWishModal} />
                     </div>
