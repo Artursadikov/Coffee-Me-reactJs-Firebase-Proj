@@ -27,8 +27,6 @@
     margin-right: auto;
     margin-top: 5px;
     margin-bottom: 5px;
-    border-bottom: white solid 2px;
-    border-top: white solid 2px;
     border-radius: 10px;
 }
 
@@ -48,11 +46,6 @@
 .icon-cart-minus {
     color: red;
     border: red solid 1px;
-}
-
-.cartUL {
-    list-style: none;
-   
 }
 
 .empty-cart-h1 {
@@ -75,12 +68,15 @@
     font-weight: bold;
     padding-left: 25px;
     padding-top: 10px;
-    background-color:#dcdde1;
+    padding-bottom: 1px;
+    background-color:#dcdde180;
     color:black;
     font-size: 17px;
-    font-family: 'Libre Baskerville', serif;
     letter-spacing: 1px;
     line-height: 30px;
+    text-decoration: underline rgba(255, 217, 0, 0.459);
+   
+    
 }
 
 .itemname {
