@@ -37,19 +37,9 @@ export default class WishBody extends Component {
 
     render() {
 
-        let list = this.state.wishData !== null ? Object.values(this.state.wishData).map((item, index) => {
+        let list = this.state.wishData !== null ? Object.entries(this.state.wishData).map((item, index) => {
             return (
-                item.map((item, index) => {
-                    return (
-                        <WishLI
-                            key={index}
-                            name={item.name}
-                            amount={item.amount}
-                            price={item.price}
-                            totalPr={item.totalPr}
-                        />
-                    )
-                })
+                <WishLI key={index} item={item[0]} />
             )
         }) : <h1 style={{
             textAlign: 'center',

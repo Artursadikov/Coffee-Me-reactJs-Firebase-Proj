@@ -70,7 +70,22 @@ class Cart extends Component {
 
 // button add to wishlist and clear the cart list && database
 onAddToWishList = () => {
-   alert(this.state.value);
+   
+    axios.get('/cart.json').then(res => {
+        let items = Object.values(res.data).map((items) => {
+            return items
+        })
+
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+        axios.post(`/wishlist/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
+            axios.delete('/cart.json').then(res => {
+                this.props.history.push('/wish');
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+    })
 }
 
     render() {
@@ -83,7 +98,7 @@ onAddToWishList = () => {
                             <ModalWishList backToCartCancelWish={this.onBackToCart} addtowishlist={this.onOpenInputModal} />
                         </Modal>
                         <ModalInput show={this.state.openInput}>
-                            <InputContent handleChange={(e)=>this.handleChange(e)} value={this.state.value} backToCartCancelWish={this.onBackToCart} addtowishlist={this.onAddToWishList}/>
+                            <InputContent handleChange={(e)=>this.handleChange(e)} value={this.state.value} backToCartCancelWish={this.onBackToCart} addtowishlistKeyDown={this.onAddToWishList} addtowishlist={this.onAddToWishList}/>
                         </ModalInput>
                         <CartBody />
                         <CartBtns addToWishList={this.addWishModal} />
@@ -98,23 +113,3 @@ export default withRouter(Cart)
 
 
 
-{/**
-
- axios.get('/cart.json').then(res => {
-        let items = Object.values(res.data).map((items) => {
-            return items
-        })
-
-        axios.post('/wishlist.json', items).then(() => {
-            axios.delete('/cart.json').then(res => {
-                this.props.history.push('/wish');
-            }).catch(err => {
-                console.log(err)
-            })
-        })
-    })
-
-
-
-
-*/}
