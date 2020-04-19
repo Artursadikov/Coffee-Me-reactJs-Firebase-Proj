@@ -24,11 +24,19 @@ export default class WishBody extends Component {
         })
     }
 
-    openWishListItem = () => {
+    openWishListItem = (e) => {
+       let div = e.target.closest('div');
+       let elementFromDB = div.children[0].children[0].children[0].textContent;
+        console.log(elementFromDB)
 
-        this.setState({
-            openModal: true
+        axios.get(`/wishlist/${elementFromDB}.json`).then(res=>{
+            console.log(res.data)
         })
+        // this.setState({
+        //    openModal: true
+        //   })
+
+
 
     }
 
@@ -39,7 +47,7 @@ export default class WishBody extends Component {
 
         let list = this.state.wishData !== null ? Object.entries(this.state.wishData).map((item, index) => {
             return (
-                <WishLI key={index} item={item[0]} />
+                <WishLI key={index} item={item[0]} openWishListItem={(e) => this.openWishListItem(e)} />
             )
         }) : <h1 style={{
             textAlign: 'center',
