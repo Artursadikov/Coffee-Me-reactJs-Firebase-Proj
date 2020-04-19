@@ -15,7 +15,8 @@ class Cart extends Component {
     state = {
         wishList: false,
         modalanimation: false,
-        openInput: false
+        openInput: false,
+        value : ''
     }
 
     // to wishList btn
@@ -40,22 +41,7 @@ class Cart extends Component {
         })
     }
 
-    // button add to wishlist and clear the cart list && database
-    onAddToWishList = () => {
-        axios.get('/cart.json').then(res => {
-            let items = Object.values(res.data).map((items) => {
-                return items
-            })
-
-            axios.post('/wishlist.json', items).then(() => {
-                axios.delete('/cart.json').then(res => {
-                    this.props.history.push('/wish');
-                }).catch(err => {
-                    console.log(err)
-                })
-            })
-        })
-    }
+    
 
     onOpenInputModal = () => {
        this.setState({
@@ -74,8 +60,18 @@ class Cart extends Component {
         })
     }
 
-   
+    handleChange=(e)=>{
+        let value = e.target.value
+            value = value.replace(/[^A-Za-z]/ig, '')
+        this.setState({
+            value: value.toUpperCase()
+        });
+    }
 
+// button add to wishlist and clear the cart list && database
+onAddToWishList = () => {
+   alert(this.state.value);
+}
 
     render() {
         return (
@@ -87,7 +83,7 @@ class Cart extends Component {
                             <ModalWishList backToCartCancelWish={this.onBackToCart} addtowishlist={this.onOpenInputModal} />
                         </Modal>
                         <ModalInput show={this.state.openInput}>
-                            <InputContent backToCartCancelWish={this.onBackToCart} addtowishlist={this.onAddToWishList}/>
+                            <InputContent handleChange={(e)=>this.handleChange(e)} value={this.state.value} backToCartCancelWish={this.onBackToCart} addtowishlist={this.onAddToWishList}/>
                         </ModalInput>
                         <CartBody />
                         <CartBtns addToWishList={this.addWishModal} />
@@ -99,3 +95,26 @@ class Cart extends Component {
 }
 
 export default withRouter(Cart)
+
+
+
+{/**
+
+ axios.get('/cart.json').then(res => {
+        let items = Object.values(res.data).map((items) => {
+            return items
+        })
+
+        axios.post('/wishlist.json', items).then(() => {
+            axios.delete('/cart.json').then(res => {
+                this.props.history.push('/wish');
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+    })
+
+
+
+
+*/}

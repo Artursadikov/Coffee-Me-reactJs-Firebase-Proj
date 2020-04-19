@@ -4,10 +4,26 @@ import './InputContent.css';
 export default function InputContent(props) {
     return (
         <div>
-            <h4 className="addToWishHeader">Name You'r Wish-Item:</h4>
-            <input className="modal-input" type="text" />
+            <h4 style={{ marginBottom: '30px' }} className="addToWishHeader">Name You'r Wish-Item:</h4>
+            {
+                props.value === ''?
+                <small style={{ textAlign: 'center', display: 'block', color: 'ivory', backgroundColor: 'rgba(240, 22, 22, 0.349)' }}>English Only !!!</small>
+                : null
+            }
+            
+            <input required
+                pattern='[A-Za-z]'
+                className="modal-input"
+                type="text"
+                value={props.value}
+                onChange={props.handleChange} />
             <div className="wish-btn-div">
-                <button onClick={props.addtowishlist} className="wishAddBtn">Add</button>
+                {
+                    props.value === '' ?
+                        <button disabled onClick={props.addtowishlist} className="wishAddBtn">Add</button>
+                        : <button onClick={props.addtowishlist} className="wishAddBtn">Add</button>
+                }
+
                 <button onClick={props.backToCartCancelWish} className="wishBackBtn">back</button>
             </div>
         </div>
