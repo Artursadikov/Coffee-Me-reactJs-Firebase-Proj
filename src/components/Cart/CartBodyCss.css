@@ -9,7 +9,7 @@
 .choosen-items {
     padding: 0;
     background-color: rgba(230, 230, 250, 0.048);
-    width: 1000px;
+    width: 600px;
     height: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -21,7 +21,7 @@
 
 .order-description {
     background-color: rgba(245, 245, 245, 0.068);
-    width: 1000px;
+    width: 600px;
     height: 10%;
     margin-left: auto;
     margin-right: auto;
@@ -89,7 +89,7 @@
 
 .nums {
     color: black;
-    background-color: rgba(255, 0, 0, 0.39);
+    background-color: white;
 }
 
 .remmoveFromCartItem {

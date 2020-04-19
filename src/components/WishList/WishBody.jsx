@@ -33,6 +33,17 @@ export default class WishBody extends Component {
         })
     }
 
+    deleteItemFromWishList = () => {
+       axios.delete(`/wishlist/${this.state.elementFromDB}.json`).then(()=>{
+        axios.get('/wishlist.json').then(res => {
+            this.setState({
+                wishData: res.data,
+                openModal: false
+            })
+        })
+       })
+    }
+
     openWishListItem = (e) => {
         let div = e.target.closest('div');
         let elementFromDB = div.children[0].children[0].children[0].textContent;
@@ -77,7 +88,10 @@ export default class WishBody extends Component {
         return (
             <div className='wish-body'>
                 <WishModal open={this.state.openModal}>
-                    <WishModDescription listNameHeader={this.state.elementFromDB} cancel={this.cancelModalClose} >
+                    <WishModDescription
+                        deleteItemFromWishList={this.deleteItemFromWishList}
+                        listNameHeader={this.state.elementFromDB}
+                        cancel={this.cancelModalClose} >
                         {wishDesc}
                     </WishModDescription>
                 </WishModal>

@@ -9,7 +9,7 @@ export default function WishModDescription(props) {
             <div className="modBTN">
                 <button className="modPAY">Payment</button>
                 <button onClick={props.cancel} className="modCAN">Cancel</button>
-                <button className="modDEL">Delete</button>
+                <button onClick={props.deleteItemFromWishList} className="modDEL">Delete</button>
             </div>
         </div>
     )
