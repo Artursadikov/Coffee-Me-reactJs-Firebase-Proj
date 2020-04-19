@@ -6,6 +6,7 @@ import WishModal from '../Modal/WishModal';
 import WishModDescription from '../Modal/WishModDescription';
 import WishLI from './WishLI';
 import DescListWIsh from './DescListWIsh';
+import Spinner from '../Spinner';
 
 export default class WishBody extends Component {
 
@@ -17,7 +18,6 @@ export default class WishBody extends Component {
 
 
 
-
     componentWillMount() {
         axios.get('/wishlist.json').then(res => {
             this.setState({
@@ -26,16 +26,21 @@ export default class WishBody extends Component {
         })
     }
 
+    cancelModalClose = () => {
+        this.setState({
+            openModal: false
+        })
+    }
+
     openWishListItem = (e) => {
         let div = e.target.closest('div');
         let elementFromDB = div.children[0].children[0].children[0].textContent;
-        console.log(elementFromDB)
 
         axios.get(`/wishlist/${elementFromDB}.json`).then(res => {
             Object.values(res.data).map(items => {
                 return this.setState({
-                    openModal : true,
-                    item : items
+                    openModal: true,
+                    item: items
                 })
             })
         })
@@ -57,21 +62,21 @@ export default class WishBody extends Component {
             fontWeight: 'bolder'
         }}>You'r Wish-List Is Empty...</h1>
 
-        let wishDesc = this.state.item !== null ? Object.values(this.state.item).map((item, index)=>{
-            return  <DescListWIsh
-            key={index}
-            name={item.name}
-            amount={item.amount}
-            price={item.price}
-            totalPr={item.totalPr}
+        let wishDesc = this.state.item !== null ? Object.values(this.state.item).map((item, index) => {
+            return <DescListWIsh
+                key={index}
+                name={item.name}
+                amount={item.amount}
+                price={item.price}
+                totalPr={item.totalPr}
             />
-        }) : null
+        }) : <Spinner />
 
         return (
             <div className='wish-body'>
                 <WishModal open={this.state.openModal}>
-                    <WishModDescription>
-                      {wishDesc}
+                    <WishModDescription cancel={this.cancelModalClose} >
+                        {wishDesc}
                     </WishModDescription>
                 </WishModal>
                 {list}

@@ -1,0 +1,56 @@
+.modBTN{
+    margin-top: 75px;
+    height: 100px;
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modPAY, .modDEL, .modCAN {
+    height: 50px;
+    width: 125px;
+    border: none;
+    border-radius: 10px;
+    color: ivory;
+   
+}
+
+.modPAY{
+    background-color: green;
+}
+
+.modDEL{
+    background-color: maroon;
+}
+
+.modCAN{
+    background-color: goldenrod;
+}
+
+.modCAN:hover{
+    background-color: rgb(170, 127, 17);
+    transition: all 0.3s ease-out;
+}
+
+.modPAY:hover{
+    background-color: rgb(8, 167, 8);
+    transition: all 0.3s ease-out;
+}
+
+.modDEL:hover{
+    background-color: rgb(170, 15, 15);
+    transition: all 0.3s ease-out;
+}
+
+
+@media (max-width: 600px) {
+    .modPAY, .modDEL, .modCAN {
+        height: 50px;
+        width: 125px;
+        border: none;
+        border-radius: 10px;
+        color: ivory;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
