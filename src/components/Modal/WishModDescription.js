@@ -4,6 +4,7 @@ import './WishModDescription.css';
 export default function WishModDescription(props) {
     return (
         <div>
+            <h4 style={{color: 'black'}}>{props.listNameHeader}</h4>
             {props.children}
             <div className="modBTN">
                 <button className="modPAY">Payment</button>

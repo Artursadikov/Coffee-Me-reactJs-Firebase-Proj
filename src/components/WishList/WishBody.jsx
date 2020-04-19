@@ -13,7 +13,8 @@ export default class WishBody extends Component {
     state = {
         wishData: null,
         openModal: false,
-        item: null
+        item: null,
+        elementFromDB: null
     }
 
 
@@ -40,7 +41,8 @@ export default class WishBody extends Component {
             Object.values(res.data).map(items => {
                 return this.setState({
                     openModal: true,
-                    item: items
+                    item: items,
+                    elementFromDB: elementFromDB
                 })
             })
         })
@@ -75,7 +77,7 @@ export default class WishBody extends Component {
         return (
             <div className='wish-body'>
                 <WishModal open={this.state.openModal}>
-                    <WishModDescription cancel={this.cancelModalClose} >
+                    <WishModDescription listNameHeader={this.state.elementFromDB} cancel={this.cancelModalClose} >
                         {wishDesc}
                     </WishModDescription>
                 </WishModal>

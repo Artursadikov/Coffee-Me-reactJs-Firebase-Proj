@@ -16,7 +16,7 @@
     border-bottom: white solid 2px;
     border-top: white solid 2px;
     border-radius: 10px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .order-description {
@@ -52,6 +52,7 @@
 
 .cartUL {
     list-style: none;
+   
 }
 
 .empty-cart-h1 {

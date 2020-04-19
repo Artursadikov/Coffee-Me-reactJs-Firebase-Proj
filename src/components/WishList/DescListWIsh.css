@@ -1,8 +1,8 @@
 .modUL {
     padding-left: 25px;
     margin-top: 15px;
-    border-bottom: 2px solid orangered;
-    border-top: 2px solid orangered;
+    border-bottom: 1px solid darkgrey;
+    border-top: 1px solid darkgrey;
 }
 
 .modLI {
