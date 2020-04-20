@@ -1,0 +1,60 @@
+.home-btn-div {
+    height: 100px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 45px;
+}
+
+.homeHeader {
+    color: ivory;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.signupHome, .cancelBtnHome, .guestBtn {
+    height: 50px;
+    width: 120px;
+    border: none;
+    border-radius: 10px;
+    color: ivory;
+    font-weight: bolder;
+}
+
+.cancelBtnHome {
+    background-color: goldenrod;
+}
+
+.guestBtn {
+    background-color: green;
+}
+
+.signupHome {
+    background-color: #ff7f50;
+}
+
+.cancelBtnHome:hover {
+    background-color: rgb(177, 133, 22);
+    transition: all 0.3s;
+}
+
+.guestBtn:hover {
+    background-color: rgb(6, 93, 6);
+    transition: all 0.3s;
+}
+
+.signupHome:hover {
+    background-color: #cf663f;
+    transition: all 0.3s;
+}
+
+@media (max-width: 600px) {
+    .cancelBtnHome, .guestBtn, .signupHome {
+        height: 60px;
+        width: 100px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}

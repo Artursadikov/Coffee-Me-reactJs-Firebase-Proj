@@ -58,24 +58,3 @@
     text-align: center;
 }
 
-.h3WishClickHere {
-    animation: ClickHere 1.2s infinite;
-}
-
-@keyframes ClickHere {
-    0% {
-        color: red;
-    }
-    49% {
-        color: red;
-    }
-    60% {
-        color: transparent;
-    }
-    99% {
-        color: transparent;
-    }
-    100% {
-        color: red;
-    }
-}

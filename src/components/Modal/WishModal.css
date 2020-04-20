@@ -1,7 +1,7 @@
 .ModalWish {
     position: fixed;
     z-index: 500;
-    background-color: gold;
+    background-color: ivory;
     width: 80%;
     height: 400px;
     border: 2px solid goldenrod;
@@ -9,7 +9,7 @@
     box-shadow: 1px 1px 3px rgb(240, 113, 29);
     padding: 16px;
     left: 10%;
-    top: 25%;
+    top: 20%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
     color: ivory;

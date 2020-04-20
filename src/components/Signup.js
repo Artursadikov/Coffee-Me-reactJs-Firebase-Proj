@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fire from '../Configuration/Auth';
 
 import '../components/Signup-Signin.css'
 
@@ -6,6 +7,32 @@ import '../components/Signup-Signin.css'
 
 class Signup extends Component {
 
+    state = {
+        email: '',
+        password: ''
+    }
+
+
+    emailHandler = (e) => {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    passwordHandler = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    submitSignUp=(e)=>{
+        e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user)=>{
+            console.log(user)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
 
 
     render() {
@@ -24,14 +51,23 @@ class Signup extends Component {
                         </div>
                         <div className="form-group">
                             <label>Email address</label>
-                            <input name='email'  type="email" className="form-control" aria-describedby="emailHelp" />
+                            <input
+                                value={this.state.email}
+                                onChange={(e) => this.emailHandler(e)}
+                                name='email' placeholder="E-mail"
+                                type="email" className="form-control"
+                                aria-describedby="emailHelp" />
                         </div>
                         <div className="form-group">
                             <label>Password</label>
-                            <input name="password" type="password" className="form-control" />
+                            <input
+                                value={this.state.password}
+                                onChange={(e) => this.passwordHandler(e)}
+                                name="password" placeholder="Password"
+                                type="password" className="form-control" />
                         </div>
                         <div className="buttonssingup">
-                            <button type="submit" className="signupbtn sub">Sign-Up</button>
+                            <button onClick={(e)=>this.submitSignUp(e)} type="button" className="signupbtn sub">Sign-Up</button>
                             <button className="signupbtn google">Login with Google</button>
                         </div>
                     </form>
