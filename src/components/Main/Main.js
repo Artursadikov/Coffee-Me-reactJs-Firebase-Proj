@@ -12,22 +12,13 @@ import capsule3 from '../../pic/capsule3.png';
 import capsule4 from '../../pic/capsule4.png';
 import capsule5 from '../../pic/capsule5.png';
 import capsules from '../../pic/coffee3.jpg';
-
+import fire from '../../Configuration/Auth';
 import { withRouter } from "react-router-dom";
 
 
 
 
 class Main extends Component {
-
-    backToMain = () => {
-        this.props.history.push('/');
-    }
-
-    // router
-    goToCartComponent = () => {
-        this.props.history.push('/cart');
-    }
 
     // state
     state = {
@@ -41,14 +32,43 @@ class Main extends Component {
         progBarcolor: { width: '0%' },
         progBarClass: "",
         capsulaName: "",
-        itemsInTheCart: 0
+        itemsInTheCart: 0,
+        user: null,
+        uid: 'guest'
     }
+
+    
+      authListenet = () => {
+        fire.auth().onAuthStateChanged((user) => {
+          user ? this.setState({ user: user, uid: user.uid}) : this.setState({ user: null })   
+        })
+      }
+    
+      componentWillMount() {
+
+          this.authListenet();
+        
+      }
+    
+
+
+
+    backToMain = () => {
+        this.props.history.push('/');
+    }
+
+    // router
+    goToCartComponent = () => {
+        this.props.history.push('/cart');
+    }
+
+    
 
 
     // hooks
     componentDidMount() {
 
-        axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+        axios.get(`/Cart/${this.state.uid}.json`).then(res => {
             if (res.data !== null) {
                 this.setState({
                     itemsInTheCart: Object.values(res.data).length
@@ -73,6 +93,7 @@ class Main extends Component {
             }))
         }
     }
+
     // item plus
     addItem = () => {
         this.setState((prevState) => ({
@@ -85,7 +106,6 @@ class Main extends Component {
 
 
     // add to cart
-
     addToCart = () => {
         if (this.state.capsuleAmount > 1) {
             const cartArrItem = {
@@ -95,25 +115,22 @@ class Main extends Component {
                 name: this.state.capsulaName
             }
 
-            axios.post('/cart.json', cartArrItem).then(res => {
-                axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+            axios.post(`/Cart/${this.state.uid}.json`, cartArrItem).then(res => {        
+                axios.get(`/Cart/${this.state.uid}.json`).then(res => {
                     if (res.data !== null) {
                         this.setState({
                             itemsInTheCart: Object.values(res.data).length
                         })
                     }
-
                 })
             })
-
         }
-
     }
 
 
     // reset the cart
     resetCart = () => {
-        axios.delete('/cart.json').then(() => {
+        axios.delete(`/Cart/${this.state.uid}.json`).then(() => {
             window.location.reload(false);
         });
     }

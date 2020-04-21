@@ -12,26 +12,19 @@ class Signin extends Component {
         errorMessage: ""
     }
 
-    _isMounted = true;
 
     authListenet = () => {
         fire.auth().onAuthStateChanged((user) => {
             user ? this.setState({ user }) : this.setState({ user: null })
-            console.log(this.state.user , "sign in component")
+            
         })
     }
 
     componentWillMount() {
-       
-        if (this._isMounted) {
+
             this.authListenet();
-        }
+        
     }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
 
 
 

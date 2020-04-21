@@ -7,6 +7,7 @@ import WishModDescription from '../Modal/WishModDescription';
 import WishLI from './WishLI';
 import DescListWIsh from './DescListWIsh';
 import Spinner from '../Spinner';
+import fire from '../../Configuration/Auth';
 
 export default class WishBody extends Component {
 
@@ -14,13 +15,27 @@ export default class WishBody extends Component {
         wishData: null,
         openModal: false,
         item: null,
-        elementFromDB: null
+        elementFromDB: null,
+        user: null,
+        uid: 'guest'
     }
 
 
 
+    authListenet = () => {
+        fire.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ user: user, uid: user.uid }) : this.setState({ user: null })
+        })
+    }
+
+
+
+
+
     componentWillMount() {
-        axios.get('/wishlist.json').then(res => {
+
+        this.authListenet();
+        axios.get(`/wishlist/${this.state.uid}.json`).then(res => {
             this.setState({
                 wishData: res.data
             })
@@ -34,21 +49,21 @@ export default class WishBody extends Component {
     }
 
     deleteItemFromWishList = () => {
-       axios.delete(`/wishlist/${this.state.elementFromDB}.json`).then(()=>{
-        axios.get('/wishlist.json').then(res => {
-            this.setState({
-                wishData: res.data,
-                openModal: false
+        axios.delete(`/wishlist/${this.state.uid}/${this.state.elementFromDB}.json`).then(() => {
+            axios.get(`/wishlist/${this.state.uid}.json`).then(res => {
+                this.setState({
+                    wishData: res.data,
+                    openModal: false
+                })
             })
         })
-       })
     }
 
     openWishListItem = (e) => {
         let div = e.target.closest('div');
         let elementFromDB = div.children[0].children[0].children[0].textContent;
 
-        axios.get(`/wishlist/${elementFromDB}.json`).then(res => {
+        axios.get(`/wishlist/${this.state.uid}/${elementFromDB}.json`).then(res => {
             Object.values(res.data).map(items => {
                 return this.setState({
                     openModal: true,

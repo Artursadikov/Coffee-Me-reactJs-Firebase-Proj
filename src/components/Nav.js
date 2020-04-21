@@ -5,30 +5,25 @@ import fire from '../Configuration/Auth';
 
 class Nav extends Component {
 
-    state= {
+    state = {
         user: null
     }
-   
 
-    _isMounted = true;
+
 
     authListenet = () => {
         fire.auth().onAuthStateChanged((user) => {
             user ? this.setState({ user }) : this.setState({ user: null })
-            console.log(this.state.user, "nav")
+        
         })
     }
 
     componentWillMount() {
 
-        if (this._isMounted) {
             this.authListenet();
-        }
+        
     }
 
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
 
 
     submitalogout = (e) => {
@@ -56,23 +51,25 @@ class Nav extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         {
-                            !this.state.user ? 
-                            <li className="nav-item active">
-                            <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Sign-In</NavLink>
-                        </li>
-                        : <button className='logOutBtn' onClick={(e)=>this.submitalogout(e)} >Log-Out</button>
+                            !this.state.user ?
+                                <li className="nav-item active">
+                                    <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Sign-In</NavLink>
+                                </li>
+                                : <button className='logOutBtn' onClick={(e) => this.submitalogout(e)} >Log-Out</button>
                         }
-                        
+
                         <li className="nav-item active">
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
                         </li>
                         <li className="nav-item active">
                             <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
-                        <button onClick={this.goToWishListBtn} style={{ backgroundColor: 'goldenrod' }} className="nav-link active">
-                            Wish-list
-                        </button>
-
+                        {
+                            this.state.user ?
+                                <button onClick={this.goToWishListBtn} style={{ backgroundColor: 'goldenrod' }} className="nav-link active">
+                                    Wish-list
+                               </button> : null
+                        }
                     </ul>
                 </div>
             </nav>

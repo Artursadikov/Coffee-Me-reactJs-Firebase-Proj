@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 
 import '../Cart/CartBodyCss.css';
 import axios from '../../Configuration/axios-data';
-
+import fire from '../../Configuration/Auth';
 
 
 
@@ -18,13 +18,45 @@ export default class CartBody extends Component {
         cart: null,
         loading: true,
         totalCartPrice: 0,
-        cartItems: 0
+        cartItems: 0,
+        user: null,
+        uid: 'guest'
     }
+
+    
+
+    authListenet = () => {
+        fire.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ user: user, uid: user.uid }) : this.setState({ user: null })
+            
+        })
+    }
+
+    componentWillMount() {
+
+        axios.get(`/Cart/${this.state.uid}.json`).then(res => {
+         
+            this.setState({
+                cart: res.data,
+                loading: false
+            })
+            console.log(this.state.cart) 
+        }).catch(err => {
+            this.setState({
+                loading: false
+            })
+
+        })
+        this.authListenet();
+    }
+
+  
+
 
     // total price calc
     componentDidMount() {
 
-        axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
+        axios.get(`/Cart/${this.state.uid}.json`).then(res => {
             if (this.state.cart !== null) {
                 let totalCartPriceArr = Object.values(res.data).map((item) => {
                     return Object.values(item)
@@ -45,33 +77,15 @@ export default class CartBody extends Component {
                         totalCartPrice: price.toFixed(2),
                         cartItems: newArr.length
                     })
-
                 }
             }
-
         })
     }
 
 
-    // update local storage after remove items
-    componentWillMount() {
-        axios.get("https://coffe-me.firebaseio.com/cart.json").then(res => {
-            this.setState({
-                cart: res.data,
-                loading: false
-            })
-            
-        }).catch(err => {
-            this.setState({
-                loading: false
-            })
-
-        })
 
 
-    }
 
-    
 
     render() {
 

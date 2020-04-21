@@ -19,25 +19,21 @@ class Signup extends Component {
     }
 
 
-    _isMounted = true;
+
 
     authListenet = () => {
         fire.auth().onAuthStateChanged((user) => {
             user ? this.setState({ user }) : this.setState({ user: null })
-            console.log(this.state.user, "sign up componenet")
+           
         })
     }
 
     componentWillMount() {
 
-        if (this._isMounted) {
             this.authListenet();
-        }
+        
     }
 
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
 
 
     emailHandler = (e) => {
@@ -55,16 +51,16 @@ class Signup extends Component {
     submitSignUp = (e) => {
         e.preventDefault();
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-            console.log(this.state.user, "sign up componenet- user created")
+            
         }).then(() => {
             this.setState({
                 email: '',
                 password: ''
             })
 
-            
-                this.props.history.push('/');
-            
+
+            this.props.history.push('/');
+
 
         }).catch(err => {
             console.log(err.message);
