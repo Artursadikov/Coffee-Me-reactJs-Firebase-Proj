@@ -1,9 +1,42 @@
 import React, { Component } from 'react';
 import './Nav.css';
 import { Link, NavLink, withRouter } from "react-router-dom";
-
+import fire from '../Configuration/Auth';
 
 class Nav extends Component {
+
+    state= {
+        user: null
+    }
+   
+
+    _isMounted = true;
+
+    authListenet = () => {
+        fire.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ user }) : this.setState({ user: null })
+            console.log(this.state.user, "nav")
+        })
+    }
+
+    componentWillMount() {
+
+        if (this._isMounted) {
+            this.authListenet();
+        }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+
+    submitalogout = (e) => {
+        e.preventDefault();
+        fire.auth().signOut();
+
+    }
+
 
     goToWishListBtn = () => {
         this.props.history.push('/wish');
@@ -22,9 +55,14 @@ class Nav extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item active">
+                        {
+                            !this.state.user ? 
+                            <li className="nav-item active">
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Sign-In</NavLink>
                         </li>
+                        : <button className='logOutBtn' onClick={(e)=>this.submitalogout(e)} >Log-Out</button>
+                        }
+                        
                         <li className="nav-item active">
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
                         </li>

@@ -6,12 +6,13 @@ import './GoToCartDesc.css';
 
 
 export default class GoToCartDesc extends Component {
-
-
+   
     state = {
-        user: {}
+        user: null
     }
 
+    _isMounted = true;
+    
     authListenet = () => {
         fire.auth().onAuthStateChanged((user) => {
             user ? this.setState({ user }) : this.setState({ user: null })
@@ -19,9 +20,17 @@ export default class GoToCartDesc extends Component {
         })
     }
 
-    componentDidMount() {
-        this.authListenet();
+    componentWillMount() {
+
+        if(this._isMounted){
+            this.authListenet();
+        }
     }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+      }
+
 
 
     render() {
@@ -30,8 +39,8 @@ export default class GoToCartDesc extends Component {
                 <h5 className='homeHeader'>Continue As a User Or Guest ?</h5>
                 <div className="home-btn-div">
                     {
-                        this.state.user ? <button className='signupHome' onClick={this.props.goToSignUpPage}>Log-In</button> :
-                        <button className='signupHome' onClick={this.props.goToSignUpPage}>Sign-up</button>
+                        this.state.user ? null :
+                        <button className='signupHome' onClick={this.props.goToSignIpPage}>Sign-In</button>
                     }
                     <button className='cancelBtnHome' onClick={this.props.cancelModal}>Cancel</button>
                     <button className='guestBtn' onClick={this.props.guestMode} >Guest</button>

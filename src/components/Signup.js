@@ -5,17 +5,44 @@ import '../components/Signup-Signin.css'
 
 
 
+
+
 class Signup extends Component {
 
     state = {
         email: '',
-        password: ''
+        password: '',
+        user: null,
+        errorMessage: '',
+        firstName: this.props.UserFirstName,
+        lastName: this.props.UserLirstName
+    }
+
+
+    _isMounted = true;
+
+    authListenet = () => {
+        fire.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ user }) : this.setState({ user: null })
+            console.log(this.state.user, "sign up componenet")
+        })
+    }
+
+    componentWillMount() {
+
+        if (this._isMounted) {
+            this.authListenet();
+        }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
 
     emailHandler = (e) => {
         this.setState({
-            email: e.target.value
+            email: e.target.value,
         })
     }
 
@@ -25,33 +52,77 @@ class Signup extends Component {
         })
     }
 
-    submitSignUp=(e)=>{
+    submitSignUp = (e) => {
         e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user)=>{
-            console.log(user)
-        }).catch(err=>{
-            console.log(err)
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+            console.log(this.state.user, "sign up componenet- user created")
+        }).then(() => {
+            this.setState({
+                email: '',
+                password: ''
+            })
+
+            if (this.state.user) {
+                this.props.history.push('/');
+            }
+
+        }).catch(err => {
+            console.log(err.message);
+            this.setState({
+                errorMessage: err.message
+            })
         })
+    }
+
+    firsNameInput = (e) => {
+        this.setState({
+            firstName: e.target.value
+        })
+        console.log(this.state.firstName)
+    }
+
+    lastNameInput = (e) => {
+        this.setState({
+            lastName: e.target.value
+        })
+        console.log(this.state.lastName)
     }
 
 
     render() {
         return (
-            <div className="container">
+            <div style={{ overflow: 'hidden' }} className="container">
                 <div className="divcontent">
                     <h2 className="createheader">Create a new <strong>Coffee Me</strong> account...</h2>
                     <form>
                         <div className="form-group">
-                            <label>First-Name</label>
-                            <input type="text" className="form-control" />
+                            <label style={{ color: 'gold', textAlign: 'center' }}>First-Name</label>
+                            <input
+                                required
+                                placeholder="First Name"
+                                type="text"
+                                className="form-control"
+                                name="firs-name"
+                                value={this.state.firstName}
+                                onChange={(e) => this.firsNameInput(e)}
+                            />
                             <div className="form-group">
-                                <label>Last-Name</label>
-                                <input type="text" className="form-control" />
+                                <label style={{ color: 'gold', textAlign: 'center' }}>Last-Name</label>
+                                <input
+                                    required
+                                    placeholder="Last Name"
+                                    type="text"
+                                    className="form-control"
+                                    name="last-name"
+                                    value={this.state.lasttName}
+                                    onChange={(e) => this.lastNameInput(e)}
+                                />
                             </div>
                         </div>
                         <div className="form-group">
-                            <label>Email address</label>
+                            <label style={{ color: 'gold', textAlign: 'center' }}>Email address</label>
                             <input
+                                required
                                 value={this.state.email}
                                 onChange={(e) => this.emailHandler(e)}
                                 name='email' placeholder="E-mail"
@@ -59,16 +130,26 @@ class Signup extends Component {
                                 aria-describedby="emailHelp" />
                         </div>
                         <div className="form-group">
-                            <label>Password</label>
+                            <label style={{ color: 'gold', textAlign: 'center' }}>Password</label>
                             <input
+                                required
                                 value={this.state.password}
                                 onChange={(e) => this.passwordHandler(e)}
                                 name="password" placeholder="Password"
                                 type="password" className="form-control" />
                         </div>
-                        <div className="buttonssingup">
-                            <button onClick={(e)=>this.submitSignUp(e)} type="button" className="signupbtn sub">Sign-Up</button>
-                            <button className="signupbtn google">Login with Google</button>
+                        {
+                            this.state.errorMessage ? <h5 className='errorMsg'>{this.state.errorMessage}</h5>
+                                :
+                                null
+                        }
+                        <div style={{ marginTop: '20px' }} className="buttonssingup">
+                            {
+                                this.state.email === "" || this.state.password === "" ?
+                                    <button disabled onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
+                                    : <button onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
+                            }
+
                         </div>
                     </form>
                 </div>

@@ -3,7 +3,7 @@ import './Home.css';
 import { withRouter } from "react-router-dom";
 import GoToCartModal from './Modal/GoToCartModal';
 import GoToCartDesc from './Modal/GoToCartDesc';
-
+import fire from '../Configuration/Auth';
 
 class Home extends Component {
 
@@ -25,12 +25,18 @@ class Home extends Component {
     })
   }
 
-  goToSignUpPage = () => {
-    alert('in process')
+  goToSignIpPage = () => {
+    this.props.history.push('/signin');
   }
 
-  guestMode = () => {
-    this.props.history.push('/main');
+  guestMode = (e) => {
+    e.preventDefault();
+    fire.auth().signOut().then(()=>{
+      this.props.history.push('/main');
+    }).catch(err=>{
+      alert(err)
+    });
+    
   }
 
   toAbout = () => {
@@ -44,9 +50,9 @@ class Home extends Component {
       <div className="jumbotron container">
         <GoToCartModal show={this.state.showModal}>
           <GoToCartDesc
-            goToSignUpPage={this.goToSignUpPage}
+            goToSignUpPage={this.goToSignIpPage}
             cancelModal={this.cancelModal}
-            guestMode={this.guestMode} />
+            guestMode={(e)=>this.guestMode(e)} />
         </GoToCartModal>
         <h1 className="display-4">Buy coffee capsules online</h1>
         <p className="lead">Subscribe and enjoy a <strong>10%</strong> discount...</p>
