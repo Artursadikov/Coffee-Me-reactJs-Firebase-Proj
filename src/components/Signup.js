@@ -62,9 +62,9 @@ class Signup extends Component {
                 password: ''
             })
 
-            if (this.state.user) {
+            
                 this.props.history.push('/');
-            }
+            
 
         }).catch(err => {
             console.log(err.message);
