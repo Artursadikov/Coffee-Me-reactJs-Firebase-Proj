@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import fire from '../Configuration/Auth';
-
 import '../components/Signup-Signin.css'
 
 
@@ -12,27 +10,10 @@ class Signup extends Component {
     state = {
         email: '',
         password: '',
-        user: null,
         errorMessage: '',
-        firstName: this.props.UserFirstName,
-        lastName: this.props.UserLirstName
+     
     }
 
-
-
-
-    authListenet = () => {
-        fire.auth().onAuthStateChanged((user) => {
-            user ? this.setState({ user }) : this.setState({ user: null })
-           
-        })
-    }
-
-    componentWillMount() {
-
-            this.authListenet();
-        
-    }
 
 
 
@@ -49,25 +30,8 @@ class Signup extends Component {
     }
 
     submitSignUp = (e) => {
-        e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-            
-        }).then(() => {
-            this.setState({
-                email: '',
-                password: ''
-            })
+    
 
-
-            this.props.history.push('/');
-
-
-        }).catch(err => {
-            console.log(err.message);
-            this.setState({
-                errorMessage: err.message
-            })
-        })
     }
 
     firsNameInput = (e) => {

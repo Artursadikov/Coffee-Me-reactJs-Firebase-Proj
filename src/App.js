@@ -10,7 +10,7 @@ import { createBrowserHistory } from "history";
 import About from './components/About';
 import Cart from './components/Cart/Cart';
 import Wish from './components/WishList/Wish';
-
+import AuthContext from '../src/components/Context/AuthContext';
 
 
 
@@ -18,20 +18,25 @@ import Wish from './components/WishList/Wish';
 function App() {
     const history = createBrowserHistory();
     return (
+
         <Router history={history}>
             <div className="App">
-                <Nav />
-                <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route path='/about' component={About} />
-                    <Route path='/main' component={Main} />
-                    <Route path='/wish' component={Wish} />
-                    <Route path='/signin' component={Signin} />
-                    <Route path='/signup' component={Signup} />
-                    <Route path= '/cart' component={Cart}/>
-                </Switch>
+                <AuthContext>
+                    <Nav />
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/about' component={About} />
+                        <Route path='/main' component={Main} />
+                        <Route path='/wish' component={Wish} />
+                        <Route path='/signin' component={Signin} />
+                        <Route path='/signup' component={Signup} />
+                        <Route path='/cart' component={Cart} />
+
+                    </Switch>
+                </AuthContext>
             </div >
         </Router>
+
     );
 }
 

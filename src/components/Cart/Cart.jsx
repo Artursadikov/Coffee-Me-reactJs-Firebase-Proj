@@ -9,7 +9,7 @@ import { withRouter } from "react-router-dom";
 import '../Cart/CartCss.css';
 import ModalInput from '../Modal/ModalInput';
 import InputContent from '../Modal/InputContent';
-import fire from '../../Configuration/Auth';
+
 
 class Cart extends Component {
 

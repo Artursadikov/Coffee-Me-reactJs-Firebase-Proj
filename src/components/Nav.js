@@ -1,34 +1,14 @@
 import React, { Component } from 'react';
 import './Nav.css';
 import { Link, NavLink, withRouter } from "react-router-dom";
-import fire from '../Configuration/Auth';
+
 
 class Nav extends Component {
-
-    state = {
-        user: null
-    }
-
-
-
-    authListenet = () => {
-        fire.auth().onAuthStateChanged((user) => {
-            user ? this.setState({ user }) : this.setState({ user: null })
-        
-        })
-    }
-
-    componentWillMount() {
-
-            this.authListenet();
-        
-    }
 
 
 
     submitalogout = (e) => {
         e.preventDefault();
-        fire.auth().signOut();
 
     }
 
@@ -50,13 +30,12 @@ class Nav extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        {
-                            !this.state.user ?
+                      
                                 <li className="nav-item active">
                                     <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Sign-In</NavLink>
                                 </li>
-                                : <button className='logOutBtn' onClick={(e) => this.submitalogout(e)} >Log-Out</button>
-                        }
+                                 <button className='logOutBtn' onClick={(e) => this.submitalogout(e)} >Log-Out</button>
+                      
 
                         <li className="nav-item active">
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
@@ -64,12 +43,11 @@ class Nav extends Component {
                         <li className="nav-item active">
                             <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
-                        {
-                            this.state.user ?
+                       
                                 <button onClick={this.goToWishListBtn} style={{ backgroundColor: 'goldenrod' }} className="nav-link active">
                                     Wish-list
-                               </button> : null
-                        }
+                               </button> 
+                     
                     </ul>
                 </div>
             </nav>

@@ -43,15 +43,15 @@
 
 @keyframes glowing {
     0% {
-        background-color: #1d05a8;
-        box-shadow: 0 0 3px #1d05a8;
+        background-color:coral;
+        box-shadow: 0 0 3px coral;
     }
     50% {
-        background-color: #3517dd;
-        box-shadow: 0 0 10px #3517dd;
+        background-color:coral;
+        box-shadow: 0 0 15px coral;
     }
     100% {
-        background-color: #1d05a8;
-        box-shadow: 0 0 3px #1d05a8;
+        background-color:coral;
+        box-shadow: 0 0 3px coral;
     }
 }

@@ -1,31 +1,25 @@
 import React, { Component } from 'react';
-import fire from '../Configuration/Auth';
 import Wrapper from './Wrapper';
-import { Redirect } from 'react-router-dom';
+import AuthContext from './Context/AuthContext';
+import fire from '../Configuration/Auth';
+
+
+
+
 
 class Signin extends Component {
 
     state = {
         email: '',
         password: '',
-        user: null,
         errorMessage: ""
     }
 
+    static contextType = AuthContext;
 
-    authListenet = () => {
-        fire.auth().onAuthStateChanged((user) => {
-            user ? this.setState({ user }) : this.setState({ user: null })
-            
-        })
+    componentDidMount() {
+        console.log(this.context.user)
     }
-
-    componentWillMount() {
-
-            this.authListenet();
-        
-    }
-
 
 
     emailHandler = (e) => {
@@ -46,17 +40,20 @@ class Signin extends Component {
             this.setState({
                 user: user
             })
-
-            console.log(user)
+            
+                alert("Welcome Back ");
+                this.props.history.push('/');
+            
         }).catch(err => {
             let errorMSG = "The password or the email is invalid"
+            console.log(err)
             this.setState({
                 errorMessage: errorMSG
             })
         })
     }
 
-    
+
 
 
 
@@ -65,51 +62,40 @@ class Signin extends Component {
         return (
             <div className="container">
                 <div className="divcontent">
-                    {
-                        !this.state.user ? <h2 className="createheader">Sign-In to you'r account... </h2> :
-                            <h2 style={{ textTransform: 'capitalize', fontSize: '25px' }} className="createheader">Welcome Back {this.state.user.email} !</h2>
-                    }
-
+                    <h2 className="createheader">Login</h2>
                     <form>
-                                    <div className="form-group">
-                                        <label style={{ color: 'gold', textAlign: 'center' }}>Email address</label>
-                                        <input
-                                        required
-                                            value={this.state.email}
-                                            onChange={(e) => this.emailHandler(e)}
-                                            name='email' placeholder="E-mail"
-                                            type="email" className="form-control"
-                                            aria-describedby="emailHelp"
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label style={{ color: 'gold', textAlign: 'center' }}>Password</label>
-                                        <input
-                                        required
-                                            value={this.state.password}
-                                            onChange={(e) => this.passwordHandler(e)}
-                                            name="password" placeholder="Password"
-                                            type="password" className="form-control" />
-                                    </div>
-                                    {
-                                        this.state.errorMessage ? <h5 className='errorMsg'>{this.state.errorMessage}</h5>
-                                            :
-                                            null
-                                    }
+                        <div className="form-group">
+                            <label style={{ color: 'gold', textAlign: 'center' }}>Email address</label>
+                            <input
+                                required
+                                value={this.state.email}
+                                onChange={(e) => this.emailHandler(e)}
+                                name='email' placeholder="E-mail"
+                                type="email" className="form-control"
+                                aria-describedby="emailHelp"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label style={{ color: 'gold', textAlign: 'center' }}>Password</label>
+                            <input
+                                required
+                                value={this.state.password}
+                                onChange={(e) => this.passwordHandler(e)}
+                                name="password" placeholder="Password"
+                                type="password" className="form-control"
+                            />
+                        </div>
+                        <h5 className='errorMsg'>{this.state.errorMessage}</h5>
                         <div className="buttonssingup">
+                            <Wrapper>
+                                {this.state.email === "" || this.state.password === "" ?
+                                    <button disabled onClick={(e) => this.submitSignin(e)} type="button" style={{backgroundColor: "transparent", border: "1px ivory solid"}} className="signupbtn">Login</button>
+                                    :
+                                    <button onClick={(e) => this.submitSignin(e)} type="button"  className="signupbtn">Login</button>
+                                }
+                                <button className="signupbtn google">Login With Google</button>
+                            </Wrapper>
 
-                            {this.state.user ?
-                                 <Redirect to= "/" />
-                                :
-                                <Wrapper>
-                                    {
-                                        this.state.email === '' || this.state.password === '' ?
-                                            <button disabled onClick={(e) => this.submitSignin(e)} type="button" className="signupbtn">Sign-In</button>
-                                            : <button onClick={(e) => this.submitSignin(e)} type="button" className="signupbtn">Sign-In</button>
-                                    }
-                                    <button className="signupbtn google">Login with Google</button>
-                                </Wrapper>
-                            }
                         </div>
                     </form>
                 </div>

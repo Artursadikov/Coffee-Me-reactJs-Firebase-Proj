@@ -3,40 +3,20 @@ import './Home.css';
 import { withRouter } from "react-router-dom";
 import GoToCartModal from './Modal/GoToCartModal';
 import GoToCartDesc from './Modal/GoToCartDesc';
-import fire from '../Configuration/Auth';
+
 
 class Home extends Component {
 
   state = {
     showModal: false
-   
   }
 
 
-
-  authListenet = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      user ? this.setState({ user: user}) : this.setState({ user: null })
-     
-    })
-  }
-
-  componentWillMount() {
-
-      this.authListenet();
-    
-  }
 
 
 
   toMain = () => {
-    if (this.state.user) {
-      this.props.history.push('/main');
-    } else {
-      this.setState({
-        showModal: true
-      })
-    }
+   
 
   }
 
@@ -47,21 +27,13 @@ class Home extends Component {
   }
 
   goToSignIpPage = () => {
-    if(!this.state.user)
-    {
-      this.props.history.push('/signin');
-    }
-    
+   
   }
 
   guestMode = (e) => {
     e.preventDefault();
 
-    fire.auth().signOut().then(() => {
-      this.props.history.push('/main');
-    }).catch(err => {
-      alert(err)
-    });
+
 
   }
 

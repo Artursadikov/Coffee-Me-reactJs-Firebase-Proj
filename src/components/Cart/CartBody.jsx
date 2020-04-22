@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import CartList from './CartList';
 import TotalCartPrice from './TotalCartPrice';
 import Spinner from '../Spinner';
-
 import '../Cart/CartBodyCss.css';
 import axios from '../../Configuration/axios-data';
-import fire from '../../Configuration/Auth';
+
 
 
 
