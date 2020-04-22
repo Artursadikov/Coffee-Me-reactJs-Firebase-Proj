@@ -12,7 +12,6 @@ import capsule3 from '../../pic/capsule3.png';
 import capsule4 from '../../pic/capsule4.png';
 import capsule5 from '../../pic/capsule5.png';
 import capsules from '../../pic/coffee3.jpg';
-import fire from '../../Configuration/Auth';
 import { withRouter } from "react-router-dom";
 
 
@@ -32,23 +31,22 @@ class Main extends Component {
         progBarcolor: { width: '0%' },
         progBarClass: "",
         capsulaName: "",
-        itemsInTheCart: 0,
-        user: null,
-        uid: 'guest'
+        itemsInTheCart: 0
+        
     }
 
     
-      authListenet = () => {
-        fire.auth().onAuthStateChanged((user) => {
-          user ? this.setState({ user: user, uid: user.uid}) : this.setState({ user: null })   
-        })
-      }
+    //  authListenet = () => {
+    //    fire.auth().onAuthStateChanged((user) => {
+    //      user ? this.setState({ user: user, uid: user.uid}) : this.setState({ user: null })   
+    //    })
+   //   }
     
-      componentWillMount() {
+   //   componentWillMount() {
 
-          this.authListenet();
+    //      this.authListenet();
         
-      }
+   //   }
     
 
 
@@ -68,7 +66,7 @@ class Main extends Component {
     // hooks
     componentDidMount() {
 
-        axios.get(`/Cart/${this.state.uid}.json`).then(res => {
+        axios.get(`/Cart.json`).then(res => {
             if (res.data !== null) {
                 this.setState({
                     itemsInTheCart: Object.values(res.data).length
@@ -115,8 +113,8 @@ class Main extends Component {
                 name: this.state.capsulaName
             }
 
-            axios.post(`/Cart/${this.state.uid}.json`, cartArrItem).then(res => {        
-                axios.get(`/Cart/${this.state.uid}.json`).then(res => {
+            axios.post(`/Cart.json`, cartArrItem).then(res => {        
+                axios.get(`/Cart.json`).then(res => {
                     if (res.data !== null) {
                         this.setState({
                             itemsInTheCart: Object.values(res.data).length
@@ -130,7 +128,7 @@ class Main extends Component {
 
     // reset the cart
     resetCart = () => {
-        axios.delete(`/Cart/${this.state.uid}.json`).then(() => {
+        axios.delete(`/Cart.json`).then(() => {
             window.location.reload(false);
         });
     }

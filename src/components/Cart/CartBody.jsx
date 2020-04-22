@@ -18,23 +18,16 @@ export default class CartBody extends Component {
         cart: null,
         loading: true,
         totalCartPrice: 0,
-        cartItems: 0,
-        user: null,
-        uid: 'guest'
+        cartItems: 0
     }
 
     
 
-    authListenet = () => {
-        fire.auth().onAuthStateChanged((user) => {
-            user ? this.setState({ user: user, uid: user.uid }) : this.setState({ user: null })
-            
-        })
-    }
+   
 
     componentWillMount() {
 
-        axios.get(`/Cart/${this.state.uid}.json`).then(res => {
+        axios.get(`/Cart.json`).then(res => {
          
             this.setState({
                 cart: res.data,
@@ -47,7 +40,7 @@ export default class CartBody extends Component {
             })
 
         })
-        this.authListenet();
+      
     }
 
   
@@ -56,7 +49,7 @@ export default class CartBody extends Component {
     // total price calc
     componentDidMount() {
 
-        axios.get(`/Cart/${this.state.uid}.json`).then(res => {
+        axios.get(`/Cart.json`).then(res => {
             if (this.state.cart !== null) {
                 let totalCartPriceArr = Object.values(res.data).map((item) => {
                     return Object.values(item)

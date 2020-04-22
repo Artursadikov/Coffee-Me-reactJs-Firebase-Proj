@@ -8,8 +8,8 @@ import fire from '../Configuration/Auth';
 class Home extends Component {
 
   state = {
-    showModal: false,
-    user: null
+    showModal: false
+   
   }
 
 
