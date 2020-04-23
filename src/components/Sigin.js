@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Wrapper from './Wrapper';
-import AuthContext from './Context/AuthContext';
 import fire from '../Configuration/Auth';
 
 
@@ -12,15 +11,27 @@ class Signin extends Component {
     state = {
         email: '',
         password: '',
-        errorMessage: ""
+        errorMessage: '',
+        user: null
     }
 
-    static contextType = AuthContext;
-
-    componentDidMount() {
-        console.log(this.context.user)
+    submitSignin = (e) => {
+        e.preventDefault();
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+            this.props.history.push('/');
+            this.setState({
+                userSignin: true
+            })
+        }).catch(err => {
+            let errorMSG = "The password or the email is invalid !"
+            console.log(err)
+            this.setState({
+                errorMessage: errorMSG,
+                email: '',
+                password: ''
+            })
+        })
     }
-
 
     emailHandler = (e) => {
         this.setState({
@@ -33,28 +44,6 @@ class Signin extends Component {
             password: e.target.value
         })
     }
-
-    submitSignin = (e) => {
-        e.preventDefault();
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
-            this.setState({
-                user: user
-            })
-            
-                alert("Welcome Back ");
-                this.props.history.push('/');
-            
-        }).catch(err => {
-            let errorMSG = "The password or the email is invalid"
-            console.log(err)
-            this.setState({
-                errorMessage: errorMSG
-            })
-        })
-    }
-
-
-
 
 
 
@@ -89,17 +78,17 @@ class Signin extends Component {
                         <div className="buttonssingup">
                             <Wrapper>
                                 {this.state.email === "" || this.state.password === "" ?
-                                    <button disabled onClick={(e) => this.submitSignin(e)} type="button" style={{backgroundColor: "transparent", border: "1px ivory solid"}} className="signupbtn">Login</button>
+                                    <button disabled onClick={(e) => this.submitSignin(e)} type="button" style={{ backgroundColor: "transparent", border: "1px ivory solid" }} className="signupbtn">Login</button>
                                     :
-                                    <button onClick={(e) => this.submitSignin(e)} type="button"  className="signupbtn">Login</button>
+                                    <button onClick={(e) => this.submitSignin(e)} type="button" className="signupbtn">Login</button>
                                 }
                                 <button className="signupbtn google">Login With Google</button>
                             </Wrapper>
-
                         </div>
                     </form>
                 </div>
             </div>
+
         )
     }
 

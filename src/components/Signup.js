@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../components/Signup-Signin.css'
-
+import fire from '../Configuration/Auth'
 
 
 
@@ -11,10 +11,8 @@ class Signup extends Component {
         email: '',
         password: '',
         errorMessage: '',
-     
+        user: false
     }
-
-
 
 
     emailHandler = (e) => {
@@ -30,32 +28,43 @@ class Signup extends Component {
     }
 
     submitSignUp = (e) => {
-    
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user)=>{
+            this.setState({
+                user: user
+            })
 
-    }
-
-    firsNameInput = (e) => {
-        this.setState({
-            firstName: e.target.value
+            this.props.history.push('/');
+        }).catch(err=>{
+            this.setState({
+                errorMessage: err.message,
+                email: '',
+                password: '' 
+            })
         })
-        console.log(this.state.firstName)
+
     }
 
-    lastNameInput = (e) => {
-        this.setState({
-            lastName: e.target.value
-        })
-        console.log(this.state.lastName)
-    }
+ //   firsNameInput = (e) => {
+ //       this.setState({
+ //           firstName: e.target.value
+ //       })
+//    }
+
+  //  lastNameInput = (e) => {
+  //      this.setState({
+  //          lastName: e.target.value
+  //      })
+      
+ //   }
 
 
     render() {
         return (
             <div style={{ overflow: 'hidden' }} className="container">
                 <div className="divcontent">
-                    <h2 className="createheader">Create a new <strong>Coffee Me</strong> account...</h2>
+                    <h2 className="createheader">Create <strong>Coffee Me</strong> Account</h2>
                     <form>
-                        <div className="form-group">
+                        {/*   <div className="form-group">
                             <label style={{ color: 'gold', textAlign: 'center' }}>First-Name</label>
                             <input
                                 required
@@ -77,8 +86,8 @@ class Signup extends Component {
                                     value={this.state.lasttName}
                                     onChange={(e) => this.lastNameInput(e)}
                                 />
-                            </div>
-                        </div>
+                            </div> 
+                        </div>*/}
                         <div className="form-group">
                             <label style={{ color: 'gold', textAlign: 'center' }}>Email address</label>
                             <input
@@ -109,7 +118,6 @@ class Signup extends Component {
                                     <button disabled onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
                                     : <button onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
                             }
-
                         </div>
                     </form>
                 </div>
