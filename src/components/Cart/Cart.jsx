@@ -67,7 +67,7 @@ class Cart extends Component {
         let value = e.target.value
             value = value.replace(/[^A-Za-z]/ig, '')
         this.setState({
-            value: value.toUpperCase()
+            value: value.charAt(0).toUpperCase() + value.slice(1)
         });
     }
 

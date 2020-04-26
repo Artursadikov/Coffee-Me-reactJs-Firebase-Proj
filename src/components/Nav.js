@@ -12,15 +12,18 @@ class Nav extends Component {
         user: null
     }
 
-    authListener = () => {
+    authListener() {
         fire.auth().onAuthStateChanged(user => {
             user ? this.setState({ user: user }) : this.setState({ user: null })
         })
     }
 
-    componentWillMount() {
-        this.authListener();
+   
 
+    componentDidMount() {
+
+        this.authListener();
+        console.log(this.state.user, "nav")
     }
 
 
@@ -37,9 +40,9 @@ class Nav extends Component {
     }
 
 
-
-
     render() {
+
+
         return (
 
             <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -49,12 +52,13 @@ class Nav extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        {this.state.user ?
-                            <button className='logOutBtn' onClick={(e) => this.submitalogout(e)} >Log-Out</button>
-                            :
-                            <li className="nav-item active">
-                                <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Sign-In</NavLink>
-                            </li>
+                        {
+                            this.state.user ?
+                                <button className='logOutBtn' onClick={(e) => this.submitalogout(e)} >Log-Out</button>
+                                :
+                                <li className="nav-item active">
+                                    <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signin' className="nav-link">Log-In</NavLink>
+                                </li>
                         }
                         <li className="nav-item active">
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
@@ -62,14 +66,14 @@ class Nav extends Component {
                         <li className="nav-item active">
                             <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
-                        {this.state.user ?
-                            <button onClick={this.goToWishListBtn} style={{ backgroundColor: 'goldenrod' }} className="nav-link active">Wish-list</button> :
-                            null
+                        {
+                            this.state.user ?
+                                <button onClick={this.goToWishListBtn} style={{ backgroundColor: 'goldenrod' }} className="nav-link active">Wish-list</button>
+                                : null
                         }
                     </ul>
                 </div>
             </nav>
-
         )
     }
 };

@@ -11,7 +11,9 @@ class Signup extends Component {
         email: '',
         password: '',
         errorMessage: '',
-        user: false
+        user: false,
+        firstName: '',
+        lastName: ''
     }
 
 
@@ -28,34 +30,48 @@ class Signup extends Component {
     }
 
     submitSignUp = (e) => {
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user)=>{
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((userCredentials) => {
+            if (userCredentials.user) {
+                userCredentials.user.updateProfile({
+                    displayName: this.state.firstName + ' ' + this.state.lastName
+                }).then((s) => {
+                    this.props.history.push('/');
+                })
+            }
+
             this.setState({
-                user: user
+                user: userCredentials.user
             })
 
-            this.props.history.push('/');
-        }).catch(err=>{
+
+        }).catch(err => {
             this.setState({
                 errorMessage: err.message,
                 email: '',
-                password: '' 
+                password: '',
+                firstName: '',
+                lastName: ''
             })
         })
 
     }
 
- //   firsNameInput = (e) => {
- //       this.setState({
- //           firstName: e.target.value
- //       })
-//    }
+    firsNameInput = (e) => {
+        let value = e.target.value
+            value = value.replace(/[^A-Za-z]/ig, '')
+        this.setState({
+            firstName: value.charAt(0).toUpperCase() + value.slice(1)
+        })
+    }
 
-  //  lastNameInput = (e) => {
-  //      this.setState({
-  //          lastName: e.target.value
-  //      })
-      
- //   }
+    lastNameInput = (e) => {
+        let value = e.target.value
+            value = value.replace(/[^A-Za-z]/ig, '')
+        this.setState({
+            lastName: value.charAt(0).toUpperCase() + value.slice(1)
+        })
+
+    }
 
 
     render() {
@@ -64,10 +80,11 @@ class Signup extends Component {
                 <div className="divcontent">
                     <h2 className="createheader">Create <strong>Coffee Me</strong> Account</h2>
                     <form>
-                        {/*   <div className="form-group">
+                        <div className="form-group">
                             <label style={{ color: 'gold', textAlign: 'center' }}>First-Name</label>
                             <input
                                 required
+                                pattern='[A-Za-z]'
                                 placeholder="First Name"
                                 type="text"
                                 className="form-control"
@@ -79,15 +96,16 @@ class Signup extends Component {
                                 <label style={{ color: 'gold', textAlign: 'center' }}>Last-Name</label>
                                 <input
                                     required
+                                    pattern='[A-Za-z]'
                                     placeholder="Last Name"
                                     type="text"
                                     className="form-control"
                                     name="last-name"
-                                    value={this.state.lasttName}
+                                    value={this.state.lastName}
                                     onChange={(e) => this.lastNameInput(e)}
                                 />
-                            </div> 
-                        </div>*/}
+                            </div>
+                        </div>
                         <div className="form-group">
                             <label style={{ color: 'gold', textAlign: 'center' }}>Email address</label>
                             <input
@@ -114,8 +132,8 @@ class Signup extends Component {
                         }
                         <div style={{ marginTop: '20px' }} className="buttonssingup">
                             {
-                                this.state.email === "" || this.state.password === "" ?
-                                    <button disabled onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
+                                this.state.email === "" || this.state.password === "" || this.state.lastName === "" || this.state.firstName === "" ?
+                                    <button disabled style={{ backgroundColor: "transparent", border: "1px ivory solid" }} onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
                                     : <button onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
                             }
                         </div>

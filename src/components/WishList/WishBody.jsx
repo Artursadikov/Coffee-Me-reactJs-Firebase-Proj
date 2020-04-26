@@ -5,9 +5,8 @@ import './WishBody.css';
 import WishModal from '../Modal/WishModal';
 import WishModDescription from '../Modal/WishModDescription';
 import WishLI from './WishLI';
-import DescListWIsh from './DescListWIsh';
 import Spinner from '../Spinner';
-
+import DescListWIsh from './DescListWIsh';
 export default class WishBody extends Component {
 
     state = {
@@ -15,13 +14,13 @@ export default class WishBody extends Component {
         openModal: false,
         item: null,
         elementFromDB: null
-       
+
     }
 
 
 
     componentWillMount() {
-        
+
         axios.get(`/wishlist.json`).then(res => {
             this.setState({
                 wishData: res.data
@@ -49,7 +48,7 @@ export default class WishBody extends Component {
     openWishListItem = (e) => {
         let div = e.target.closest('div');
         let elementFromDB = div.children[0].children[0].children[0].textContent;
-
+console.log(elementFromDB)
         axios.get(`/wishlist/${elementFromDB}.json`).then(res => {
             Object.values(res.data).map(items => {
                 return this.setState({
@@ -79,12 +78,12 @@ export default class WishBody extends Component {
 
         let wishDesc = this.state.item !== null ? Object.values(this.state.item).map((item, index) => {
             return <DescListWIsh
-                key={index}
-                name={item.name}
-                amount={item.amount}
-                price={item.price}
-                totalPr={item.totalPr}
-            />
+            key={index}
+            name={item.name}
+            amount={item.amount}
+            price={item.price}
+            totalPr={item.totalPr}
+        />
         }) : <Spinner />
 
         return (

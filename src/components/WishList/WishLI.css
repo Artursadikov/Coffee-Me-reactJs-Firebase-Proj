@@ -7,8 +7,9 @@
     width: 600px;
     height: 100px;
     padding-top: 5px;
+    color:rgb(12, 12, 11);
     padding-bottom: 5px;
-    background-color: gold;
+    background-color:#f1f2f5;
     border-radius: 10px;
     border: 1px solid black;
     list-style: none;
@@ -49,7 +50,7 @@
     margin-left: 15px;
     font-weight: bolder;
     text-align: center;
-    text-decoration: underline;
+  
 }
 
 .wishDetails {

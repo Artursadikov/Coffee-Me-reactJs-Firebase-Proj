@@ -1,12 +1,12 @@
 .addToWishHeader {
-    color: ivory;
+    color: rgb(8, 8, 7);
     margin-bottom: 55px;
     margin-left: 30px;
 }
 
 .wishSmall {
     padding-bottom: 5px;
-    color: rgb(224, 212, 206);
+    color: rgb(0, 0, 0);
     margin-left: 30px;
 }
 
