@@ -3,11 +3,14 @@
     margin-top: 1px;
     margin-bottom: 5px;
     text-align: center;
+    background-color: red;
+    border-radius: 5px;
 }
 
 .totpriceitem {
     color: white;
     text-align: center;
+    
 }
 
 .totcartitems {
@@ -17,6 +20,7 @@
     margin-top: 2px;
     margin-bottom: 8px;
     text-align: center;
+  
 }
 
 .totnumofcartitems {
@@ -24,4 +28,6 @@
     color: ivory;
     margin-bottom: 8px;
     text-align: center;
+    background-color: rgba(255, 0, 0, 0.376);
+    border-radius: 6px;
 }

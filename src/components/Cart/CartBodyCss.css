@@ -17,6 +17,7 @@
     border-top: white solid 2px;
     border-radius: 10px;
     overflow: auto;
+    
 }
 
 .order-description {
@@ -69,24 +70,23 @@
     padding-left: 25px;
     padding-top: 10px;
     padding-bottom: 1px;
-    background-color:#f1f2f5;
+    background-color:#f1f2f5fa;
     color:rgb(12, 12, 11);
-    font-size: 17px;
-    letter-spacing: 1px;
+    font-size: 20px;
     line-height: 30px;
-    
-   
+  
     
 }
 
 .itemname {
     color: rgb(22, 21, 21);
     text-decoration: underline red;
+    font-family: Bradley Hand, cursive;
 }
 
 .nums {
     color: black;
-    text-decoration: underline red;
+    
 }
 
 .remmoveFromCartItem {

@@ -6,12 +6,15 @@
     color: ivory;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(128, 128, 128, 0.144);
+    background-color: rgb(133, 131, 131);
 }
 
 .about-header {
     text-align: center;
     margin-top: 10px;
+    letter-spacing: 3px;
+    color: coral;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-family: Impact, Charcoal, sans-serif;
 }
 
@@ -30,18 +33,25 @@
     text-align: center;
     margin-top: 15px;
     margin-bottom: 0;
+    font-size: 20px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: rgb(255, 255, 255);
     padding-bottom: 0;
+    background-color: rgb(94, 94, 89);
 }
 
 .app-description {
     text-align: center;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .contact {
     width: 350px;
     height: 50px;
-    margin-top: 45px;
+    margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -52,40 +62,75 @@
     display: flex;
     list-style: none;
     justify-content: space-around;
-    padding: 0;
+    padding-bottom: 5px;
 }
 
 .contact-links {
-    font-size: 50px;
+    font-size: 45px;
     text-align: center;
 }
-.phone{
+
+.phone {
     margin-top: auto;
     margin-right: auto;
     display: flex;
     margin-top: 50px;
     width: 350px;
     height: 30px;
+    color: white;
     justify-content: center;
+    text-align: center;
+ 
 }
 
-.icon{
-    font-size: 50px;
+.numphone{
+    font-family: 'Bangers', cursive;
+    font-size: 10px;
+    text-align: center;
+}
+
+.icon {
+    font-size: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
     color: rgb(2, 184, 2);
 }
 
 .aboutbox span {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 120%;
-    
 }
-.email{
+
+.email {
     color: ivory;
 }
-.facebook{
+
+.facebook {
     color: mediumblue;
 }
 
 .instagram {
     color: red;
+}
+
+.whatsapp{
+    font-size: 20px;
+    height: 40px;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.craetorName{
+    font-family: 'Bangers', cursive;
+    font-size: 25px;
+}
+
+.visit{
+    margin: 0;
+    text-align: center;
 }

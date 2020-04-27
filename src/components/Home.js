@@ -83,11 +83,11 @@ class Home extends Component {
         {
           this.state.user ?
             <Wrapper>
-              <h4>Welcome {this.state.user.displayName} !</h4>
-              <p>Enjoy 10% discount!</p>
+              <h4 style={{textAlign: 'center'}}>Welcome {this.state.user.displayName} !</h4>
+              <p style={{backgroundColor:'rgba(255, 255, 0, 0.52)', textAlign: 'center'}}>Enjoy 10% discount!</p>
             </Wrapper>
             :
-            <h4>Hello Guest...</h4>
+            <h4 style={{textAlign: 'center'}}>Hello Guest...</h4>
         }
         <p>Now in stock 5 types of capsules and later we will update more products.</p>
         <button onClick={this.toAbout} className="aboutbtn" type="button">To Contact Me</button>
