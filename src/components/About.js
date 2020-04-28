@@ -18,7 +18,7 @@ export default class About extends Component {
     render() {
 
         return (
-            <div className="container">
+            <div style={{marginTop: '2px'}} className="container">
                 <div className="aboutbox">
                     <h1 className="about-header">About me...</h1>
                     <h4 className="app-description">It's a simple React-based coffee capsule store app</h4>

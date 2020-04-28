@@ -81,9 +81,8 @@
 .itemname {
     color: rgb(22, 21, 21);
     text-decoration: underline red;
-    font-family: Bradley Hand, cursive;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 .nums {
     color: black;
     
