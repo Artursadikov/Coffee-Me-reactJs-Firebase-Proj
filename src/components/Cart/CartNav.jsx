@@ -31,7 +31,13 @@ export default class CartNav extends Component {
                     }
                     
                     <button onClick={this.props.cartClear} type="button" className="empty-cart">Reset The Cart</button>
-                    <button onClick={this.props.goToWishList} type="button" className="wishlist">Wish-List</button>
+                    {
+                        this.state.user ?
+                        <button onClick={this.props.goToWishList} type="button" className="wishlist">Wish-List</button>
+                        :
+                        <button disabled style={{backgroundColor: "transparent" , color: 'ivory', border: '1px solid ivory'}} onClick={this.props.goToWishList} type="button" className="wishlist">Wish-List</button>
+                    }
+                    
                 </ul>
             </nav>
         )

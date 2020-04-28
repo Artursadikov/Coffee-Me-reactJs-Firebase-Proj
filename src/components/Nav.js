@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Nav.css';
 import { Link, NavLink, withRouter } from "react-router-dom";
 import fire from '../Configuration/Auth';
-
+import axios from '../Configuration/axios-data';
 
 class Nav extends Component {
 
@@ -18,12 +18,12 @@ class Nav extends Component {
         })
     }
 
-   
+
 
     componentDidMount() {
 
         this.authListener();
-        console.log(this.state.user, "nav")
+
     }
 
 
@@ -33,6 +33,17 @@ class Nav extends Component {
         this.setState({
             user: null
         })
+        if (!fire.auth().currentUser) {
+            axios.delete(`/Cart.json`);
+            //window.location.reload(false);
+        }
+    }
+
+    homeBnt = () => {
+        if (!fire.auth().currentUser) {
+            axios.delete(`/Cart.json`);
+            //window.location.reload(false);
+        }
     }
 
     goToWishListBtn = () => {
@@ -64,7 +75,7 @@ class Nav extends Component {
                             <NavLink activeStyle={{ backgroundColor: "#e73d3f" }} to='/signup' className="nav-link" >Sign-Up</ NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
+                            <NavLink onClick={this.homeBnt} exact activeStyle={{ backgroundColor: "#e73d3f" }} to='/' className="nav-link home" >Home</ NavLink>
                         </li>
                         {
                             this.state.user ?

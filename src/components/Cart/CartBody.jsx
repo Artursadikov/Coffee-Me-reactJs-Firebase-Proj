@@ -41,8 +41,6 @@ export default class CartBody extends Component {
       
     }
 
-  
-
 
     // total price calc
     componentDidMount() {

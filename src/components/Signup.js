@@ -132,9 +132,9 @@ class Signup extends Component {
                         }
                         <div style={{ marginTop: '20px' }} className="buttonssingup">
                             {
-                                this.state.email === "" || this.state.password === "" || this.state.lastName === "" || this.state.firstName === "" ?
+                                this.state.email === "" || this.state.password.length < 6 || this.state.lastName === "" || this.state.firstName === "" ?
                                     <button disabled style={{ backgroundColor: "transparent", border: "1px ivory solid" }} onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
-                                    : <button onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
+                                    : <button style={{backgroundColor: 'coral', color: 'ivory'}} onClick={(e) => this.submitSignUp(e)} type="button" className="signupbtn">Sign-Up</button>
                             }
                         </div>
                     </form>

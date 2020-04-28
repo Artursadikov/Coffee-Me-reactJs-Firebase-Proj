@@ -77,10 +77,10 @@ class Signin extends Component {
                             <h5 className='errorMsg'>{this.state.errorMessage}</h5>
                             <div className="buttonssingup">
                                 <Wrapper>
-                                    {this.state.email === "" || this.state.password === "" ?
+                                    {this.state.email === "" || this.state.password.length < 6 ? 
                                         <button disabled onClick={(e) => this.submitSignin(e)} type="button" style={{ backgroundColor: "transparent", border: "1px ivory solid" }} className="signupbtn">Login</button>
                                         :
-                                        <button onClick={(e) => this.submitSignin(e)} type="button" className="signupbtn">Login</button>
+                                        <button onClick={(e) => this.submitSignin(e)} type="button" style={{backgroundColor: 'coral', color: 'ivory'}} className="signupbtn">Login</button>
                                     }
                                     <button className="signupbtn google">Login With Google</button>
                                 </Wrapper>

@@ -10,6 +10,11 @@ import "./About.css";
 
 export default class About extends Component {
 
+
+    toHome = () => {
+        this.props.history.push('/')
+    }
+
     render() {
 
         return (
@@ -23,7 +28,7 @@ export default class About extends Component {
                             width="205" height="154.5"></img>
                     </div>
                     <div className="contact">
-                        <h4 className='visit'>Visit</h4>
+                        <h4 className='visit'>To Contact Click Here</h4>
                         <ul className="contact-ul">
                             <li><a className="contact-links email" href="mailto:artur.sadikov1@gmail.com"><FaRegEnvelope /></a></li>
                             <li><a className="contact-links linkdin" href="https://www.linkedin.com/in/artur-sadikov-88063717b/"><FaLinkedin /></a></li>
@@ -32,7 +37,10 @@ export default class About extends Component {
                         </ul>
                     </div>
                     <div className="phone">
-                        <h6 className="whatsapp"><FaWhatsapp className="icon" /> >>> Number  <span className="numphone">  0505073942</span></h6>
+                        <h6 className="whatsapp"><FaWhatsapp className="icon" /> <span className="numphone">  0505073942</span></h6>
+                    </div>
+                    <div className="btnAboutToHome">
+                        <button onClick={this.toHome} className="toHomePage">To Home Page</button>
                     </div>
                 </div>
             </div>

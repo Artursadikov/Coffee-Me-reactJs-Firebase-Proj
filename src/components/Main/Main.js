@@ -3,7 +3,7 @@ import OrderBtns from '../Main/orderButtons';
 import AddBtns from '../Main/AddBtns';
 import CartBtn from '../Cart/CartBtn';
 import axios from '../../Configuration/axios-data';
-
+import fire from '../../Configuration/Auth';
 import '../Main/Main.css';
 
 import capsule1 from '../../pic/capsule1.png';
@@ -19,7 +19,7 @@ import { withRouter } from "react-router-dom";
 
 class Main extends Component {
 
-    // state
+
     state = {
         value: 0,
         price: 0,
@@ -31,28 +31,31 @@ class Main extends Component {
         progBarcolor: { width: '0%' },
         progBarClass: "",
         capsulaName: "",
-        itemsInTheCart: 0
-        
+        itemsInTheCart: 0,
+        user: null
+
+
     }
 
-    
-    //  authListenet = () => {
-    //    fire.auth().onAuthStateChanged((user) => {
-    //      user ? this.setState({ user: user, uid: user.uid}) : this.setState({ user: null })   
-    //    })
-   //   }
-    
-   //   componentWillMount() {
 
-    //      this.authListenet();
-        
-   //   }
-    
 
+    authListener = () => {
+        fire.auth().onAuthStateChanged(user => {
+            user ? this.setState({ user: user }) : this.setState({ user: null })
+        })
+
+    }
 
 
     backToMain = () => {
-        this.props.history.push('/');
+        if (fire.auth().currentUser) {
+            this.props.history.push('/');
+        } else {
+            axios.delete(`/Cart.json`).then(() => {
+                this.props.history.push('/');
+            });
+        }
+
     }
 
     // router
@@ -60,7 +63,6 @@ class Main extends Component {
         this.props.history.push('/cart');
     }
 
-    
 
 
     // hooks
@@ -78,6 +80,8 @@ class Main extends Component {
         this.setState({
             show: false,
         })
+
+        this.authListener();
     }
 
 
@@ -113,7 +117,7 @@ class Main extends Component {
                 name: this.state.capsulaName
             }
 
-            axios.post(`/Cart.json`, cartArrItem).then(res => {        
+            axios.post(`/Cart.json`, cartArrItem).then(res => {
                 axios.get(`/Cart.json`).then(res => {
                     if (res.data !== null) {
                         this.setState({

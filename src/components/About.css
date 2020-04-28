@@ -1,19 +1,20 @@
 .aboutbox {
     width: auto;
-    height: 550px;
+    height: 650px;
     border: 3px white solid;
     border-radius: 10px;
     color: ivory;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(133, 131, 131);
+
 }
 
 .about-header {
     text-align: center;
     margin-top: 10px;
     letter-spacing: 3px;
-    color: coral;
+    color: ivory;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-family: Impact, Charcoal, sans-serif;
 }
@@ -45,6 +46,7 @@
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     padding-left: 10px;
     padding-right: 10px;
+    color: black;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -71,19 +73,17 @@
 }
 
 .phone {
-    margin-top: auto;
-    margin-right: auto;
     display: flex;
     margin-top: 50px;
     width: 350px;
-    height: 30px;
+    height: 100px;
     color: white;
     justify-content: center;
     text-align: center;
- 
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.numphone{
+.numphone {
     font-family: 'Bangers', cursive;
     font-size: 10px;
     text-align: center;
@@ -92,9 +92,15 @@
 .icon {
     font-size: 40px;
     text-align: center;
-    background-color: white;
+    background-color: rgb(2, 184, 2);
     border-radius: 50%;
+    color: white;
+}
+
+.icon:hover{
+    background-color: white;
     color: rgb(2, 184, 2);
+    transition: all 0.3s ease-out;
 }
 
 .aboutbox span {
@@ -114,23 +120,48 @@
     color: red;
 }
 
-.whatsapp{
-    font-size: 20px;
-    height: 40px;
+.craetorName {
+    font-family: 'Bangers', cursive;
+    font-size: 25px;
+}
+
+.visit {
+    margin: 0;
+    text-align: center;
     color: black;
+}
+
+.toHomePage {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    color: ivory;
+    background-color: coral;
+    align-items: center;
+}
+
+.whatsapp {
+    font-size: 20px;
+    color: white;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
     margin-top: 10px;
+    height: 60px;
+    padding: 0;
 }
 
-.craetorName{
-    font-family: 'Bangers', cursive;
-    font-size: 25px;
+.btnAboutToHome{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 70px;
 }
 
-.visit{
-    margin: 0;
-    text-align: center;
+.toHomePage:hover{
+    background-color: rgb(207, 102, 63);
+    transition: all 0.3s ease-out;
 }

@@ -3,6 +3,7 @@ import './TotalCartPriceCss.css';
 
 
 export default class TotalCartPrice extends Component {
+
     render() {
         return (
             <div>
