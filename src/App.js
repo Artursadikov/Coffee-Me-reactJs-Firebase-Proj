@@ -10,7 +10,7 @@ import { createBrowserHistory } from "history";
 import About from './components/About';
 import Cart from './components/Cart/Cart';
 import Wish from './components/WishList/Wish';
-
+import PayForm from './components/Pay/PayForm';
 
 
 
@@ -31,6 +31,7 @@ class App extends Component {
                         <Route path='/wish' component={Wish} />
                         <Route path='/signup' component={Signup} />
                         <Route path='/cart' component={Cart} />
+                        <Route path='/payForm' component={PayForm} />
                     </Switch>
                 </div >
             </Router >

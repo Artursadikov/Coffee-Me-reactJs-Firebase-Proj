@@ -1,0 +1,23 @@
+.container.fdeliveryForm {
+    border: 1px solid coral;
+    border-radius: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    width: auto;
+    height: 650px;
+}
+
+.form-group.pay {
+    margin-top: 30px;
+}
+
+.form-check {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: 60px;
+}
+
+.form-check-input.position-static.pay.radio {
+  
+}

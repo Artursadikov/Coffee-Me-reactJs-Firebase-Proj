@@ -79,8 +79,7 @@
     font-size: 20px;
     text-align: center;
     margin: 0;
-
-    font-family: Bradley Hand, cursive;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @media screen and (max-width: 500px) {
