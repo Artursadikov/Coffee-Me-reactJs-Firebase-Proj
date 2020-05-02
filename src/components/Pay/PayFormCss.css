@@ -1,10 +1,10 @@
 .container.fdeliveryForm {
-    border: 1px solid coral;
     border-radius: 10px;
     margin-top: 25px;
+    margin-bottom: 25px;
     padding-top: 15px;
     width: auto;
-    height: 650px;
+    height: 670px;
 }
 
 .form-group.pay {
@@ -18,6 +18,68 @@
     height: 60px;
 }
 
-.form-check-input.position-static.pay.radio {
-  
+.form-check-input.position-static.pay {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+
+.paybtnsform {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.paySubmitForm {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    color: ivory;
+    background-color: green;
+    margin-top: 75px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.cancelSubmitForm {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    color: ivory;
+    background-color: goldenrod;
+    margin-top: 75px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.paySubmitForm:hover {
+    background-color: rgb(3, 110, 3);
+    transition: all 0.3s ease-out;
+}
+
+.cancelSubmitForm:hover {
+    background-color: rgb(185, 140, 26);
+    transition: all 0.3s ease-out;
+}
+
+/* 
+@media only screen and (min-width: 600px) {
+    .paySubmitForm {
+        position: absolute;
+        left: 48%;
+        margin-left: -50px;
+    }
+} */
+
+@media only screen and (max-width: 600px) {
+    .form-check-input.position-static.pay {
+        width: 25px;
+        height: 25px;
+    }
 }

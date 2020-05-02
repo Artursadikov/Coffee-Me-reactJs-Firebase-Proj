@@ -29,17 +29,20 @@ export default class PayForm extends Component {
 
                         <div className="form-check">
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }} >Remember My Cart And Add To Cart History</small>
-                            <input className="form-check-input position-static pay radio" type="radio" name="blankRadio" value="option1" aria-label="..."></input>
+                            <input className="form-check-input position-static pay" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
                         </div>
 
                         <div className="form-check">
                             <label style={{ color: 'ivory', textAlign: 'center' }}>For Fast Delivery</label>
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>The Price For Faster Delivery Is <big>1.5$</big></small>
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>24 Hours Delivery</small>
-                            <input className="form-check-input position-static pay checkBox" type="checkbox" value="option1"></input>
+                            <input className="form-check-input position-static pay" type="checkbox" value="option1"></input>
                         </div>
-                        <button className="paySubmitForm" type="button">Submit</button>
                     </form>
+                </div>
+                <div className='paybtnsform'>
+                     <button className="paySubmitForm" type="button">Submit</button>
+                     <button onClick={()=> this.props.history.goBack()} className="cancelSubmitForm" type="button">Cancel</button>
                 </div>
             </div>
         )
