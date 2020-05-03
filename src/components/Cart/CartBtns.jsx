@@ -25,9 +25,7 @@ class CartBtns extends Component {
     this.props.history.goBack();
   }
 
-  toPayment = () => {
-    this.props.history.push('/payForm')
-  }
+
 
   render() {
 
@@ -42,7 +40,7 @@ class CartBtns extends Component {
             :
             null
         }
-        <button onClick={this.toPayment} type="button" className="next-btn">Pay</button>
+        <button onClick={this.props.toPayment} type="button" className="next-btn">Pay</button>
       </div>
     )
   }

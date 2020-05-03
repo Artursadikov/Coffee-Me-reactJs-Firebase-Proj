@@ -51,5 +51,6 @@
     .res-btn, .next-btn, .wish-li-btn {
         height: 45px;
         width: 120px;
+        border-radius: 7px;
     }
 }

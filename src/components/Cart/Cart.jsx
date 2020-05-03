@@ -9,6 +9,12 @@ import { withRouter } from "react-router-dom";
 import '../Cart/CartCss.css';
 import ModalInput from '../Modal/ModalInput';
 import InputContent from '../Modal/InputContent';
+import PayBtnModal from '../Modal/PayBtnModal';
+import fire from '../../Configuration/Auth';
+import PayBtnContent from '../Modal/PayBtnContent';
+
+
+
 
 
 class Cart extends Component {
@@ -17,17 +23,49 @@ class Cart extends Component {
         wishList: false,
         modalanimation: false,
         openInput: false,
-        value : ''
+        value: '',
+        user: null,
+        showModal: false
+    }
+
+    authListener() {
+        fire.auth().onAuthStateChanged(user => {
+            user ? this.setState({ user: user }) : this.setState({ user: null })
+        })
     }
 
 
+    componentDidMount() {
+        this.authListener();
+    }
 
     // to wishList btn
     goToWishList = () => {
         this.props.history.push('/wish');
     }
 
+    toPayment = () => {
+        if (this.state.user) {
+            this.props.history.push('/payForm');
+        } else {
+            this.setState({
+                showModal: true
+            })
+        }
+    }
 
+    goToSignIpPage = () => {
+        this.props.history.push('/signin');
+    }
+
+    cancelModal = () => {
+        this.setState({
+            showModal: false
+        })
+    }
+    guestMode = () => {
+        this.props.history.push('/payForm');
+    }
     // clear the cart && database 
     cartClear = () => {
         axios.delete(`/Cart.json`).then(() => {
@@ -44,14 +82,14 @@ class Cart extends Component {
         })
     }
 
-    
+
 
     onOpenInputModal = () => {
-       this.setState({
-           openInput: true,
-           modalanimation: false
-    
-       })
+        this.setState({
+            openInput: true,
+            modalanimation: false
+
+        })
     }
 
     //button close the wishlist modal
@@ -63,33 +101,33 @@ class Cart extends Component {
         })
     }
 
-    handleChange=(e)=>{
+    handleChange = (e) => {
         let value = e.target.value
-            value = value.replace(/[^A-Za-z]/ig, '')
+        value = value.replace(/[^A-Za-z]/ig, '')
         this.setState({
             value: value.charAt(0).toUpperCase() + value.slice(1)
         });
     }
 
-// button add to wishlist and clear the cart list && database
-onAddToWishList = () => {
-   
-    axios.get(`/Cart.json`).then(res => {
-        let items = Object.values(res.data).map((items) => {
-            return items
-        })
+    // button add to wishlist and clear the cart list && database
+    onAddToWishList = () => {
 
-        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        axios.get(`/Cart.json`).then(res => {
+            let items = Object.values(res.data).map((items) => {
+                return items
+            })
 
-        axios.post(`/wishlist/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
-            axios.delete(`/Cart.json`).then(res => {
-                this.props.history.push('/wish');
-            }).catch(err => {
-                console.log(err)
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+            axios.post(`/wishlist/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
+                axios.delete(`/Cart.json`).then(res => {
+                    this.props.history.push('/wish');
+                }).catch(err => {
+                    console.log(err)
+                })
             })
         })
-    })
-}
+    }
 
     render() {
         return (
@@ -101,10 +139,13 @@ onAddToWishList = () => {
                             <ModalWishList backToCartCancelWish={this.onBackToCart} addtowishlist={this.onOpenInputModal} />
                         </Modal>
                         <ModalInput show={this.state.openInput}>
-                            <InputContent handleChange={(e)=>this.handleChange(e)} value={this.state.value} backToCartCancelWish={this.onBackToCart} addtowishlistKeyDown={this.onAddToWishList} addtowishlist={this.onAddToWishList}/>
+                            <InputContent handleChange={(e) => this.handleChange(e)} value={this.state.value} backToCartCancelWish={this.onBackToCart} addtowishlistKeyDown={this.onAddToWishList} addtowishlist={this.onAddToWishList} />
                         </ModalInput>
+                        <PayBtnModal show={this.state.showModal}>
+                            <PayBtnContent guestMode={this.guestMode} cancelModal={this.cancelModal} goToSignIpPage={this.goToSignIpPage} />
+                        </PayBtnModal>
                         <CartBody />
-                        <CartBtns addToWishList={this.addWishModal} />
+                        <CartBtns toPayment={this.toPayment} addToWishList={this.addWishModal} />
                     </div>
                 </section>
             </div>

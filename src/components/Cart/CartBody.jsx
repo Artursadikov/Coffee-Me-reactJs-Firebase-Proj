@@ -18,16 +18,17 @@ export default class CartBody extends Component {
         loading: true,
         totalCartPrice: 0,
         cartItems: 0
+       
     }
 
-    
 
-   
+
+
 
     componentWillMount() {
 
         axios.get(`/Cart.json`).then(res => {
-         
+
             this.setState({
                 cart: res.data,
                 loading: false
@@ -38,12 +39,13 @@ export default class CartBody extends Component {
             })
 
         })
-      
-    }
 
+    }
 
     // total price calc
     componentDidMount() {
+
+
 
         axios.get(`/Cart.json`).then(res => {
             if (this.state.cart !== null) {
