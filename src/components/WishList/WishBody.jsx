@@ -7,24 +7,43 @@ import WishModDescription from '../Modal/WishModDescription';
 import WishLI from './WishLI';
 import Spinner from '../Spinner';
 import DescListWIsh from './DescListWIsh';
+import fire from '../../Configuration/Auth';
+
+
+
 export default class WishBody extends Component {
 
     state = {
         wishData: null,
         openModal: false,
         item: null,
-        elementFromDB: null
+        elementFromDB: null,
+        user: null,
+        dbUser: ''
 
     }
 
+    authListener = () => {
+        fire.auth().onAuthStateChanged(user => {
+            user ? this.setState({
+                user: user,
+                dbUser: fire.auth().currentUser.displayName
+            }) : this.setState({
+                user: null,
+                dbUser: 'Guest'
+            })
 
+        })
+
+    }
 
     componentWillMount() {
-
-        axios.get(`/wishlist.json`).then(res => {
+        this.authListener();
+        axios.get(`/wishlist/${this.state.dbUser}.json`).then(res => {
             this.setState({
                 wishData: res.data
             })
+            console.log(this.state.wishData)
         })
     }
 
@@ -35,8 +54,8 @@ export default class WishBody extends Component {
     }
 
     deleteItemFromWishList = () => {
-        axios.delete(`/wishlist/${this.state.elementFromDB}.json`).then(() => {
-            axios.get(`/wishlist.json`).then(res => {
+        axios.delete(`/wishlist/${this.state.dbUser}/${this.state.elementFromDB}.json`).then(() => {
+            axios.get(`/wishlist/${this.state.dbUser}.json`).then(res => {
                 this.setState({
                     wishData: res.data,
                     openModal: false
@@ -49,7 +68,8 @@ export default class WishBody extends Component {
         let div = e.target.closest('div');
         let elementFromDB = div.children[0].children[0].children[0].textContent;
 console.log(elementFromDB)
-        axios.get(`/wishlist/${elementFromDB}.json`).then(res => {
+
+        axios.get(`/wishlist/${this.state.dbUser}/${elementFromDB}.json`).then(res => {
             Object.values(res.data).map(items => {
                 return this.setState({
                     openModal: true,
@@ -64,6 +84,8 @@ console.log(elementFromDB)
 
 
     render() {
+
+      
 
         let list = this.state.wishData !== null ? Object.entries(this.state.wishData).map((item, index) => {
             return (

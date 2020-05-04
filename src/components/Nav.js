@@ -28,15 +28,16 @@ class Nav extends Component {
 
 
     submitalogout = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         fire.auth().signOut();
         this.setState({
             user: null
         })
-        // if (!fire.auth().currentUser) {
-        //     axios.delete(`/Cart.json`);
-        //     //window.location.reload(false);
-        // }
+
+        if (fire.auth().currentUser) {
+            axios.delete(`/Cart.json`);
+            //window.location.reload(false);
+        }
         this.props.history.push('/');
     }
 

@@ -25,13 +25,22 @@ class Cart extends Component {
         openInput: false,
         value: '',
         user: null,
-        showModal: false
+        showModal: false,
+        dbUser: ''
     }
 
-    authListener() {
+    authListener = () => {
         fire.auth().onAuthStateChanged(user => {
-            user ? this.setState({ user: user }) : this.setState({ user: null })
+            user ? this.setState({
+                user: user,
+                dbUser: fire.auth().currentUser.displayName
+            }) : this.setState({
+                user: null,
+                dbUser: 'Guest'
+            })
+
         })
+
     }
 
 
@@ -68,6 +77,7 @@ class Cart extends Component {
     }
     // clear the cart && database 
     cartClear = () => {
+
         axios.delete(`/Cart.json`).then(() => {
             this.props.history.push('/main');
         });
@@ -112,21 +122,24 @@ class Cart extends Component {
     // button add to wishlist and clear the cart list && database
     onAddToWishList = () => {
 
-        axios.get(`/Cart.json`).then(res => {
+        
+            axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
             let items = Object.values(res.data).map((items) => {
                 return items
             })
 
             let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-            axios.post(`/wishlist/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
-                axios.delete(`/Cart.json`).then(res => {
+            axios.post(`/wishlist/${this.state.dbUser}/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
+                axios.delete(`/Cart/${this.state.dbUser}.json`).then(res => {
                     this.props.history.push('/wish');
                 }).catch(err => {
                     console.log(err)
                 })
             })
         })
+        
+        
     }
 
     render() {

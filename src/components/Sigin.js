@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Wrapper from './Wrapper';
 import fire from '../Configuration/Auth';
-
+import axios from '../Configuration/axios-data';
 
 
 
@@ -22,6 +22,8 @@ class Signin extends Component {
             this.setState({
                 user: user
             })
+        }).then(()=>{
+            axios.delete(`/Cart.json`);
         }).catch(err => {
             let errorMSG = "The password or the email is invalid !"
             console.log(err)

@@ -32,18 +32,24 @@ class Main extends Component {
         progBarClass: "",
         capsulaName: "",
         itemsInTheCart: 0,
-        user: null
-
-
+        user: null,
+        dbUser: ''
     }
 
 
 
     authListener = () => {
         fire.auth().onAuthStateChanged(user => {
-            user ? this.setState({ user: user }) : this.setState({ user: null })
+            user ? this.setState({
+                user: user,
+                dbUser: fire.auth().currentUser.displayName
+            }) : this.setState({
+                user: null,
+                dbUser: 'Guest'
+            })
+           
         })
-
+        
     }
 
 
@@ -51,24 +57,24 @@ class Main extends Component {
         if (fire.auth().currentUser) {
             this.props.history.push('/');
         } else {
-            axios.delete(`/Cart.json`).then(() => {
+            axios.delete(`/Cart/${this.state.dbUser}.json`).then(() => {
                 this.props.history.push('/');
             });
         }
 
     }
 
-    // router
+
     goToCartComponent = () => {
         this.props.history.push('/cart');
     }
 
 
 
-    // hooks
+
     componentDidMount() {
 
-        axios.get(`/Cart.json`).then(res => {
+        axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
             if (res.data !== null) {
                 this.setState({
                     itemsInTheCart: Object.values(res.data).length
@@ -82,6 +88,10 @@ class Main extends Component {
         })
 
         this.authListener();
+
+
+       
+
     }
 
 
@@ -117,8 +127,8 @@ class Main extends Component {
                 name: this.state.capsulaName
             }
 
-            axios.post(`/Cart.json`, cartArrItem).then(res => {
-                axios.get(`/Cart.json`).then(res => {
+            axios.post(`/Cart/${this.state.dbUser}.json`, cartArrItem).then(res => {
+                axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
                     if (res.data !== null) {
                         this.setState({
                             itemsInTheCart: Object.values(res.data).length
@@ -132,7 +142,7 @@ class Main extends Component {
 
     // reset the cart
     resetCart = () => {
-        axios.delete(`/Cart.json`).then(() => {
+        axios.delete(`/Cart/${this.state.dbUser}.json`).then(() => {
             window.location.reload(false);
         });
     }
@@ -228,6 +238,8 @@ class Main extends Component {
 
 
     render() {
+       
+        
         return (
             <section>
                 <div className="container main">

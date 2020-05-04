@@ -4,7 +4,7 @@ import TotalCartPrice from './TotalCartPrice';
 import Spinner from '../Spinner';
 import '../Cart/CartBodyCss.css';
 import axios from '../../Configuration/axios-data';
-
+import fire from '../../Configuration/Auth';
 
 
 
@@ -17,17 +17,32 @@ export default class CartBody extends Component {
         cart: null,
         loading: true,
         totalCartPrice: 0,
-        cartItems: 0
-       
+        cartItems: 0,
+        user: null,
+        dbUser: ''
+
+    }
+
+    authListener = () => {
+        fire.auth().onAuthStateChanged(user => {
+            user ? this.setState({
+                user: user,
+                dbUser: fire.auth().currentUser.displayName
+            }) : this.setState({
+                user: null,
+                dbUser: 'Guest'
+            })
+
+        })
+
     }
 
 
 
 
-
     componentWillMount() {
-
-        axios.get(`/Cart.json`).then(res => {
+        this.authListener();
+        axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
 
             this.setState({
                 cart: res.data,
@@ -47,7 +62,7 @@ export default class CartBody extends Component {
 
 
 
-        axios.get(`/Cart.json`).then(res => {
+        axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
             if (this.state.cart !== null) {
                 let totalCartPriceArr = Object.values(res.data).map((item) => {
                     return Object.values(item)
@@ -90,12 +105,16 @@ export default class CartBody extends Component {
                     {this.state.cart === null || this.state.loading ? <Spinner /> :
                         Object.values(this.state.cart).map((item, index) => {
                             return (
-                                <CartList key={index}
-                                    price={item.price}
-                                    amount={item.amount}
-                                    name={item.name}
-                                    totalPr={item.totalPr}
-                                />
+                                Object.values(item).map((item, index) => {
+                                    return(
+                                        <CartList key={index}
+                                        price={item.price}
+                                        amount={item.amount}
+                                        name={item.name}
+                                        totalPr={item.totalPr}
+                                    />
+                                    )
+                                })
                             )
                         })
                     }

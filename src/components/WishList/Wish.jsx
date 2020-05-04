@@ -5,12 +5,35 @@ import WishBtns from './WishBtns';
 import { withRouter } from "react-router-dom";
 import './Wish.css';
 import axios from '../../Configuration/axios-data';
+import fire from '../../Configuration/Auth';
 
 
 
 class Wish extends Component {
 
-    
+    state = {
+        user: null,
+        dbUser: ''
+    }
+
+    authListener = () => {
+        fire.auth().onAuthStateChanged(user => {
+            user ? this.setState({
+                user: user,
+                dbUser: fire.auth().currentUser.displayName
+            }) : this.setState({
+                user: null,
+                dbUser: 'Guest'
+            })
+
+        })
+
+    }
+
+
+    componentDidMount(){
+        this.authListener(); 
+    }
 
 
     // back to shop page
@@ -21,7 +44,7 @@ class Wish extends Component {
     // wishlist empty & database
     clearWishList = () => {
 
-        axios.delete(`/wishlist.json`).then(() => {
+        axios.delete(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(() => {
             window.location.reload(false);
         })
     }
