@@ -39,7 +39,7 @@ export default class WishBody extends Component {
 
     componentWillMount() {
         this.authListener();
-        axios.get(`/wishlist/${this.state.dbUser}.json`).then(res => {
+        axios.get(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(res => {
             this.setState({
                 wishData: res.data
             })
@@ -54,8 +54,8 @@ export default class WishBody extends Component {
     }
 
     deleteItemFromWishList = () => {
-        axios.delete(`/wishlist/${this.state.dbUser}/${this.state.elementFromDB}.json`).then(() => {
-            axios.get(`/wishlist/${this.state.dbUser}.json`).then(res => {
+        axios.delete(`/wishlist/${fire.auth().currentUser.displayName}/${this.state.elementFromDB}.json`).then(() => {
+            axios.get(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(res => {
                 this.setState({
                     wishData: res.data,
                     openModal: false
@@ -69,7 +69,7 @@ export default class WishBody extends Component {
         let elementFromDB = div.children[0].children[0].children[0].textContent;
 console.log(elementFromDB)
 
-        axios.get(`/wishlist/${this.state.dbUser}/${elementFromDB}.json`).then(res => {
+        axios.get(`/wishlist/${fire.auth().currentUser.displayName}/${elementFromDB}.json`).then(res => {
             Object.values(res.data).map(items => {
                 return this.setState({
                     openModal: true,

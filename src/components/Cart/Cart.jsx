@@ -130,7 +130,7 @@ class Cart extends Component {
 
             let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-            axios.post(`/wishlist/${this.state.dbUser}/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
+            axios.post(`/wishlist/${fire.auth().currentUser.displayName}/${this.state.value + '  At ' + new Date().toLocaleDateString("en-US", options)}.json`, items).then(() => {
                 axios.delete(`/Cart/${this.state.dbUser}.json`).then(res => {
                     this.props.history.push('/wish');
                 }).catch(err => {
