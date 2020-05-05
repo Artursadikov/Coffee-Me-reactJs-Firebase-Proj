@@ -27,11 +27,13 @@ export default class PayForm extends Component {
 
 
     componentDidMount() {
-
         this.authListener();
     }
 
 
+    toPayMethod=()=>{
+        this.props.history.push('/paymethod');
+    }
 
 
 
@@ -42,7 +44,7 @@ export default class PayForm extends Component {
         return (
             <div className='container fdeliveryForm'>
                 <div className='payFormHead'>
-                    <h1 style={{ color: 'coral', textAlign: 'center', display: 'block' }}>Payment</h1>
+                    <h1 style={{ color: 'coral', textAlign: 'center', display: 'block' }}>Customer Details</h1>
                     <p style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>To Delivery Fill The Form</p>
                 </div>
                 <div className='fdeliveryForm'>
@@ -93,7 +95,7 @@ export default class PayForm extends Component {
                     </form>
                 </div>
                 <div className='paybtnsform'>
-                    <button className="paySubmitForm" type="button">Submit</button>
+                    <button onClick={this.toPayMethod} className="paySubmitForm" type="button">Submit</button>
                     <button onClick={() => this.props.history.goBack()} className="cancelSubmitForm" type="button">Cancel</button>
                 </div>
             </div>

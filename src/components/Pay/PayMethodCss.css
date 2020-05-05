@@ -1,0 +1,48 @@
+.container.payMethod {
+    border-radius: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding-top: 15px;
+    width: auto;
+    height: 670px;
+}
+
+.payMethodHead {
+    margin-bottom: 15px;
+    border-bottom: 1px solid coral;
+}
+
+.pay-total {
+    margin-bottom: 15px;
+    border-bottom: 1px solid coral;
+}
+
+.pay-method {}
+
+.checkBoxDiv {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.form-group.date {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control.month {
+    width: 100px;
+    margin-right: 20px;
+   
+}
+
+.form-control.year {
+    width: 100px;
+    margin-left: 20px;
+}
+
+.form-check.paymethod{
+    width: 90px;
+    height: 80px;
+
+}

@@ -11,7 +11,7 @@ import About from './components/About';
 import Cart from './components/Cart/Cart';
 import Wish from './components/WishList/Wish';
 import PayForm from './components/Pay/PayForm';
-
+import PayMethod from './components/Pay/PayMethod';
 
 
 class App extends Component {
@@ -32,6 +32,7 @@ class App extends Component {
                         <Route path='/signup' component={Signup} />
                         <Route path='/cart' component={Cart} />
                         <Route path='/payForm' component={PayForm} />
+                        <Route path='/paymethod' component={PayMethod} />
                     </Switch>
                 </div >
             </Router >

@@ -32,9 +32,7 @@ export default class WishBody extends Component {
                 user: null,
                 dbUser: 'Guest'
             })
-
         })
-
     }
 
     componentWillMount() {
@@ -43,7 +41,6 @@ export default class WishBody extends Component {
             this.setState({
                 wishData: res.data
             })
-            console.log(this.state.wishData)
         })
     }
 
@@ -67,7 +64,7 @@ export default class WishBody extends Component {
     openWishListItem = (e) => {
         let div = e.target.closest('div');
         let elementFromDB = div.children[0].children[0].children[0].textContent;
-console.log(elementFromDB)
+
 
         axios.get(`/wishlist/${fire.auth().currentUser.displayName}/${elementFromDB}.json`).then(res => {
             Object.values(res.data).map(items => {
