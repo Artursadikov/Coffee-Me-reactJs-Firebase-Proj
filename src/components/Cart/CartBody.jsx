@@ -9,6 +9,7 @@ import fire from '../../Configuration/Auth';
 
 
 
+
 export default class CartBody extends Component {
 
 
@@ -54,13 +55,13 @@ export default class CartBody extends Component {
             })
 
         })
-
+        
     }
 
     // total price calc
     componentDidMount() {
 
-
+      
 
         axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
             if (this.state.cart !== null) {
@@ -95,6 +96,8 @@ export default class CartBody extends Component {
 
     render() {
 
+       
+
         return (
             <div className="row order">
 
@@ -106,13 +109,13 @@ export default class CartBody extends Component {
                         Object.values(this.state.cart).map((item, index) => {
                             return (
                                 Object.values(item).map((item, index) => {
-                                    return(
+                                    return (
                                         <CartList key={index}
-                                        price={item.price}
-                                        amount={item.amount}
-                                        name={item.name}
-                                        totalPr={item.totalPr}
-                                    />
+                                            price={item.price}
+                                            amount={item.amount}
+                                            name={item.name}
+                                            totalPr={item.totalPr}
+                                        />
                                     )
                                 })
                             )

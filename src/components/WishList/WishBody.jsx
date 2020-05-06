@@ -35,14 +35,22 @@ export default class WishBody extends Component {
         })
     }
 
-    componentWillMount() {
+    async componentDidMount() {
         this.authListener();
-        axios.get(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(res => {
+        await axios.get(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(res => {
             this.setState({
                 wishData: res.data
             })
         })
     }
+
+    // componentDidUpdate(){
+    //     if(fire.auth().currentUser.displayName === null) {
+    //         this.setState({
+    //             dbUser: 'clean'
+    //         })
+    //     }
+    // }
 
     cancelModalClose = () => {
         this.setState({
@@ -82,7 +90,7 @@ export default class WishBody extends Component {
 
     render() {
 
-      
+
 
         let list = this.state.wishData !== null ? Object.entries(this.state.wishData).map((item, index) => {
             return (
@@ -97,12 +105,12 @@ export default class WishBody extends Component {
 
         let wishDesc = this.state.item !== null ? Object.values(this.state.item).map((item, index) => {
             return <DescListWIsh
-            key={index}
-            name={item.name}
-            amount={item.amount}
-            price={item.price}
-            totalPr={item.totalPr}
-        />
+                key={index}
+                name={item.name}
+                amount={item.amount}
+                price={item.price}
+                totalPr={item.totalPr}
+            />
         }) : <Spinner />
 
         return (

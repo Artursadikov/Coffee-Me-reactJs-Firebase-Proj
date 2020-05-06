@@ -4,7 +4,7 @@ import WishBody from './WishBody';
 import WishBtns from './WishBtns';
 import { withRouter } from "react-router-dom";
 import './Wish.css';
-import axios from '../../Configuration/axios-data';
+//import axios from '../../Configuration/axios-data';
 import fire from '../../Configuration/Auth';
 
 
@@ -29,10 +29,11 @@ class Wish extends Component {
         })
 
     }
-
+      
 
     componentDidMount(){
         this.authListener(); 
+      
     }
 
 
@@ -41,18 +42,23 @@ class Wish extends Component {
         this.props.history.push('/main');
     }
 
-    // wishlist empty & database
-    clearWishList = () => {
+   
 
-        axios.delete(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(() => {
-            window.location.reload(false);
-        })
-    }
+    // wishlist empty & database
+    // clearWishList = () => {
+    //          axios.delete(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(() => {
+    //         window.location.reload(false);
+    //     })
+        
+       
+    // }
 
 
 
 
     render() {
+
+        
         return (
             <div className="wish">
                 <WishNav />
