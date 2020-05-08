@@ -1,12 +1,12 @@
 .aboutbox {
     width: auto;
     height: 650px;
-    border: 3px white solid;
+    border: 3px rgb(165, 161, 161) solid;
     border-radius: 10px;
-    color: ivory;
+    color: black;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(133, 131, 131);
+    background-color: rgb(219, 214, 214);
 
 }
 
@@ -14,8 +14,7 @@
     text-align: center;
     margin-top: 10px;
     letter-spacing: 3px;
-    color: ivory;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: black;
     font-family: Impact, Charcoal, sans-serif;
 }
 
@@ -35,10 +34,8 @@
     margin-top: 15px;
     margin-bottom: 0;
     font-size: 20px;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    color: rgb(255, 255, 255);
+    color: black;
     padding-bottom: 0;
-    background-color: rgb(94, 94, 89);
 }
 
 .app-description {
@@ -76,16 +73,17 @@
     margin-top: 50px;
     width: 350px;
     height: 100px;
-    color: white;
+    color: black;
     justify-content: center;
     text-align: center;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   
 }
 
 .numphone {
     font-family: 'Bangers', cursive;
     font-size: 10px;
     text-align: center;
+    color: black;
 }
 
 .icon {
@@ -108,7 +106,7 @@
 }
 
 .email {
-    color: ivory;
+    color: black;
 }
 
 .facebook {

@@ -23,10 +23,10 @@ export default class About extends Component {
                     <h1 className="about-header">About me...</h1>
                     <h4 className="app-description">It's a simple React-based coffee capsule store app</h4>
                     <h6 className="creator">App Creator  <span className="craetorName"> Artur Sadikov</span></h6>
-                    <div className="img-box">
+                     <div className="img-box">
                         <img alt="Artur sadikov img" className="image" src={artIMG}
                             width="205" height="154.5"></img>
-                    </div>
+                    </div> 
                     <div className="contact">
                         <h4 className='visit'>To Contact Click Here</h4>
                         <ul className="contact-ul">
