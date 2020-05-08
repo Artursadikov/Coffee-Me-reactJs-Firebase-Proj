@@ -47,9 +47,9 @@ class Main extends Component {
                 user: null,
                 dbUser: 'Guest'
             })
-           
+
         })
-        
+
     }
 
 
@@ -70,10 +70,7 @@ class Main extends Component {
     }
 
 
-
-
-    componentDidMount() {
-
+    componentDidUpdate() {
         axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
             if (res.data !== null) {
                 this.setState({
@@ -82,15 +79,15 @@ class Main extends Component {
             }
 
         })
+    }
 
+
+
+    componentDidMount() {
         this.setState({
             show: false,
         })
-
         this.authListener();
-
-
-       
 
     }
 
@@ -238,8 +235,8 @@ class Main extends Component {
 
 
     render() {
-       
-        
+
+
         return (
             <section>
                 <div className="container main">

@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import './PayMethodCss.css';
 import fire from '../../Configuration/Auth'
+import Wrapper from '../Wrapper';
+
+
 
 export default class PayMethod extends Component {
 
     state = {
         userName: '',
         user: null,
-        paypal: true,
-        creditCard: true
+        checkedPayPal: false,
+        checkedCredit: false
     }
 
 
     authListener() {
-        fire.auth().onAuthStateChanged(user => {
+       fire.auth().onAuthStateChanged(user => {
             user ? this.setState({ user: user }) : this.setState({ user: null })
         })
 
@@ -21,25 +24,45 @@ export default class PayMethod extends Component {
 
     componentDidMount() {
         this.authListener();
-
+      
     }
 
+
+
+
+
     creditCard = () => {
-        this.setState({
-            paypal: false,
-            creditCard: true
-        })
+        if (this.state.checkedCredit === false) {
+            this.setState({
+                checkedCredit: true,
+                checkedPayPal: false
+            })
+        } else if (this.state.checkedCredit === true) {
+            this.setState({
+                checkedCredit: false,
+                checkedPayPal: false
+            })
+        }
+
     }
 
     paypal = () => {
-        this.setState({
-            paypal: true,
-            creditCard: false
-        })
+        if (this.state.checkedPayPal === false) {
+            this.setState({
+                checkedCredit: false,
+                checkedPayPal: true
+            })
+        } else if (this.state.checkedPayPal === true) {
+            this.setState({
+                checkedCredit: false,
+                checkedPayPal: false
+            })
+        }
+
     }
 
     render() {
-
+            
         return (
             <div className="container payMethod">
                 <div className='payMethodHead'>
@@ -60,35 +83,58 @@ export default class PayMethod extends Component {
                 <div className='pay-method'>
                     <h3 style={{ color: 'coral', textAlign: 'center', display: 'block', marginBottom: '10px' }}>Payment Method</h3>
                     <div className="checkBoxDiv">
-                        <div className="form-check paymethod">
-                            <small style={{ color: 'ivory', textAlign: 'center', paddingLeft: '15px' }} >PayPal</small>
-                            {
-                                this.state.paypal ?
-                                <input onChange={this.paypal} style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
+                        {
+                            !this.state.checkedCredit ?
+                                <div className="form-check paymethod">
+                                    <small style={{ color: 'ivory', textAlign: 'center', paddingLeft: '15px' }} >PayPal</small>
+                                    <input checked={this.state.checkedPayPal} onChange={this.paypal} style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
+                                </div>
                                 :
-                                <input disabled  style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
-                            }
-                            
-                        </div>
-                        <div className="form-check paymethod">
-                            <small style={{ color: 'ivory', textAlign: 'center', padding: '0' }} >Credit Card</small>
-                            {
-                                this.state.creditCard ?
-                                <input onChange={this.creditCard} style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
-                                :
-                                <input disabled  style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
-                            }
-                          
-                        </div>
+                                <div className="form-check paymethod">
+                                    <small style={{ color: 'ivory', textAlign: 'center', paddingLeft: '15px' }} >PayPal</small>
+                                    <input disabled checked={this.state.checkedPayPal} onChange={this.paypal} style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
+                                </div>
+
+                        }
+
+                        {
+                            !this.state.checkedPayPal ?
+                                <div className="form-check paymethod">
+                                    <small style={{ color: 'ivory', textAlign: 'center', padding: '0' }} >Credit Card</small>
+                                    <input checked={this.state.checkedCredit} onChange={this.creditCard} style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
+                                </div> :
+                                <div className="form-check paymethod">
+                                    <small style={{ color: 'ivory', textAlign: 'center', padding: '0' }} >Credit Card</small>
+                                    <input disabled checked={this.state.checkedCredit} onChange={this.creditCard} style={{ display: 'block', width: '25px', height: '25px', marginLeft: 'auto', marginRight: 'auto', padding: '0' }} className="form-check-input position-static" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
+                                </div>
+                        }
+
                     </div>
-                    <div className="form-group">
-                        <input type="number" className="form-control" placeholder="Credit Card Number"></input>
-                    </div>
-                    <div className="form-group date">
-                        <input type="number" className="form-control month" placeholder="Month"></input>
-                        <span style={{ color: 'ivory', fontSize: '200%' }}>/</span>
-                        <input type="number" className="form-control year" placeholder="Year"></input>
-                    </div>
+                    {
+                        !this.state.checkedPayPal ?
+                            <Wrapper>
+                                <div className="form-group">
+                                    <input type="number" className="form-control" placeholder="Credit Card Number"></input>
+                                </div>
+                                <div className="form-group date">
+                                    <input type="number" className="form-control month" placeholder="Month"></input>
+                                    <span style={{ color: 'ivory', fontSize: '200%' }}>/</span>
+                                    <input type="number" className="form-control year" placeholder="Year"></input>
+                                </div>
+                            </Wrapper>
+                            :
+                            <Wrapper>
+                                <div style={{ opacity: '0.5' }} className="form-group">
+                                    <input disabled type="number" className="form-control" placeholder="Credit Card Number"></input>
+                                </div>
+                                <div style={{ opacity: '0.5' }} className="form-group date">
+                                    <input disabled type="number" className="form-control month" placeholder="Month"></input>
+                                    <span style={{ color: 'ivory', fontSize: '200%' }}>/</span>
+                                    <input disabled type="number" className="form-control year" placeholder="Year"></input>
+                                </div>
+                            </Wrapper>
+
+                    }
                     <div className='paybtnsform'>
                         <button className="paySubmitForm" type="button">Pay</button>
                         <button onClick={() => this.props.history.goBack()} className="cancelSubmitForm" type="button">Cancel</button>

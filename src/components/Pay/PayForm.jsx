@@ -80,12 +80,6 @@ export default class PayForm extends Component {
                         <div className="form-group pay">
                             <input type="tel" className="form-control" placeholder="Phone Number"></input>
                         </div>
-
-                        <div className="form-check">
-                            <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }} >Remember My Cart And Add To Cart History</small>
-                            <input className="form-check-input position-static pay" type="checkbox" name="blankRadio" value="option1" aria-label="..."></input>
-                        </div>
-
                         <div className="form-check">
                             <label style={{ color: 'ivory', textAlign: 'center' }}>For Fast Delivery</label>
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>The Price For Faster Delivery Is <big>1.5$</big></small>

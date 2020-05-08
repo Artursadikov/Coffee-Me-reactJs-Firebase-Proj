@@ -55,36 +55,41 @@ export default class CartBody extends Component {
             })
 
         })
-        
+
     }
 
     // total price calc
     componentDidMount() {
 
-      
-
         axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
-            if (this.state.cart !== null) {
-                let totalCartPriceArr = Object.values(res.data).map((item) => {
-                    return Object.values(item)
+
+            let totalCartPriceArr = Object.values(res.data).map((item) => {
+                return Object.values(item)
+            })
+
+            let arr = Object.values(totalCartPriceArr);
+    
+            let priceItems = arr.map(item => {
+                return Object.values(item).map(item => {
+                    return parseFloat(Object.values(item)[3])
+                })
+            })
+
+            for (let pr of priceItems) {
+
+                let price = pr.reduce((res, val) => {
+                    return res + val
                 })
 
-                let arr = Object.values(totalCartPriceArr);
-                let newArr = [];
+                this.setState({
+                     totalCartPrice: price.toFixed(2)     
+                })
+            }
 
-                for (let item of arr) {
-                    let values = item[item.length - 1];
-                    let value = parseFloat(values)
-                    newArr.push(value);
-                    let price = newArr.reduce((res, val) => {
-                        return res + val
-                    })
-
-                    this.setState({
-                        totalCartPrice: price.toFixed(2),
-                        cartItems: newArr.length
-                    })
-                }
+            for (let item of arr) {
+                this.setState({
+                    cartItems: item.length
+                })
             }
         })
     }
@@ -96,7 +101,6 @@ export default class CartBody extends Component {
 
     render() {
 
-       
 
         return (
             <div className="row order">
