@@ -22,7 +22,8 @@ class CartBtns extends Component {
 
 
   backToMain = () => {
-    this.props.history.goBack();
+    this.props.history.push('/main');
+    localStorage.clear();
   }
 
 

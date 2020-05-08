@@ -68,7 +68,7 @@ export default class CartBody extends Component {
             })
 
             let arr = Object.values(totalCartPriceArr);
-    
+
             let priceItems = arr.map(item => {
                 return Object.values(item).map(item => {
                     return parseFloat(Object.values(item)[3])
@@ -82,7 +82,7 @@ export default class CartBody extends Component {
                 })
 
                 this.setState({
-                     totalCartPrice: price.toFixed(2)     
+                    totalCartPrice: price.toFixed(2)
                 })
             }
 
@@ -91,11 +91,19 @@ export default class CartBody extends Component {
                     cartItems: item.length
                 })
             }
+        }).then(() => {
+            // localStorage.setItem('numOfCartItems', this.state.cartItems);
+            // localStorage.setItem('totalCartPrice', this.state.totalCartPrice);
         })
+
+
     }
 
 
-
+    componentDidUpdate() {
+        localStorage.setItem('numOfCartItems', this.state.cartItems);
+        localStorage.setItem('totalCartPrice', this.state.totalCartPrice);
+    }
 
 
 

@@ -11,12 +11,16 @@ export default class PayMethod extends Component {
         userName: '',
         user: null,
         checkedPayPal: false,
-        checkedCredit: false
+        checkedCredit: false,
+        subTotalCartPrice: 0,
+        itemInTheCart: 0,
+        shippingFee: 0
+
     }
 
 
     authListener() {
-       fire.auth().onAuthStateChanged(user => {
+        fire.auth().onAuthStateChanged(user => {
             user ? this.setState({ user: user }) : this.setState({ user: null })
         })
 
@@ -24,7 +28,13 @@ export default class PayMethod extends Component {
 
     componentDidMount() {
         this.authListener();
-      
+
+        this.setState({
+            subTotalCartPrice: parseFloat(localStorage.getItem('totalCartPrice')),
+            itemInTheCart: localStorage.getItem('numOfCartItems'),
+            shippingFee: parseFloat(localStorage.getItem('shippingFee'))
+
+        })
     }
 
 
@@ -61,8 +71,15 @@ export default class PayMethod extends Component {
 
     }
 
+    cancel = () => {
+
+        localStorage.clear();
+        this.props.history.push('/cart');
+
+    }
+
     render() {
-            
+
         return (
             <div className="container payMethod">
                 <div className='payMethodHead'>
@@ -76,9 +93,16 @@ export default class PayMethod extends Component {
                             :
                             <h6 style={{ color: 'ivory', textAlign: 'center' }}>Guest</h6>
                     }
-                    <p style={{ color: 'ivory', marginLeft: '10px' }}>Subtotal :</p>
-                    <p style={{ color: 'ivory', marginLeft: '10px' }}>Shipping Fee :</p>
-                    <p style={{ color: 'ivory', marginLeft: '10px' }}>Total :</p>
+                    <p style={{ color: 'ivory', marginLeft: '10px' }}>Subtotal : {this.state.subTotalCartPrice}$</p>
+                    {
+                        this.state.shippingFee !== 0 ?
+                            <p style={{ color: 'ivory', marginLeft: '10px' }}>Shipping Fee : {this.state.shippingFee}$</p>
+                            :
+                            <p style={{ color: 'ivory', marginLeft: '10px' }}>Shipping Fee : You Did Not Choose The Fast Delivery</p>
+                    }
+
+                    <p style={{ color: 'ivory', marginLeft: '10px' }}>Total Items In You'r Cart : {this.state.itemInTheCart}</p>
+                    <p style={{ color: 'ivory', marginLeft: '10px' }}>Total : {this.state.subTotalCartPrice + this.state.shippingFee}$</p>
                 </div>
                 <div className='pay-method'>
                     <h3 style={{ color: 'coral', textAlign: 'center', display: 'block', marginBottom: '10px' }}>Payment Method</h3>
@@ -137,7 +161,7 @@ export default class PayMethod extends Component {
                     }
                     <div className='paybtnsform'>
                         <button className="paySubmitForm" type="button">Pay</button>
-                        <button onClick={() => this.props.history.goBack()} className="cancelSubmitForm" type="button">Cancel</button>
+                        <button onClick={this.cancel} className="cancelSubmitForm" type="button">Cancel</button>
                     </div>
                 </div>
             </div>
