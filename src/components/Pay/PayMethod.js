@@ -167,7 +167,7 @@ export default class PayMethod extends Component {
                                         (this.state.creditCardPay === '' || this.state.creditCardPay.length < 8 || isNaN(this.state.creditCardPay)) ?
                                         <small style={{color: 'ivory', textAlign: 'center', display: 'block'}}>Must have at least 8 digits</small>
                                         :
-                                        null
+                                        <small style={{color: 'ivory', textAlign: 'center', display: 'block'}}></small>
                                     }
                                     <input value={this.state.creditCardPay} onChange={(e) => this.creditCardPay(e)} type="number" className="form-control" placeholder="Credit Card Number"></input>
                                 </div>
