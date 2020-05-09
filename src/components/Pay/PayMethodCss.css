@@ -17,11 +17,10 @@
     border-bottom: 1px solid coral;
 }
 
-.pay-method {}
+
 
 .checkBoxDiv {
     display: flex;
-    margin-bottom: 15px;
 }
 
 .form-group.date {

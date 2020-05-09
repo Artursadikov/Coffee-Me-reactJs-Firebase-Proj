@@ -11,10 +11,13 @@ export default class PayMethod extends Component {
         userName: '',
         user: null,
         checkedPayPal: false,
-        checkedCredit: false,
+        checkedCredit: true,
         subTotalCartPrice: 0,
         itemInTheCart: 0,
-        shippingFee: 0
+        shippingFee: 0,
+        creditCardPay: '',
+        month: '',
+        fullYear: ''
 
     }
 
@@ -35,6 +38,8 @@ export default class PayMethod extends Component {
             shippingFee: parseFloat(localStorage.getItem('shippingFee'))
 
         })
+
+
     }
 
 
@@ -78,7 +83,27 @@ export default class PayMethod extends Component {
 
     }
 
+    creditCardPay = (e) => {
+        this.setState({
+            creditCardPay: e.target.value
+        })
+    }
+
+    month = (e) => {
+        this.setState({
+            month: e.target.value
+        })
+    }
+
+    fullYear = (e) => {
+        this.setState({
+            fullYear: e.target.value
+        })
+    }
+
     render() {
+
+
 
         return (
             <div className="container payMethod">
@@ -138,12 +163,18 @@ export default class PayMethod extends Component {
                         !this.state.checkedPayPal ?
                             <Wrapper>
                                 <div className="form-group">
-                                    <input type="number" className="form-control" placeholder="Credit Card Number"></input>
+                                    {
+                                        (this.state.creditCardPay === '' || this.state.creditCardPay.length < 8 || isNaN(this.state.creditCardPay)) ?
+                                        <small style={{color: 'ivory', textAlign: 'center', display: 'block'}}>Must have at least 8 digits</small>
+                                        :
+                                        null
+                                    }
+                                    <input value={this.state.creditCardPay} onChange={(e) => this.creditCardPay(e)} type="number" className="form-control" placeholder="Credit Card Number"></input>
                                 </div>
                                 <div className="form-group date">
-                                    <input type="number" className="form-control month" placeholder="Month"></input>
+                                    <input value={this.state.month} onChange={(e) => this.month(e)} type="number" className="form-control month" placeholder="Month"></input>
                                     <span style={{ color: 'ivory', fontSize: '200%' }}>/</span>
-                                    <input type="number" className="form-control year" placeholder="Year"></input>
+                                    <input value={this.state.fullYear} onChange={(e) => this.fullYear(e)} type="number" className="form-control year" placeholder="Full Year"></input>
                                 </div>
                             </Wrapper>
                             :
@@ -154,13 +185,21 @@ export default class PayMethod extends Component {
                                 <div style={{ opacity: '0.5' }} className="form-group date">
                                     <input disabled type="number" className="form-control month" placeholder="Month"></input>
                                     <span style={{ color: 'ivory', fontSize: '200%' }}>/</span>
-                                    <input disabled type="number" className="form-control year" placeholder="Year"></input>
+                                    <input disabled type="number" className="form-control year" placeholder="Full Year"></input>
                                 </div>
                             </Wrapper>
 
                     }
                     <div className='paybtnsform'>
-                        <button className="paySubmitForm" type="button">Pay</button>
+                        { !this.state.checkedPayPal ?
+                            (this.state.month === '' || this.state.month.length < 2 || isNaN(this.state.month)) || (this.state.fullYear === '' || this.state.fullYear.length < 4 || isNaN(this.state.fullYear)) || (this.state.creditCardPay === '' || this.state.creditCardPay.length < 8 || isNaN(this.state.creditCardPay)) ?
+                                <button style={{ color: 'ivory', backgroundColor: 'transparent', border: '1px solid ivory' }} disabled className="paySubmitForm" type="button">Pay</button>
+                                :
+                                <button className="paySubmitForm" type="button">Pay</button>
+                                :
+                                <button className="paySubmitForm" type="button">Pay</button>
+                        }
+
                         <button onClick={this.cancel} className="cancelSubmitForm" type="button">Cancel</button>
                     </div>
                 </div>

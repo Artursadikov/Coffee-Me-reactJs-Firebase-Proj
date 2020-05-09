@@ -25,7 +25,7 @@ export default class About extends Component {
                     <h6 className="creator">App Creator  <span className="craetorName"> Artur Sadikov</span></h6>
                      <div className="img-box">
                         <img alt="Artur sadikov img" className="image" src={artIMG}
-                            width="205" height="154.5"></img>
+                            width="205" height="158.5"></img>
                     </div> 
                     <div className="contact">
                         <h4 className='visit'>To Contact Click Here</h4>

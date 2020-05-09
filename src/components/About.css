@@ -6,6 +6,7 @@
     color: black;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
     background-color: rgb(219, 214, 214);
 
 }
@@ -21,7 +22,6 @@
 .img-box {
     width: 212px;
     height: 161px;
-    border: 3px rgb(245, 146, 32) solid;
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
@@ -107,6 +107,7 @@
 
 .email {
     color: black;
+   
 }
 
 .facebook {

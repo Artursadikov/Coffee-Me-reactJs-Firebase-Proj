@@ -10,10 +10,11 @@ export default class PayForm extends Component {
 
     state = {
         user: null,
-        _firstName: '',
-        _lastName: '',
-        _email: '',
-        _dispName: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        tel: '',
+        adress: '',
         checkboxChecked: true
     }
 
@@ -50,16 +51,63 @@ export default class PayForm extends Component {
         } else {
             localStorage.setItem('shippingFee', 0)
         }
+
+        if (this.state.user === null) {
+            localStorage.setItem('firstName', this.state.firstName)
+            localStorage.setItem('lastName', this.state.lastName)
+            localStorage.setItem("email", this.state.email)
+            localStorage.setItem('tel', this.state.tel)
+            localStorage.setItem('adress', this.state.adress)
+        } else {
+            localStorage.setItem('tel', this.state.tel)
+            localStorage.setItem('adress', this.state.adress)
+        }
+
+
         this.props.history.push('/paymethod');
     }
+
+
 
     cancel = () => {
         localStorage.clear();
         this.props.history.goBack()
     }
 
-    render() {
 
+
+
+    telInput = (e) => {
+        this.setState({
+            tel: e.target.value
+        })
+    }
+
+    adressInput = (e) => {
+        this.setState({
+            adress: e.target.value
+        })
+    }
+
+    firstNameInput = (e) => {
+        this.setState({
+            firstName: e.target.value
+        })
+    }
+
+    lastNameInput = (e) => {
+        this.setState({
+            lastName: e.target.value
+        })
+    }
+
+    emailInput = (e) => {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    render(e) {
 
 
         return (
@@ -74,13 +122,13 @@ export default class PayForm extends Component {
                             !this.state.user ?
                                 <Wrapper>
                                     <div className="form-group pay">
-                                        <input type="text" className="form-control" placeholder="First Name"></input>
+                                        <input onChange={(e) => this.firstNameInput(e)} value={this.state.firstName} type="text" className="form-control" placeholder="First Name"></input>
                                     </div>
                                     <div className="form-group pay">
-                                        <input type="text" className="form-control" placeholder="Last Name"></input>
+                                        <input onChange={(e) => this.lastNameInput(e)} value={this.state.lastName} type="text" className="form-control" placeholder="Last Name"></input>
                                     </div>
                                     <div className="form-group pay">
-                                        <input type="email" className="form-control" placeholder="@-Email"></input>
+                                        <input onChange={(e) => this.emailInput(e)} value={this.state.email} type="email" className="form-control" placeholder="@-Email"></input>
                                     </div>
 
                                 </Wrapper>
@@ -96,10 +144,10 @@ export default class PayForm extends Component {
                         }
 
                         <div className="form-group pay">
-                            <input type="text" className="form-control" placeholder="Full Address"></input>
+                            <input onChange={(e) => this.adressInput(e)} value={this.state.adress} type="text" className="form-control" placeholder="Full Address"></input>
                         </div>
                         <div className="form-group pay">
-                            <input type="tel" className="form-control" placeholder="Phone Number"></input>
+                            <input onChange={(e) => this.telInput(e)} value={this.state.tel} type="tel" className="form-control" placeholder="Phone Number"></input>
                         </div>
                         <div className="form-check">
                             <label style={{ color: 'ivory', textAlign: 'center' }}>For Fast Delivery</label>
@@ -110,7 +158,20 @@ export default class PayForm extends Component {
                     </form>
                 </div>
                 <div className='paybtnsform'>
-                    <button onClick={this.toPayMethod} className="paySubmitForm" type="button">Submit</button>
+
+                    {
+                        !this.state.user ?
+                            this.state.firstName === '' || this.state.lastName === '' || this.state.email === "" || (this.state.tel === "" || this.state.tel.length < 6 || isNaN(this.state.tel)) || (this.state.adress === "" || this.state.adress < 5) ?
+                                <button style={{ color: 'ivory', backgroundColor: 'transparent', border: '1px solid ivory' }} disabled className="paySubmitForm" type="button">Submit</button>
+                                :
+                                <button onClick={this.toPayMethod} className="paySubmitForm" type="button">Submit</button>
+                            :
+                            (this.state.tel === "" || this.state.tel.length < 6 || isNaN(this.state.tel)) || (this.state.adress === "" || this.state.adress < 5) ?
+                                <button style={{ color: 'ivory', backgroundColor: 'transparent', border: '1px solid ivory' }} disabled className="paySubmitForm" type="button">Submit</button>
+                                :
+                                <button onClick={this.toPayMethod} className="paySubmitForm" type="button">Submit</button>
+                    }
+
                     <button onClick={this.cancel} className="cancelSubmitForm" type="button">Cancel</button>
                 </div>
             </div>
