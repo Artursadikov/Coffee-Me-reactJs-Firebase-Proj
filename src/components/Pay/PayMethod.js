@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './PayMethodCss.css';
 import fire from '../../Configuration/Auth'
 import Wrapper from '../Wrapper';
-
-
+import PatModal from '../Modal/PatModal';
+import PayContent from '../Modal/PayContent';
 
 export default class PayMethod extends Component {
 
@@ -17,7 +17,8 @@ export default class PayMethod extends Component {
         shippingFee: 0,
         creditCardPay: '',
         month: '',
-        fullYear: ''
+        fullYear: '',
+        showModal: false
 
     }
 
@@ -101,12 +102,21 @@ export default class PayMethod extends Component {
         })
     }
 
+    pay = () => {
+        this.setState({
+            showModal: true
+        })
+    }
+
     render() {
 
 
 
         return (
             <div className="container payMethod">
+                <PatModal show={this.state.showModal}>
+                    <PayContent />
+                </PatModal>
                 <div className='payMethodHead'>
                     <h1 style={{ color: 'coral', textAlign: 'center', display: 'block' }}>Payment<span style={{ color: 'ivory', opacity: '0.5', fontSize: '15px' }}>(Dummy!)</span></h1>
                     <h5 style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>Total Cart</h5>
@@ -165,9 +175,9 @@ export default class PayMethod extends Component {
                                 <div className="form-group">
                                     {
                                         (this.state.creditCardPay === '' || this.state.creditCardPay.length < 8 || isNaN(this.state.creditCardPay)) ?
-                                        <small style={{color: 'ivory', textAlign: 'center', display: 'block'}}>Must have at least 8 digits</small>
-                                        :
-                                        <small style={{color: 'ivory', textAlign: 'center', display: 'block'}}></small>
+                                            <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>Must have at least 8 digits</small>
+                                            :
+                                            <small style={{ color: 'ivory', textAlign: 'center', display: 'none' }}>Must have at least 8 digits</small>
                                     }
                                     <input value={this.state.creditCardPay} onChange={(e) => this.creditCardPay(e)} type="number" className="form-control" placeholder="Credit Card Number"></input>
                                 </div>
@@ -191,13 +201,13 @@ export default class PayMethod extends Component {
 
                     }
                     <div className='paybtnsform'>
-                        { !this.state.checkedPayPal ?
+                        {!this.state.checkedPayPal ?
                             (this.state.month === '' || this.state.month.length < 2 || isNaN(this.state.month)) || (this.state.fullYear === '' || this.state.fullYear.length < 4 || isNaN(this.state.fullYear)) || (this.state.creditCardPay === '' || this.state.creditCardPay.length < 8 || isNaN(this.state.creditCardPay)) ?
                                 <button style={{ color: 'ivory', backgroundColor: 'transparent', border: '1px solid ivory' }} disabled className="paySubmitForm" type="button">Pay</button>
                                 :
-                                <button className="paySubmitForm" type="button">Pay</button>
-                                :
-                                <button className="paySubmitForm" type="button">Pay</button>
+                                <button onClick={this.pay} className="paySubmitForm" type="button">Pay</button>
+                            :
+                            <button onClick={this.pay} className="paySubmitForm" type="button">Pay</button>
                         }
 
                         <button onClick={this.cancel} className="cancelSubmitForm" type="button">Cancel</button>

@@ -47,7 +47,7 @@ export default class PayForm extends Component {
 
     toPayMethod = () => {
         if (this.state.checkboxChecked === true) {
-            localStorage.setItem('shippingFee', 1.5)
+            localStorage.setItem('shippingFee', 2.5)
         } else {
             localStorage.setItem('shippingFee', 0)
         }
@@ -135,7 +135,7 @@ export default class PayForm extends Component {
                                 :
                                 <Wrapper>
                                     <div className="form-group pay">
-                                        <input style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="text" className="form-control" placeholder={this.state.user.displayName}></input>
+                                        <input style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="text" className="form-control" placeholder={this.state.user.displayName} ></input>
                                     </div>
                                     <div className="form-group pay">
                                         <input style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="email" className="form-control" placeholder={this.state.user.email}></input>
@@ -151,9 +151,9 @@ export default class PayForm extends Component {
                         </div>
                         <div className="form-check">
                             <label style={{ color: 'ivory', textAlign: 'center' }}>For Fast Delivery</label>
-                            <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>The Price For Faster Delivery Is <big>1.5$</big></small>
+                            <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>The Price For Faster Delivery Is <big>2.5$</big></small>
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>24 Hours Delivery</small>
-                            <input checked={this.state.checkboxChecked} onChange={this.shippingMethod} className="form-check-input position-static pay" type="checkbox" value="option1"></input>
+                            <input checked={this.state.checkboxChecked} onChange={this.shippingMethod} className="form-check-input position-static pay" type="checkbox"></input>
                         </div>
                     </form>
                 </div>
@@ -178,3 +178,5 @@ export default class PayForm extends Component {
         )
     }
 }
+
+

@@ -44,13 +44,7 @@ export default class WishBody extends Component {
         })
     }
 
-    // componentDidUpdate(){
-    //     if(fire.auth().currentUser.displayName === null) {
-    //         this.setState({
-    //             dbUser: 'clean'
-    //         })
-    //     }
-    // }
+
 
     cancelModalClose = () => {
         this.setState({
