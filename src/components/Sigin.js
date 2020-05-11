@@ -84,7 +84,6 @@ class Signin extends Component {
                                     :
                                     <button onClick={(e) => this.submitSignin(e)} type="button" style={{ backgroundColor: 'coral', color: 'ivory' }} className="signupbtn">Login</button>
                                 }
-                                {/* <button className="signupbtn google">Login With Google</button> */}
                             </Wrapper>
                         </div>
                     </form>

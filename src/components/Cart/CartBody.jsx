@@ -58,7 +58,7 @@ export default class CartBody extends Component {
 
     }
 
-    // total price calc
+    
     componentDidMount() {
 
         axios.get(`/Cart/${this.state.dbUser}.json`).then(res => {
@@ -91,11 +91,7 @@ export default class CartBody extends Component {
                     cartItems: item.length
                 })
             }
-        }).then(() => {
-            // localStorage.setItem('numOfCartItems', this.state.cartItems);
-            // localStorage.setItem('totalCartPrice', this.state.totalCartPrice);
         })
-
 
     }
 
