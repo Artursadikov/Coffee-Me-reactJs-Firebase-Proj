@@ -58,9 +58,12 @@ export default class PayForm extends Component {
             localStorage.setItem("email", this.state.email)
             localStorage.setItem('tel', this.state.tel)
             localStorage.setItem('adress', this.state.adress)
+           
+            
         } else {
             localStorage.setItem('tel', this.state.tel)
             localStorage.setItem('adress', this.state.adress)
+          
         }
 
 
@@ -107,7 +110,7 @@ export default class PayForm extends Component {
         })
     }
 
-    render(e) {
+    render() {
 
 
         return (
@@ -122,38 +125,38 @@ export default class PayForm extends Component {
                             !this.state.user ?
                                 <Wrapper>
                                     <div className="form-group pay">
-                                        <input onChange={(e) => this.firstNameInput(e)} value={this.state.firstName} type="text" className="form-control" placeholder="First Name"></input>
+                                        <input onChange={(e) => this.firstNameInput(e)} value={this.state.firstName} type="text" className="form-control" placeholder="First Name"/>
                                     </div>
                                     <div className="form-group pay">
-                                        <input onChange={(e) => this.lastNameInput(e)} value={this.state.lastName} type="text" className="form-control" placeholder="Last Name"></input>
+                                        <input onChange={(e) => this.lastNameInput(e)} value={this.state.lastName} type="text" className="form-control" placeholder="Last Name"/>
                                     </div>
                                     <div className="form-group pay">
-                                        <input onChange={(e) => this.emailInput(e)} value={this.state.email} type="email" className="form-control" placeholder="@-Email"></input>
+                                        <input onChange={(e) => this.emailInput(e)} value={this.state.email} type="email" className="form-control" placeholder="@-Email"/>
                                     </div>
 
                                 </Wrapper>
                                 :
                                 <Wrapper>
                                     <div className="form-group pay">
-                                        <input style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="text" className="form-control" placeholder={this.state.user.displayName} ></input>
+                                        <input value={undefined} style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="text" className="form-control" placeholder={this.state.user.displayName} />
                                     </div>
                                     <div className="form-group pay">
-                                        <input style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="email" className="form-control" placeholder={this.state.user.email}></input>
+                                        <input value={undefined} style={{ color: 'ivory', backgroundColor: 'transparent', textTransform: 'capitalize' }} disabled type="email" className="form-control" placeholder={this.state.user.email}/>
                                     </div>
                                 </Wrapper>
                         }
 
                         <div className="form-group pay">
-                            <input onChange={(e) => this.adressInput(e)} value={this.state.adress} type="text" className="form-control" placeholder="Full Address"></input>
+                            <input onChange={(e) => this.adressInput(e)} value={this.state.adress} type="text" className="form-control" placeholder="Full Address"/>
                         </div>
                         <div className="form-group pay">
-                            <input onChange={(e) => this.telInput(e)} value={this.state.tel} type="tel" className="form-control" placeholder="Phone Number"></input>
+                            <input onChange={(e) => this.telInput(e)} value={this.state.tel} type="tel" className="form-control" placeholder="Phone Number"/>
                         </div>
                         <div className="form-check">
                             <label style={{ color: 'ivory', textAlign: 'center' }}>For Fast Delivery</label>
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>The Price For Faster Delivery Is <big>2.5$</big></small>
                             <small style={{ color: 'ivory', textAlign: 'center', display: 'block' }}>24 Hours Delivery</small>
-                            <input checked={this.state.checkboxChecked} onChange={this.shippingMethod} className="form-check-input position-static pay" type="checkbox"></input>
+                            <input checked={this.state.checkboxChecked} onChange={this.shippingMethod} className="form-check-input position-static pay" type="checkbox"/>
                         </div>
                     </form>
                 </div>

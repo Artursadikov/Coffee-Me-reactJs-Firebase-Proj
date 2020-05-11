@@ -18,7 +18,7 @@ export default class PayMethod extends Component {
         creditCardPay: '',
         month: '',
         fullYear: '',
-        showModal: false
+        showModal: true
 
     }
 
