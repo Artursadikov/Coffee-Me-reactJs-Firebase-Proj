@@ -6,8 +6,8 @@ export default function LiPay(props) {
             <ol style={{marginLeft: '15px'}} className='cartContent'>
                 <li>{props.name}</li>
                 <li>{props.amount}</li>
-                <li>{props.price}</li>
-                <li>{props.totalPr}</li>
+                <li>{props.price}$</li>
+                <li>{props.totalPr}$</li>
             </ol>
         </div>
     )
