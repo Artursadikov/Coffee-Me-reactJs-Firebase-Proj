@@ -44,18 +44,6 @@ class Wish extends Component {
 
    
 
-    // wishlist empty & database
-    // clearWishList = () => {
-    //          axios.delete(`/wishlist/${fire.auth().currentUser.displayName}.json`).then(() => {
-    //         window.location.reload(false);
-    //     })
-        
-       
-    // }
-
-
-
-
     render() {
 
         

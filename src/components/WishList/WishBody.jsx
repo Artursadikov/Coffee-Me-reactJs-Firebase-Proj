@@ -79,7 +79,21 @@ export default class WishBody extends Component {
         })
     }
 
+    paymentBtn=()=>{
+       
+        axios.get(`/wishlist/${this.state.dbUser}/${this.state.elementFromDB}.json`).then(res=>{
+            Object.values(res.data).map(items => {
+                return (
+                    axios.put(`/Cart/${this.state.dbUser}.json`, items)
+                )
+            })
+        }).then(()=>{
+            window.location.href = '/cart'
+        }).then(()=>{
+            this.deleteItemFromWishList();
+        })
 
+    }
 
 
     render() {
@@ -113,6 +127,7 @@ export default class WishBody extends Component {
                     <WishModDescription
                         deleteItemFromWishList={this.deleteItemFromWishList}
                         listNameHeader={this.state.elementFromDB}
+                        paymentBtn={this.paymentBtn}
                         cancel={this.cancelModalClose} >
                         {wishDesc}
                     </WishModDescription>

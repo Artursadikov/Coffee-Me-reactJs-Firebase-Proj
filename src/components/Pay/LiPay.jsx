@@ -5,9 +5,9 @@ export default function LiPay(props) {
         <div style={{ borderBottom: '1px solid coral', marginBottom: '10px', paddingBottom: '10px' }}>
             <ol style={{marginLeft: '15px'}} className='cartContent'>
                 <li>{props.name}</li>
-                <li>{props.amount}</li>
-                <li>{props.price}$</li>
-                <li>{props.totalPr}$</li>
+                <li>Amount: {props.amount}</li>
+                <li>Price Per Sleev: {props.price}$</li>
+                <li>Total: {props.totalPr}$</li>
             </ol>
         </div>
     )
