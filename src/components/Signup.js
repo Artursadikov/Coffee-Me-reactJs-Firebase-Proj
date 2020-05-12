@@ -29,6 +29,23 @@ class Signup extends Component {
         })
     }
 
+     actionCodeSettings = {
+        // URL you want to redirect back to. The domain (www.example.com) for this
+        // URL must be whitelisted in the Firebase Console.
+        url: 'https://aqueous-chamber-01649.herokuapp.com/',
+        // This must be true.
+        handleCodeInApp: true,
+        iOS: {
+          bundleId: 'https://aqueous-chamber-01649.herokuapp.com/'
+        },
+        android: {
+          packageName: 'https://aqueous-chamber-01649.herokuapp.com/',
+          installApp: true,
+          minimumVersion: '7'
+        },
+        dynamicLinkDomain: 'https://aqueous-chamber-01649.herokuapp.com/'
+      };
+
     submitSignUp = (e) => {
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((userCredentials) => {
             if (userCredentials.user) {
@@ -55,6 +72,10 @@ class Signup extends Component {
         })
 
     }
+
+
+
+
 
     firsNameInput = (e) => {
         let value = e.target.value

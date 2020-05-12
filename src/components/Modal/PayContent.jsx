@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './PayContentCss.css';
 import axios from '../../Configuration/axios-data';
 import fire from '../../Configuration/Auth';
 import LiPay from '../Pay/LiPay';
@@ -54,14 +53,10 @@ export default class PayContent extends Component {
         })
 
         axios.get(`/Cart/${this.state.userDisp}.json`).then(res => {
-            console.log(res)
             this.setState({
                 data: res.data
             })
         })
-
-        //console.log(this.state.data)
-
     }
 
 
@@ -90,6 +85,7 @@ export default class PayContent extends Component {
             <div>
                 <div style={{ borderBottom: '1px solid coral', marginBottom: '10px' }} className="payContentHeader">
                     <h2 style={{ textAlign: 'center', }}>You'r Bill</h2>
+                    <button onClick={()=>window.print()} style={{backgroundColor: 'transparent', border: '1px solid black' ,display: 'block' , marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px', width: "180px", height: "35px", color: 'black'}} className='guestBtn'>Print</button>
                 </div>
                 <div style={{ borderBottom: '1px solid coral', marginBottom: '10px' }} className="billBody">
                     <p style={{ fontWeight: 'bolder' }}>Invoice Number: <span style={{ fontWeight: 'normal' }}>{this.state.invoice}</span> </p>
@@ -97,7 +93,7 @@ export default class PayContent extends Component {
                     <p style={{ fontWeight: 'bolder' }}>Shipping Method: <span style={{ fontWeight: 'normal' }}>{this.state.shippingFee !== 0 ? 'Fast(24h)' : '4-6 Days'}</span> </p>
                     {
                         this.state.user ?
-                            <p style={{ fontWeight: 'bolder' }}>Total Discount For Club Member: <span style={{ fontWeight: 'normal' }}>{this.state.shippingFee !== 0 ? (this.state.shippingFee + this.state.totalPrice) - discount : (this.state.totalPrice - discount)}$</span> </p>
+                            <p style={{ fontWeight: 'bolder', backgroundColor: 'rgba(255, 255, 0, 0.479)' }}>Total Discount For Member: <span style={{ fontWeight: 'normal' }}>{this.state.shippingFee !== 0 ? (this.state.shippingFee + this.state.totalPrice) - discount : (this.state.totalPrice - discount)}$</span> </p>
                             :
                             null
                     }
@@ -122,10 +118,8 @@ export default class PayContent extends Component {
                     })
                     : null
                 }
-                {/* <li style={{ fontWeight: 'bolder', marginLeft: '15px' }}><span style={{fontWeight: 'normal'}}></span></li> */}
 
                 <h4 className='thankYouPay' style={{ borderBottom: '1px solid coral', marginBottom: '10px', paddingBottom: '10px', textAlign: 'center' }}>Thank You For Buying , Wish To See You Soon !</h4>
-                <small style={{ borderBottom: '1px solid coral', marginBottom: '10px', paddingBottom: '10px', textAlign: 'center' }}>A Copy Was Sent To The Email You Signed Up With</small>
                 <div style={{ marginBottom: '10px' }} className="home-btn-div">
                     <button onClick={this.payingAndBackToHome} className='guestBtn'>Close</button>
                 </div>
